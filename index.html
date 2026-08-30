@@ -1,82 +1,1505 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XIMAYA™ | Sovereign Grassroots Ecosystem</title>
-    <style>
-        :root { --bg: #0f141d; --card: #171e2b; --gold: #d4af37; --silver: #e2e8f0; --muted: #8fa0b5; }
-        body { background: var(--bg); color: var(--silver); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; line-height: 1.6; text-align: center; }
-        header { padding: 40px 20px; border-bottom: 1px solid rgba(212,175,55,0.1); }
-        .logo { color: var(--gold); font-size: 3rem; font-weight: 800; letter-spacing: 4px; margin: 0; }
-        .tagline { color: var(--muted); font-size: 1.1rem; font-style: italic; margin: 5px 0 0 0; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        .manifesto { max-width: 750px; margin: 0 auto 40px auto; font-size: 1.15rem; color: #f1f5f9; }
-        .card { background: var(--card); border: 1px solid var(--gold); border-radius: 12px; padding: 30px; max-width: 500px; margin: 0 auto 60px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .card h3 { color: var(--gold); margin: 0 0 10px 0; font-size: 1.5rem; }
-        .card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
-        .form-group { display: flex; gap: 10px; }
-        input[type="email"] { flex: 1; padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg); color: #fff; font-size: 1rem; outline: none; }
-        input[type="email"]:focus { border-color: var(--gold); }
-        button { background: var(--gold); color: var(--bg); border: none; padding: 12px 24px; font-weight: bold; font-size: 1rem; border-radius: 6px; cursor: pointer; }
-        .grid-title { color: var(--gold); font-size: 1.8rem; margin-bottom: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .pillar { background: var(--card); padding: 25px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); text-align: left; }
-        .pillar h4 { color: var(--gold); font-size: 1.2rem; margin: 0 0 10px 0; }
-        .pillar p { color: var(--muted); font-size: 0.95rem; margin: 0; }
-        footer { padding: 40px 20px; font-size: 0.8rem; color: #4a5568; border-top: 1px solid rgba(255,255,255,0.02); margin-top: 60px; }
-        @media (max-width:600px) { .form-group { flex-direction: column; } button { width: 100%; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>XIMAYA — Live. Earn. Connect. Give.</title>
+
+  <meta
+    name="description"
+    content="XIMAYA is a growing digital ecosystem connecting people, commerce, food, services, gifting, membership and social impact."
+  >
+
+  <meta name="theme-color" content="#08090d">
+
+  <style>
+    :root {
+      --bg: #08090d;
+      --bg-soft: #0d1017;
+      --card: #11151d;
+      --card-hover: #171c26;
+      --gold: #d8b56a;
+      --gold-light: #f1d895;
+      --text: #f5f5f5;
+      --muted: #a5a9b3;
+      --border: rgba(255,255,255,0.09);
+      --green: #48d597;
+      --max: 1180px;
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(216,181,106,0.10), transparent 28%),
+        radial-gradient(circle at 0% 35%, rgba(70,100,180,0.07), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max));
+      margin: auto;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8,9,13,0.84);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--gold-light);
+    }
+
+    .logo span {
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.92rem;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid rgba(216,181,106,0.45);
+      border-radius: 999px;
+      color: var(--gold-light) !important;
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 1.7rem;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 90px 0 80px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: rgba(216,181,106,0.08);
+      filter: blur(100px);
+      right: -180px;
+      top: 80px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold-light);
+      background: rgba(216,181,106,0.05);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(72,213,151,0.7);
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 9vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(
+        120deg,
+        #fff,
+        var(--gold-light),
+        #fff
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+      color: var(--gold-light);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .hero-text {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 23px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+      border-color: var(--gold);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(216,181,106,0.5);
+      color: var(--gold-light);
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      padding: 95px 0;
+      scroll-margin-top: 80px;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 45px;
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      margin-bottom: 17px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* =========================
+       ECOSYSTEM CARDS
+    ========================= */
+
+    .ecosystem {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.045),
+        rgba(255,255,255,0.018)
+      );
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      min-height: 245px;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: var(--card-hover);
+      border-color: rgba(216,181,106,0.3);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(216,181,106,0.09);
+      border: 1px solid rgba(216,181,106,0.18);
+      font-size: 1.35rem;
+      margin-bottom: 22px;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* =========================
+       PHILOSOPHY
+    ========================= */
+
+    .philosophy {
+      text-align: center;
+    }
+
+    .philosophy-box {
+      max-width: 950px;
+      margin: auto;
+      padding: 55px 35px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(216,181,106,0.08),
+          rgba(255,255,255,0.02)
+        );
+    }
+
+    .philosophy-box h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 20px;
+    }
+
+    .philosophy-box h2 span {
+      color: var(--gold-light);
+    }
+
+    .philosophy-box p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: auto;
+    }
+
+    /* =========================
+       CARE
+    ========================= */
+
+    .care {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .care-layout {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .care-highlight {
+      padding: 40px;
+      border-radius: 28px;
+      border: 1px solid rgba(216,181,106,0.22);
+      background: rgba(216,181,106,0.05);
+    }
+
+    .care-highlight .heart {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .care-highlight h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .care-highlight p {
+      color: var(--muted);
+    }
+
+    .process {
+      display: grid;
+      gap: 13px;
+    }
+
+    .process-item {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .process-number {
+      min-width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(216,181,106,0.12);
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .process-item strong {
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       FAMILY
+    ========================= */
+
+    .family-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .family-card {
+      padding: 35px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .family-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+    }
+
+    .family-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .benefits {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .benefits li {
+      color: #d9dbe0;
+      font-size: 0.93rem;
+    }
+
+    .benefits li::before {
+      content: "✓";
+      color: var(--gold);
+      margin-right: 10px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       MEMBERSHIP
+    ========================= */
+
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .tier {
+      padding: 25px 15px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .tier strong {
+      display: block;
+      color: var(--gold-light);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .tier small {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    /* =========================
+       ROADMAP
+    ========================= */
+
+    .roadmap {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .roadmap-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .roadmap-item {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .roadmap-item span {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .roadmap-item h3 {
+      margin: 10px 0;
+    }
+
+    .roadmap-item p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* =========================
+       JOIN
+    ========================= */
+
+    .join {
+      text-align: center;
+    }
+
+    .join-box {
+      max-width: 780px;
+      margin: auto;
+      padding: 50px 30px;
+      border: 1px solid rgba(216,181,106,0.22);
+      border-radius: 30px;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(216,181,106,0.08),
+          transparent 60%
+        );
+    }
+
+    .join-box h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 15px;
+    }
+
+    .join-box p {
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .join-form {
+      max-width: 550px;
+      margin: auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    .join-form input {
+      flex: 1;
+      min-width: 0;
+      height: 50px;
+      padding: 0 17px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      outline: none;
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+
+    .join-form input:focus {
+      border-color: rgba(216,181,106,0.6);
+    }
+
+    .form-message {
+      margin-top: 14px;
+      min-height: 24px;
+      color: var(--green);
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 45px 0 30px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .footer-brand {
+      max-width: 390px;
+    }
+
+    .footer-brand .logo {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      align-content: flex-start;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #70747d;
+      font-size: 0.76rem;
+    }
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        background: rgba(8,9,13,0.97);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .care-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .tiers {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .roadmap-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .hero {
+        min-height: 82vh;
+        padding: 65px 0;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 18vw, 5rem);
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .cards,
+      .family-grid,
+      .tiers {
+        grid-template-columns: 1fr;
+      }
+
+      .tier {
+        padding: 20px;
+      }
+
+      .join-form {
+        flex-direction: column;
+      }
+
+      .join-form .btn {
+        width: 100%;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1 class="logo">XIMAYA™</h1>
-        <p class="tagline">Born from the Soil. Engineered for the Future.</p>
-    </header>
-    <div class="container">
-        <div class="manifesto">
-            <p>The era of corporate data exploitation and digital fragmentation is over. Legacy networks profit from division and isolate our communities.</p>
-            <p><strong>XIMAYA™ is the absolute correction.</strong> We are building a secure, decentralized digital civilization that weaves human connection, local enterprise, environmental alignment, and pure nourishment into a single sovereign platform built for the grassroots masses—the true <em>Mati’r Manuh</em>.</p>
-        </div>
-        <div class="card">
-            <h3>Secure Your Access™</h3>
-            <p>Join the secure waiting list. No data tracking, no third-party profiling. Just pure community power.</p>
-            <form class="form-group" onsubmit="alert('Welcome to XIMAYA™. Your secure intent has been logged.'); return false;">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit">Join Network</button>
-            </form>
-        </div>
-        <h2 class="grid-title">The Six Sovereign Pillars</h2>
-        <div class="grid">
-            <div class="pillar">
-                <h4>📱 XIMAYA™ Network</h4>
-                <p>A high-trust social ecosystem built for absolute free expression, local friend discovery, and genuine community collaboration.</p>
-            </div>
-            <div class="pillar">
-                <h4>🤝 XIMAYA™ Kin</h4>
-                <p>Reclaiming love and connection. An integrated community framework prioritizing deep mutual aid and an organic gifting economy.</p>
-            </div>
-            <div class="pillar">
-                <h4>🌱 XIMAYA™ Eco</h4>
-                <p>An unwavering technical commitment to respect, maintain, and live in absolute harmony with the natural environment that sustains life.</p>
-            </div>
-            <div class="pillar">
-                <h4>💼 XIMAYA™ Capital</h4>
-                <p>A gatekeeper-free digital marketplace allowing traditional local vendors and micro-businesses to scale from regional trade up to global e-commerce pipelines.</p>
-            </div>
-            <div class="pillar">
-                <h4>🍲 XIMAYA™ Life</h4>
-                <p>Communal dining redefined. Real-time video spaces paired with smart food delivery logistics to host virtual parties and buy/gift meals to long-distance families.</p>
-            </div>
-            <div class="pillar">
-                <h4>🕊️ XIMAYA™ Sovereign</h4>
-                <p>Ironclad data privacy architectures ensuring complete digital rights management and personal liberty for every member.</p>
-            </div>
-        </div>
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
+  <header>
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        XIMAYA<span>.</span>
+      </a>
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#ecosystem">Ecosystem</a></li>
+          <li><a href="#care">XIMAYA Care</a></li>
+          <li><a href="#family">Family</a></li>
+          <li><a href="#roadmap">Vision</a></li>
+          <li><a href="#join" class="nav-cta">Join XIMAYA</a></li>
+        </ul>
+      </nav>
+
     </div>
-    <footer>
-        <p>&copy; 2026 XIMAYA™ Holdings. All Rights Reserved. Administered anonymously for the protection of personal sovereignty and grassroots trade networks.</p>
-    </footer>
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero" id="home">
+
+      <div class="container">
+
+        <div class="hero-content reveal">
+
+          <div class="eyebrow">
+            Building the XIMAYA ecosystem
+          </div>
+
+          <h1>
+            <span>XIMAYA</span>
+          </h1>
+
+          <div class="hero-tagline">
+            Live. Earn. Connect. Give.
+          </div>
+
+          <p class="hero-text">
+            A growing digital ecosystem designed to bring commerce,
+            food, services, gifting, membership and social impact
+            together in one recognizable experience.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#ecosystem" class="btn btn-primary">
+              Explore XIMAYA
+            </a>
+
+            <a href="#join" class="btn btn-secondary">
+              Join the Community
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ECOSYSTEM
+    ========================= -->
+
+    <section class="ecosystem" id="ecosystem">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="section-label">The Ecosystem</div>
+
+          <h2>
+            One brand. Many ways to connect.
+          </h2>
+
+          <p>
+            XIMAYA is envisioned as a multi-purpose ecosystem where
+            people can discover products, services, food, gifts,
+            community opportunities and meaningful ways to contribute.
+          </p>
+        </div>
+
+
+        <div class="cards">
+
+          <article class="card reveal">
+            <div class="card-icon">🛍️</div>
+            <h3>XIMAYA Market</h3>
+            <p>
+              A marketplace for buying and selling products, supporting
+              local commerce, sellers, discovery and business promotion.
+            </p>
+          </article>
+
+
+          <article class="card reveal">
+            <div class="card-icon">🍽️</div>
+            <h3>XIMAYA Food</h3>
+            <p>
+              A food-ordering ecosystem connecting restaurants and
+              food businesses with customers.
+            </p>
+          </article>
+
+
+          <article class="card reveal">
+            <div class="card-icon">🛠️</div>
+            <h3>XIMAYA Services</h3>
+            <p>
+              Discover lawful service providers such as tutors,
+              designers, mechanics, cleaners, photographers and more.
+            </p>
+          </article>
+
+
+          <article class="card reveal">
+            <div class="card-icon">🎁</div>
+            <h3>XIMAYA Gifts</h3>
+            <p>
+              Physical and digital gifting for birthdays, festivals,
+              celebrations and special moments.
+            </p>
+          </article>
+
+
+          <article class="card reveal">
+            <div class="card-icon">❤️</div>
+            <h3>XIMAYA Care</h3>
+            <p>
+              A proposed social-impact pillar supporting verified
+              charitable campaigns, essential needs and community initiatives.
+            </p>
+          </article>
+
+
+          <article class="card reveal">
+            <div class="card-icon">👥</div>
+            <h3>XIMAYA Family</h3>
+            <p>
+              A membership and community experience designed around
+              recognition, belonging, selected benefits and participation.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PHILOSOPHY
+    ========================= -->
+
+    <section class="philosophy">
+
+      <div class="container">
+
+        <div class="philosophy-box reveal">
+
+          <div class="section-label">
+            Our Philosophy
+          </div>
+
+          <h2>
+            People before transactions.
+          </h2>
+
+          <p>
+            XIMAYA aims to create long-term relationships with its
+            members through service, trust, recognition, community
+            and responsible social impact.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CARE
+    ========================= -->
+
+    <section class="care" id="care">
+
+      <div class="container">
+
+        <div class="care-layout">
+
+          <div class="care-highlight reveal">
+
+            <div class="heart">❤️</div>
+
+            <h3>XIMAYA Care</h3>
+
+            <p>
+              Building a responsible pathway for verified social-impact
+              initiatives, community support and charitable giving.
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <div class="section-heading reveal">
+
+              <div class="section-label">
+                Social Impact
+              </div>
+
+              <h2>
+                Trust should be built into giving.
+              </h2>
+
+              <p>
+                Proposed campaigns can follow a transparent process
+                from verification to completion and reporting.
+              </p>
+
+            </div>
+
+
+            <div class="process">
+
+              <div class="process-item reveal">
+                <div class="process-number">01</div>
+                <strong>Application</strong>
+              </div>
+
+              <div class="process-item reveal">
+                <div class="process-number">02</div>
+                <strong>Verification</strong>
+              </div>
+
+              <div class="process-item reveal">
+                <div class="process-number">03</div>
+                <strong>Approval</strong>
+              </div>
+
+              <div class="process-item reveal">
+                <div class="process-number">04</div>
+                <strong>Fundraising & Updates</strong>
+              </div>
+
+              <div class="process-item reveal">
+                <div class="process-number">05</div>
+                <strong>Appropriate Disbursement</strong>
+              </div>
+
+              <div class="process-item reveal">
+                <div class="process-number">06</div>
+                <strong>Completion & Reporting</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAMILY
+    ========================= -->
+
+    <section id="family">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div class="section-label">
+            XIMAYA Family
+          </div>
+
+          <h2>
+            Membership with a sense of belonging.
+          </h2>
+
+          <p>
+            XIMAYA Family is envisioned as a community experience
+            where eligible members can receive recognition and selected
+            benefits as the ecosystem grows.
+          </p>
+
+        </div>
+
+
+        <div class="family-grid">
+
+          <div class="family-card reveal">
+
+            <h3>Member Experience</h3>
+
+            <p>
+              Membership may include selected benefits depending on
+              eligibility, capacity and official membership terms.
+            </p>
+
+            <ul class="benefits">
+              <li>Member recognition</li>
+              <li>Selected offers and benefits</li>
+              <li>Early access opportunities</li>
+              <li>Community participation</li>
+              <li>Birthday and festival greetings</li>
+              <li>Occasional member gifts</li>
+            </ul>
+
+          </div>
+
+
+          <div class="family-card reveal">
+
+            <h3>Membership Tiers</h3>
+
+            <p>
+              Proposed membership tiers are designed as brand
+              privilege concepts rather than banking or credit products.
+            </p>
+
+            <div class="tiers">
+
+              <div class="tier">
+                <strong>Family</strong>
+                <small>Member</small>
+              </div>
+
+              <div class="tier">
+                <strong>Black</strong>
+                <small>Privilege</small>
+              </div>
+
+              <div class="tier">
+                <strong>Gold</strong>
+                <small>Privilege</small>
+              </div>
+
+              <div class="tier">
+                <strong>Signature</strong>
+                <small>Privilege</small>
+              </div>
+
+              <div class="tier">
+                <strong>Legacy</strong>
+                <small>Privilege</small>
+              </div>
+
+            </div>
+
+            <p class="note">
+              Membership features and tiers will be subject to final
+              terms, eligibility and applicable requirements.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ROADMAP
+    ========================= -->
+
+    <section class="roadmap" id="roadmap">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div class="section-label">
+            Building in Stages
+          </div>
+
+          <h2>
+            A vision that grows responsibly.
+          </h2>
+
+          <p>
+            XIMAYA is intended to develop progressively rather than
+            launch every feature simultaneously.
+          </p>
+
+        </div>
+
+
+        <div class="roadmap-list">
+
+          <article class="roadmap-item reveal">
+
+            <span>Stage 01</span>
+
+            <h3>Core Marketplace</h3>
+
+            <p>
+              Validate demand, onboard sellers and providers, and
+              establish the core digital experience.
+            </p>
+
+          </article>
+
+
+          <article class="roadmap-item reveal">
+
+            <span>Stage 02</span>
+
+            <h3>Expand the Ecosystem</h3>
+
+            <p>
+              Grow into food, services, gifting and additional
+              business tools as operational capability develops.
+            </p>
+
+          </article>
+
+
+          <article class="roadmap-item reveal">
+
+            <span>Stage 03</span>
+
+            <h3>Community & Impact</h3>
+
+            <p>
+              Develop membership, social-impact initiatives and
+              broader ecosystem opportunities with appropriate
+              systems and partnerships.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         JOIN
+    ========================= -->
+
+    <section class="join" id="join">
+
+      <div class="container">
+
+        <div class="join-box reveal">
+
+          <div class="section-label">
+            Early Community
+          </div>
+
+          <h2>
+            Be part of the beginning.
+          </h2>
+
+          <p>
+            Join the early XIMAYA community and stay connected as
+            the ecosystem develops.
+          </p>
+
+          <form class="join-form" id="joinForm">
+
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              aria-label="Email address"
+              required
+            >
+
+            <button type="submit" class="btn btn-primary">
+              Join XIMAYA
+            </button>
+
+          </form>
+
+          <div class="form-message" id="formMessage"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+
+          <a href="#home" class="logo">
+            XIMAYA<span>.</span>
+          </a>
+
+          <p>
+            Live. Earn. Connect. Give.
+            <br>
+            A growing ecosystem built around commerce,
+            community and responsible impact.
+          </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="#ecosystem">Ecosystem</a>
+          <a href="#care">XIMAYA Care</a>
+          <a href="#family">Family</a>
+          <a href="#roadmap">Vision</a>
+          <a href="#join">Join</a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <div>
+          © 2026 XIMAYA. All rights reserved.
+        </div>
+
+        <div>
+          Concept and brand development by Raktim Kumar Nath.
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    /* Mobile navigation */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+
+      navLinks.classList.toggle("active");
+
+      const isOpen = navLinks.classList.contains("active");
+
+      menuBtn.setAttribute("aria-expanded", isOpen);
+
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+
+    });
+
+
+    /* Close mobile menu after clicking a link */
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+        menuBtn.setAttribute("aria-expanded", "false");
+
+        menuBtn.textContent = "☰";
+
+      });
+
+    });
+
+
+    /* Simple reveal animation */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    revealElements.forEach(element => {
+      observer.observe(element);
+    });
+
+
+    /* Early-access form */
+
+    const joinForm = document.getElementById("joinForm");
+    const formMessage = document.getElementById("formMessage");
+
+    joinForm.addEventListener("submit", (event) => {
+
+      event.preventDefault();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      if (!email) {
+        formMessage.textContent =
+          "Please enter your email address.";
+        return;
+      }
+
+      formMessage.textContent =
+        "Thank you for joining the XIMAYA community.";
+
+      joinForm.reset();
+
+    });
+
+  </script>
+
 </body>
 </html>
