@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>XIMAYA Market — Discover. Buy. Sell.</title>
+
+  <meta
+    name="description"
+    content="XIMAYA Market — a growing marketplace for products, local commerce, sellers and businesses."
+  >
+
+  <style>
+    :root {
+      --bg: #08090d;
+      --soft: #0e1118;
+      --card: #131720;
+      --gold: #d8b56a;
+      --gold-light: #f1d895;
+      --text: #f5f5f5;
+      --muted: #a5a9b3;
+      --border: rgba(255,255,255,0.09);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+      background:
+        radial-gradient(
+          circle at 85% 0%,
+          rgba(216,181,106,0.12),
+          transparent 30%
+        ),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, 1120px);
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,9,13,0.9);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.17em;
+      color: var(--gold-light);
+    }
+
+    .logo span {
+      color: white;
+    }
+
+    .back {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .back:hover {
+      color: var(--gold-light);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 100px 0 75px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 13px;
+      border: 1px solid rgba(216,181,106,0.3);
+      border-radius: 999px;
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: var(--gold-light);
+    }
+
+    .hero p {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+    }
+
+    .primary {
+      background: var(--gold);
+      color: #111;
+      border-color: var(--gold);
+      font-weight: 700;
+    }
+
+    .primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .secondary:hover {
+      color: var(--gold-light);
+      border-color: rgba(216,181,106,0.4);
+    }
+
+    /* SEARCH */
+
+    .search-area {
+      padding: 25px 0 70px;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      height: 48px;
+      border: 0;
+      outline: 0;
+      padding: 0 15px;
+      background: transparent;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .search-box input::placeholder {
+      color: #777c86;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 35px;
+    }
+
+    /* CATEGORIES */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .category {
+      padding: 27px 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--card);
+      transition: 0.25s ease;
+    }
+
+    .category:hover {
+      transform: translateY(-4px);
+      border-color: rgba(216,181,106,0.35);
+    }
+
+    .category-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+
+    .category h3 {
+      margin-bottom: 5px;
+    }
+
+    .category p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* MARKETPLACE */
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .market-card {
+      min-height: 230px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+    }
+
+    .market-card .number {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .market-card h3 {
+      margin: 15px 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .market-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* SELLER */
+
+    .seller {
+      background: var(--soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .seller-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .seller-box h2 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .seller-box p {
+      color: var(--muted);
+    }
+
+    .seller-features {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature {
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .feature span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* COMING SOON */
+
+    .coming {
+      text-align: center;
+    }
+
+    .coming-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 50px 30px;
+      border: 1px solid rgba(216,181,106,0.25);
+      border-radius: 28px;
+      background: rgba(216,181,106,0.045);
+    }
+
+    .coming-box h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 14px;
+    }
+
+    .coming-box p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 35px 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .market-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .seller-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      .hero {
+        padding: 70px 0 50px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .categories {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-box .btn {
+        width: 100%;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header>
+    <div class="container">
+      <nav>
+
+        <a href="index.html" class="logo">
+          XIMAYA<span>.</span>
+        </a>
+
+        <a href="index.html" class="back">
+          ← Back to XIMAYA
+        </a>
+
+      </nav>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="eyebrow">
+          XIMAYA Ecosystem
+        </div>
+
+        <h1>
+          Welcome to<br>
+          <span>XIMAYA Market.</span>
+        </h1>
+
+        <p>
+          A growing marketplace designed to connect people,
+          sellers and businesses through product discovery,
+          local commerce and better digital experiences.
+        </p>
+
+        <div class="buttons">
+
+          <a href="#categories" class="btn primary">
+            Explore Categories
+          </a>
+
+          <a href="#sell" class="btn secondary">
+            Become a Seller
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="search-area">
+
+      <div class="container">
+
+        <div class="search-box">
+
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products, businesses or categories..."
+            aria-label="Search"
+          >
+
+          <button
+            class="btn primary"
+            onclick="searchMarket()"
+          >
+            Search
+          </button>
+
+        </div>
+
+        <p
+          id="searchMessage"
+          style="
+            color:#48d597;
+            margin-top:12px;
+            font-size:0.85rem;
+          "
+        ></p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+
+    <section id="categories">
+
+      <div class="container">
+
+        <div class="section-label">
+          Discover
+        </div>
+
+        <h2 class="section-title">
+          Explore the marketplace.
+        </h2>
+
+        <div class="categories">
+
+          <div class="category">
+            <div class="category-icon">👕</div>
+            <h3>Fashion</h3>
+            <p>Clothing, accessories and lifestyle products.</p>
+          </div>
+
+          <div class="category">
+            <div class="category-icon">🏠</div>
+            <h3>Home</h3>
+            <p>Products for everyday living and spaces.</p>
+          </div>
+
+          <div class="category">
+            <div class="category-icon">📱</div>
+            <h3>Electronics</h3>
+            <p>Technology and useful digital products.</p>
+          </div>
+
+          <div class="category">
+            <div class="category-icon">🌾</div>
+            <h3>Local Products</h3>
+            <p>Discover products from local businesses and creators.</p>
+          </div>
+
+          <div class="category">
+            <div class="category-icon">💄</div>
+            <h3>Beauty</h3>
+            <p>Beauty, personal care and lifestyle categories.</p>
+          </div>
+
+          <div class="category">
+            <div class="category-icon">📚</div>
+            <h3>Books & Learning</h3>
+            <p>Books, educational products and learning resources.</p>
+          </div>
+
+          <div class="category">
+            <div class="category-icon">🎨</div>
+            <h3>Art & Handmade</h3>
+            <p>Creative, personalised and handmade products.</p>
+          </div>
+
+          <div class="category">
+            <div class="category-icon">✨</div>
+            <h3>More</h3>
+            <p>More categories can grow with the XIMAYA community.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MARKET FEATURES -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-label">
+          Marketplace
+        </div>
+
+        <h2 class="section-title">
+          Built for buyers and sellers.
+        </h2>
+
+        <div class="market-grid">
+
+          <div class="market-card">
+            <div class="number">01</div>
+            <h3>Product Discovery</h3>
+            <p>
+              Make it easier for customers to discover products,
+              sellers and local businesses.
+            </p>
+          </div>
+
+          <div class="market-card">
+            <div class="number">02</div>
+            <h3>Seller Onboarding</h3>
+            <p>
+              A future seller experience designed to help businesses
+              join and manage their marketplace presence.
+            </p>
+          </div>
+
+          <div class="market-card">
+            <div class="number">03</div>
+            <h3>Business Promotion</h3>
+            <p>
+              Give participating businesses opportunities to
+              showcase their products and services.
+            </p>
+          </div>
+
+          <div class="market-card">
+            <div class="number">04</div>
+            <h3>Local Commerce</h3>
+            <p>
+              Help customers discover businesses and products
+              within their communities.
+            </p>
+          </div>
+
+          <div class="market-card">
+            <div class="number">05</div>
+            <h3>Ordering</h3>
+            <p>
+              Future ordering capabilities can be developed with
+              appropriate technology and operational partners.
+            </p>
+          </div>
+
+          <div class="market-card">
+            <div class="number">06</div>
+            <h3>Payments & Delivery</h3>
+            <p>
+              Future payment and delivery functionality can use
+              appropriate compliant partners and systems.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SELLER -->
+
+    <section class="seller" id="sell">
+
+      <div class="container">
+
+        <div class="seller-box">
+
+          <div>
+
+            <div class="section-label">
+              For Businesses
+            </div>
+
+            <h2>
+              Grow with XIMAYA.
+            </h2>
+
+            <p>
+              XIMAYA Market is envisioned as a platform where
+              businesses and sellers can reach customers,
+              showcase products and participate in a growing
+              digital ecosystem.
+            </p>
+
+            <br>
+
+            <a href="#coming" class="btn primary">
+              Seller Interest
+            </a>
+
+          </div>
+
+
+          <div class="seller-features">
+
+            <div class="feature">
+              <strong>Seller Presence</strong>
+              <span>
+                Build a recognizable presence inside the XIMAYA ecosystem.
+              </span>
+            </div>
+
+            <div class="feature">
+              <strong>Product Showcase</strong>
+              <span>
+                Present products clearly to potential customers.
+              </span>
+            </div>
+
+            <div class="feature">
+              <strong>Business Promotion</strong>
+              <span>
+                Future tools can help participating businesses promote themselves.
+              </span>
+            </div>
+
+            <div class="feature">
+              <strong>Community Connection</strong>
+              <span>
+                Become part of a broader commerce and community network.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- COMING SOON -->
+
+    <section class="coming" id="coming">
+
+      <div class="container">
+
+        <div class="coming-box">
+
+          <div class="section-label">
+            Building in Stages
+          </div>
+
+          <h2>
+            XIMAYA Market is growing.
+          </h2>
+
+          <p>
+            The marketplace will be developed progressively,
+            beginning with validation, seller onboarding and
+            the core digital experience before expanding into
+            additional commerce functionality.
+          </p>
+
+          <a href="index.html" class="btn secondary">
+            Explore Main XIMAYA
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <div>
+          © 2026 XIMAYA. All rights reserved.
+        </div>
+
+        <div>
+          Live. Earn. Connect. Give.
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    function searchMarket() {
+
+      const input =
+        document.getElementById("searchInput");
+
+      const message =
+        document.getElementById("searchMessage");
+
+      const value =
+        input.value.trim();
+
+      if (value === "") {
+
+        message.textContent =
+          "Enter something to search.";
+
+        return;
+      }
+
+      message.textContent =
+        "Marketplace search is being developed. Your search: " + value;
+
+    }
+
+  </script>
+
+</body>
+</html>
