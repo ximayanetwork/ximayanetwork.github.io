@@ -2,248 +2,269 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>XIMAYA Social — Connect, Meet & Belong</title>
-<meta name="description" content="XIMAYA Social — meet people, share ideas, join communities and connect through the XIMAYA world.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XIMAYA Social — Meet. Connect. Share.</title>
+<meta name="description" content="XIMAYA Social — discover people, conversations, communities and connections.">
 
 <style>
 :root{
-  --black:#11100d;
-  --deep:#191611;
-  --cream:#f4efe5;
-  --ivory:#fcf9f2;
-  --gold:#b89a61;
-  --gold-light:#d6bd88;
-  --line:#d8c8a6;
-  --muted:#706858;
-  --soft:#ebe2d1;
+  --black:#0b0a08;
+  --deep:#15110c;
+  --cream:#f4eee2;
+  --ivory:#fcfaf5;
+  --gold:#b99a5e;
+  --gold2:#dcc38d;
+  --line:#d8c7a5;
+  --muted:#71695b;
+  --soft:#ebe1cf;
 }
-
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
-
 body{
   margin:0;
   background:var(--cream);
   color:var(--black);
   font-family:Georgia,"Times New Roman",serif;
+  line-height:1.6;
 }
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,input,textarea{
-  font:inherit;
-}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
 
 .topbar{
   background:var(--black);
-  color:var(--gold-light);
+  color:var(--gold2);
   text-align:center;
-  padding:11px 20px;
-  font:10px Arial,sans-serif;
-  letter-spacing:3px;
+  padding:10px;
+  font:9px Arial,sans-serif;
+  letter-spacing:4px;
   text-transform:uppercase;
 }
 
 .nav{
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:100;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  padding:20px 5%;
-  background:#f4efe5ed;
-  backdrop-filter:blur(15px);
+  align-items:center;
+  padding:19px 5%;
+  background:#f4eee2ed;
+  backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
 }
-
 .logo{
   font-size:27px;
   letter-spacing:7px;
 }
-
 .navlinks{
   display:flex;
-  gap:23px;
-  font:10px Arial,sans-serif;
-  letter-spacing:1.5px;
+  gap:17px;
+  font:9px Arial,sans-serif;
+  letter-spacing:1.2px;
   text-transform:uppercase;
 }
-
-.navlinks a:hover{
-  color:#80683c;
-}
+.navlinks a:hover{color:#80683c}
 
 .hero{
-  padding:75px 6% 65px;
+  padding:90px 6% 70px;
   text-align:center;
   border-bottom:1px solid var(--line);
   background:
-    radial-gradient(circle at 50% 30%,rgba(184,154,97,.13),transparent 45%),
+    radial-gradient(circle at center,rgba(185,154,94,.18),transparent 38%),
     var(--cream);
 }
-
 .eyebrow{
-  font:10px Arial,sans-serif;
+  color:#80683c;
+  font:9px Arial,sans-serif;
   letter-spacing:5px;
   text-transform:uppercase;
-  color:#80683c;
 }
-
 .hero h1{
   margin:18px 0;
-  font-size:clamp(48px,7vw,88px);
-  line-height:.95;
+  font-size:clamp(55px,9vw,105px);
+  line-height:.88;
   font-weight:400;
+  letter-spacing:-4px;
 }
-
+.hero h1 em{font-style:italic}
 .hero p{
-  max-width:680px;
-  margin:auto;
+  max-width:700px;
+  margin:25px auto;
   color:var(--muted);
   font-size:17px;
-  line-height:1.8;
 }
-
-.social{
-  max-width:1250px;
-  margin:45px auto;
-  padding:0 20px;
-}
-
-.layout{
-  display:grid;
-  grid-template-columns:230px minmax(0,650px) 260px;
-  gap:22px;
-  align-items:start;
-}
-
-.panel{
-  background:var(--ivory);
-  border:1px solid var(--line);
-  padding:22px;
-}
-
-.panel h3{
-  margin:0 0 18px;
-  font-size:20px;
-  font-weight:400;
-}
-
-.menu{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.menu a{
-  padding:11px 9px;
-  font:10px Arial,sans-serif;
-  letter-spacing:1.3px;
+.hero-buttons{margin-top:25px}
+.button{
+  display:inline-block;
+  margin:4px;
+  padding:13px 21px;
+  border:1px solid var(--black);
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
   text-transform:uppercase;
+  cursor:pointer;
+  background:transparent;
+}
+.button:hover{
+  background:var(--black);
+  color:var(--cream);
+}
+.button.gold{
+  border-color:var(--gold);
+}
+.button.gold:hover{
+  background:var(--gold);
+  color:var(--black);
 }
 
-.menu a:hover{
-  background:var(--soft);
-}
+/* SOCIAL APP */
 
-.profile{
-  text-align:center;
+.app-section{
+  padding:70px 5%;
+  background:#eee5d5;
   border-bottom:1px solid var(--line);
-  padding-bottom:20px;
-  margin-bottom:15px;
+}
+
+.social-app{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr) 270px;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  min-height:700px;
+}
+
+/* LEFT */
+
+.sidebar{
+  background:var(--ivory);
+  padding:25px 18px;
+}
+
+.profile-mini{
+  padding:15px 5px 22px;
+  border-bottom:1px solid var(--line);
 }
 
 .avatar{
-  width:72px;
-  height:72px;
+  width:55px;
+  height:55px;
+  border:1px solid var(--gold);
   border-radius:50%;
-  margin:0 auto 12px;
-  background:
-    radial-gradient(circle at 50% 35%,#ead7ae 0 22%,#94794b 23% 52%,#30281b 53%);
-  border:2px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#80683c;
+  font-size:23px;
+  margin-bottom:12px;
+  background:#f3ead9;
 }
 
-.profile strong{
+.profile-mini strong{
   display:block;
-  font-size:18px;
+  font-size:17px;
   font-weight:400;
 }
 
-.profile small{
+.profile-mini span{
   color:var(--muted);
+  font:9px Arial,sans-serif;
+  letter-spacing:1px;
+}
+
+.side-menu{
+  padding-top:18px;
+}
+
+.side-menu a{
+  display:block;
+  padding:12px 8px;
+  color:#514b40;
   font:10px Arial,sans-serif;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  border-bottom:1px solid transparent;
+}
+
+.side-menu a:hover,
+.side-menu a.active{
+  color:#80683c;
+  border-bottom-color:var(--gold);
+}
+
+/* FEED */
+
+.feed{
+  background:#f7f1e7;
+  padding:24px;
+}
+
+.feed-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.feed-head h2{
+  margin:0;
+  font-size:28px;
+  font-weight:400;
+}
+
+.feed-head span{
+  color:var(--muted);
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
 .composer{
   background:var(--ivory);
   border:1px solid var(--line);
-  padding:22px;
-  margin-bottom:18px;
+  padding:18px;
+  margin-bottom:20px;
 }
 
 .composer-top{
   display:flex;
-  gap:13px;
+  gap:12px;
   align-items:center;
 }
 
-.mini-avatar{
-  width:45px;
-  height:45px;
+.composer .avatar{
+  width:42px;
+  height:42px;
+  margin:0;
   flex:none;
-  border-radius:50%;
-  background:var(--soft);
-  border:1px solid var(--gold);
 }
 
 .composer textarea{
-  width:100%;
-  min-height:70px;
-  resize:none;
+  flex:1;
+  min-height:50px;
+  resize:vertical;
   border:0;
   outline:0;
   background:transparent;
   color:var(--black);
+  padding:8px;
+  font-size:14px;
 }
 
 .composer-bottom{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:12px;
-  padding-top:14px;
+  justify-content:flex-end;
+  margin-top:10px;
+  padding-top:12px;
   border-top:1px solid var(--line);
-}
-
-.composer-tools{
-  display:flex;
-  gap:14px;
-  font:9px Arial,sans-serif;
-  letter-spacing:1px;
-  color:var(--muted);
-}
-
-.post-btn{
-  border:1px solid var(--gold);
-  background:var(--black);
-  color:var(--cream);
-  padding:10px 17px;
-  font:9px Arial,sans-serif;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  cursor:pointer;
 }
 
 .post{
   background:var(--ivory);
   border:1px solid var(--line);
-  padding:24px;
+  padding:22px;
   margin-bottom:18px;
 }
 
@@ -253,179 +274,210 @@ button,input,textarea{
   gap:12px;
 }
 
-.post-avatar{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:var(--soft);
-  border:1px solid var(--gold);
+.post-head .avatar{
+  width:43px;
+  height:43px;
+  margin:0;
+  flex:none;
 }
 
-.post-name{
-  font-size:17px;
-}
-
-.post-meta{
+.post-author strong{
   display:block;
-  margin-top:3px;
+  font-size:15px;
+  font-weight:400;
+}
+
+.post-author span{
   color:var(--muted);
   font:9px Arial,sans-serif;
-  letter-spacing:1px;
 }
 
-.post p{
+.post-text{
+  margin:18px 0;
+  color:#403c34;
   font-size:15px;
   line-height:1.8;
-  color:#403a31;
 }
 
 .post-actions{
   display:flex;
-  gap:24px;
-  padding-top:15px;
+  gap:18px;
+  padding-top:12px;
   border-top:1px solid var(--line);
-  font:9px Arial,sans-serif;
-  letter-spacing:1.2px;
-  text-transform:uppercase;
-  color:var(--muted);
 }
 
-.post-actions span{
+.post-actions button{
+  border:0;
+  background:transparent;
   cursor:pointer;
+  color:#625b4e;
+  font:9px Arial,sans-serif;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:0;
 }
 
-.post-actions span:hover{
+.post-actions button:hover{
   color:#80683c;
 }
 
-.people{
-  display:flex;
-  flex-direction:column;
-  gap:13px;
+.like-count{
+  margin-left:4px;
+}
+
+/* RIGHT */
+
+.rightbar{
+  background:var(--ivory);
+  padding:25px 18px;
+}
+
+.right-title{
+  margin:0 0 15px;
+  color:#80683c;
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+  text-transform:uppercase;
 }
 
 .person{
   display:flex;
   align-items:center;
   gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
 }
 
-.person-avatar{
+.person .avatar{
   width:40px;
   height:40px;
-  border-radius:50%;
-  background:var(--soft);
-  border:1px solid var(--line);
+  margin:0;
+  flex:none;
+  font-size:16px;
 }
 
 .person-info{
   flex:1;
 }
 
-.person-name{
+.person-info strong{
   display:block;
   font-size:13px;
+  font-weight:400;
 }
 
-.person-info small{
+.person-info span{
   color:var(--muted);
-  font:9px Arial,sans-serif;
+  font:8px Arial,sans-serif;
 }
 
-.connect{
+.follow{
   border:1px solid var(--gold);
   background:transparent;
-  padding:6px 9px;
+  padding:7px 8px;
+  cursor:pointer;
+  color:#80683c;
   font:8px Arial,sans-serif;
   letter-spacing:1px;
   text-transform:uppercase;
-  cursor:pointer;
 }
 
-.connect:hover{
-  background:var(--black);
-  color:var(--cream);
+.follow:hover{
+  background:var(--gold);
+  color:var(--black);
 }
 
-.network-box{
-  margin-top:18px;
-  padding:22px;
-  background:var(--black);
-  color:var(--cream);
+.community{
+  margin-top:35px;
 }
 
-.network-box .eyebrow{
-  color:var(--gold-light);
-}
-
-.network-box h3{
-  margin:12px 0;
-  font-size:24px;
-  font-weight:400;
-}
-
-.network-box p{
-  color:#c8bdab;
-  font-size:13px;
-  line-height:1.7;
-}
-
-.gold-btn{
-  display:inline-block;
-  margin-top:10px;
-  padding:11px 15px;
-  border:1px solid var(--gold);
-  color:var(--cream);
-  font:9px Arial,sans-serif;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-}
-
-.chat{
-  margin-top:45px;
-  background:var(--ivory);
-  border:1px solid var(--line);
-}
-
-.chat-head{
-  padding:22px;
+.community-card{
+  padding:14px 0;
   border-bottom:1px solid var(--line);
 }
 
-.chat-head h2{
-  margin:5px 0 0;
+.community-card strong{
+  display:block;
+  font-size:14px;
   font-weight:400;
-  font-size:29px;
 }
 
-.chat-body{
+.community-card span{
+  color:var(--muted);
+  font:8px Arial,sans-serif;
+}
+
+/* CHAT */
+
+.chat-section{
+  padding:100px 6%;
+  background:var(--black);
+  color:var(--cream);
+  border-bottom:1px solid #30271b;
+}
+
+.chat-heading{
+  max-width:800px;
+  margin:0 auto 50px;
+  text-align:center;
+}
+
+.chat-heading .eyebrow{
+  color:var(--gold2);
+}
+
+.chat-heading h2{
+  margin:16px 0;
+  font-size:clamp(45px,6vw,72px);
+  line-height:.95;
+  font-weight:400;
+}
+
+.chat-heading p{
+  color:#c8bdab;
+}
+
+.chat-box{
+  max-width:1000px;
+  margin:auto;
   display:grid;
-  grid-template-columns:220px 1fr;
-  min-height:390px;
+  grid-template-columns:280px 1fr;
+  min-height:480px;
+  border:1px solid rgba(220,195,141,.45);
+  background:#15110d;
 }
 
 .chat-list{
-  border-right:1px solid var(--line);
+  border-right:1px solid rgba(220,195,141,.3);
+  padding:18px;
+}
+
+.chat-list-title{
+  color:var(--gold2);
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:12px;
 }
 
 .chat-user{
   display:flex;
   gap:10px;
   align-items:center;
-  padding:15px;
-  border-bottom:1px solid var(--line);
+  padding:13px 5px;
+  border-bottom:1px solid rgba(220,195,141,.15);
   cursor:pointer;
 }
 
 .chat-user:hover{
-  background:var(--soft);
+  background:rgba(220,195,141,.05);
 }
 
-.chat-user-avatar{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:var(--soft);
+.chat-user .avatar{
+  width:40px;
+  height:40px;
+  margin:0;
+  background:#211b13;
 }
 
 .chat-user strong{
@@ -434,89 +486,200 @@ button,input,textarea{
   font-weight:400;
 }
 
-.chat-user small{
-  color:var(--muted);
-  font:9px Arial,sans-serif;
+.chat-user span{
+  color:#a99e8d;
+  font:8px Arial,sans-serif;
 }
 
-.chat-area{
+.chat-window{
   display:flex;
   flex-direction:column;
 }
 
+.chat-header{
+  padding:18px 22px;
+  border-bottom:1px solid rgba(220,195,141,.25);
+}
+
+.chat-header strong{
+  font-size:17px;
+  font-weight:400;
+}
+
+.chat-header span{
+  display:block;
+  color:#a99e8d;
+  font:8px Arial,sans-serif;
+  letter-spacing:1px;
+  margin-top:3px;
+}
+
 .messages{
   flex:1;
-  padding:25px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
 }
 
 .message{
-  max-width:72%;
-  width:max-content;
+  max-width:70%;
   padding:11px 14px;
-  margin:8px 0;
-  background:var(--soft);
+  background:#211b13;
+  color:#d9d0c2;
   font-size:13px;
-  line-height:1.5;
 }
 
 .message.mine{
-  margin-left:auto;
-  background:var(--black);
+  align-self:flex-end;
+  background:#55472f;
   color:var(--cream);
 }
 
 .chat-input{
   display:flex;
-  border-top:1px solid var(--line);
+  gap:10px;
+  padding:15px;
+  border-top:1px solid rgba(220,195,141,.25);
 }
 
 .chat-input input{
   flex:1;
-  border:0;
+  min-width:0;
+  border:1px solid rgba(220,195,141,.35);
   outline:0;
-  background:transparent;
-  padding:16px;
+  padding:11px;
+  background:#0f0d0a;
+  color:var(--cream);
 }
 
-.chat-input button{
-  border:0;
-  background:var(--black);
-  color:var(--cream);
-  padding:0 22px;
+.chat-send{
+  border:1px solid var(--gold);
+  background:var(--gold);
+  color:var(--black);
+  padding:0 18px;
   cursor:pointer;
   font:9px Arial,sans-serif;
-  letter-spacing:1px;
+  letter-spacing:1.5px;
   text-transform:uppercase;
 }
 
-.footer{
-  margin-top:80px;
+/* COMMUNITIES */
+
+.communities{
+  padding:100px 6%;
+  border-bottom:1px solid var(--line);
+}
+
+.section-heading{
+  max-width:800px;
+  margin:0 auto 50px;
+  text-align:center;
+}
+
+.section-heading h2{
+  margin:15px 0;
+  font-size:clamp(43px,6vw,70px);
+  line-height:1;
+  font-weight:400;
+}
+
+.section-heading p{
+  color:var(--muted);
+}
+
+.community-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+}
+
+.big-community{
+  padding:30px;
+  min-height:250px;
+  background:var(--ivory);
+}
+
+.big-community span{
+  color:#80683c;
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+}
+
+.big-community h3{
+  font-size:27px;
+  font-weight:400;
+  margin:15px 0 8px;
+}
+
+.big-community p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.big-community a{
+  display:inline-block;
+  margin-top:10px;
+  padding-bottom:3px;
+  border-bottom:1px solid var(--gold);
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+/* JOIN */
+
+.join{
+  padding:110px 6%;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,rgba(185,154,94,.15),transparent 48%),
+    var(--deep);
+  color:var(--cream);
+}
+
+.join h2{
+  max-width:850px;
+  margin:15px auto;
+  font-size:clamp(45px,6vw,75px);
+  line-height:1;
+  font-weight:400;
+}
+
+.join p{
+  max-width:650px;
+  margin:20px auto 30px;
+  color:#c8bdab;
+}
+
+footer{
   padding:55px 6%;
   text-align:center;
   border-top:1px solid var(--line);
 }
 
 .footer-logo{
-  font-size:24px;
-  letter-spacing:7px;
+  font-size:25px;
+  letter-spacing:8px;
 }
 
 .footer-links{
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
-  gap:20px;
+  justify-content:center;
+  gap:19px;
   margin-top:20px;
   font:9px Arial,sans-serif;
-  letter-spacing:1.5px;
+  letter-spacing:1.3px;
   text-transform:uppercase;
 }
 
-.footer-links a:hover{
-  color:#80683c;
-}
+.footer-links a:hover{color:#80683c}
 
-.copyright{
+.copy{
   margin-top:25px;
   color:var(--muted);
   font:9px Arial,sans-serif;
@@ -524,38 +687,62 @@ button,input,textarea{
 }
 
 @media(max-width:1050px){
-  .layout{
-    grid-template-columns:210px 1fr;
+  .navlinks{display:none}
+  .social-app{
+    grid-template-columns:190px 1fr;
   }
-
-  .right{
-    display:none;
-  }
+  .rightbar{display:none}
 }
 
 @media(max-width:750px){
-  .navlinks{
-    display:none;
+  .social-app{
+    display:block;
   }
-
-  .layout{
+  .sidebar{
+    border-bottom:1px solid var(--line);
+  }
+  .side-menu{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+  }
+  .side-menu a{
+    padding:8px;
+  }
+  .community-grid{
     grid-template-columns:1fr;
   }
-
-  .left{
-    display:none;
-  }
-
-  .hero{
-    padding:65px 6%;
-  }
-
-  .chat-body{
+  .chat-box{
     grid-template-columns:1fr;
   }
-
   .chat-list{
-    display:none;
+    border-right:0;
+    border-bottom:1px solid rgba(220,195,141,.3);
+  }
+  .chat-user{
+    display:inline-flex;
+    margin-right:15px;
+  }
+  .chat-list{
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+}
+
+@media(max-width:500px){
+  .hero h1{font-size:55px}
+  .app-section{
+    padding:35px 3%;
+  }
+  .feed{
+    padding:14px;
+  }
+  .post{
+    padding:16px;
+  }
+  .chat-section,
+  .communities{
+    padding:75px 5%;
   }
 }
 </style>
@@ -564,7 +751,7 @@ button,input,textarea{
 <body>
 
 <div class="topbar">
-XIMAYA SOCIAL · CONNECT · MEET · BELONG
+XIMAYA · SOCIAL · MEET · CONNECT · SHARE
 </div>
 
 <nav class="nav">
@@ -582,126 +769,137 @@ XIMAYA SOCIAL · CONNECT · MEET · BELONG
 <a href="membership.html">Membership</a>
 <a href="social.html">Social</a>
 <a href="network.html">Network</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
 </div>
 
 </nav>
 
-
 <section class="hero">
 
-<div>
+<div class="eyebrow">
+XIMAYA Social
+</div>
 
-<div class="eyebrow">XIMAYA Social</div>
-
-<h1>Meet the people<br>behind the world.</h1>
+<h1>
+Meet.<br>
+<em>Connect.</em>
+</h1>
 
 <p>
-A place to discover people, share ideas, build communities,
-create meaningful connections and become part of the XIMAYA world.
+A social world inside XIMAYA — discover people,
+join conversations, share your thoughts and build
+connections that matter.
 </p>
 
+<div class="hero-buttons">
+<a class="button gold" href="#social-app">Enter Social</a>
+<a class="button" href="network.html">Explore Network</a>
 </div>
 
 </section>
 
 
-<main class="social">
+<section class="app-section" id="social-app">
 
-<div class="layout">
+<div class="social-app">
 
+<!-- SIDEBAR -->
 
-<!-- LEFT SIDEBAR -->
+<aside class="sidebar">
 
-<aside class="left">
+<div class="profile-mini">
 
-<div class="panel">
+<div class="avatar">X</div>
 
-<div class="profile">
+<strong>Your XIMAYA</strong>
 
-<div class="avatar"></div>
-
-<strong>Your XIMAYA Profile</strong>
-
-<small>Member · Connected</small>
+<span>Member profile</span>
 
 </div>
 
-<div class="menu">
+<div class="side-menu">
 
-<a href="#">⌂ Home Feed</a>
-<a href="#">♙ My Profile</a>
-<a href="#">♧ People</a>
-<a href="#">◇ Groups</a>
-<a href="#">✉ Messages</a>
-<a href="#">♡ Notifications</a>
-<a href="network.html">◎ Network</a>
-<a href="membership.html">♢ Membership</a>
-
-</div>
+<a class="active" href="#feed">Home Feed</a>
+<a href="#people">Discover People</a>
+<a href="#chat">Messages</a>
+<a href="#communities">Communities</a>
+<a href="network.html">Network</a>
+<a href="membership.html">Membership</a>
+<a href="card.html">XIMAYA Card</a>
 
 </div>
 
 </aside>
 
 
-<!-- MAIN FEED -->
+<!-- FEED -->
 
-<section>
+<main class="feed" id="feed">
+
+<div class="feed-head">
+
+<h2>Your Feed</h2>
+
+<span>XIMAYA Social</span>
+
+</div>
+
 
 <div class="composer">
 
 <div class="composer-top">
 
-<div class="mini-avatar"></div>
+<div class="avatar">X</div>
 
-<textarea placeholder="Share something with the XIMAYA community..."></textarea>
+<textarea id="postInput" placeholder="Share something with the XIMAYA community..."></textarea>
 
 </div>
 
 <div class="composer-bottom">
 
-<div class="composer-tools">
-
-<span>PHOTO</span>
-<span>IDEA</span>
-<span>EXPERIENCE</span>
-
-</div>
-
-<button class="post-btn">Publish</button>
+<button class="button gold" onclick="createPost()">
+Post
+</button>
 
 </div>
 
 </div>
 
+
+<div id="posts">
 
 <article class="post">
 
 <div class="post-head">
 
-<div class="post-avatar"></div>
+<div class="avatar">A</div>
 
-<div>
-
-<div class="post-name">XIMAYA Community</div>
-
-<span class="post-meta">XIMAYA Network · Recently</span>
-
+<div class="post-author">
+<strong>Aria</strong>
+<span>2 hours ago · XIMAYA Community</span>
 </div>
 
 </div>
 
-<p>
-Welcome to XIMAYA Social — a place where exceptional people
-can meet, exchange ideas, discover communities and create
-connections that matter.
-</p>
+<div class="post-text">
+Some places are discovered. Others become part of your story.
+What are you discovering today?
+</div>
 
 <div class="post-actions">
 
-<span>♡ Like</span>
-<span>○ Comment</span>
-<span>↗ Share</span>
+<button onclick="likePost(this)">
+♡ Like <span class="like-count">24</span>
+</button>
+
+<button onclick="focusComment(this)">
+Comment
+</button>
+
+<button onclick="sharePost()">
+Share
+</button>
 
 </div>
 
@@ -712,28 +910,34 @@ connections that matter.
 
 <div class="post-head">
 
-<div class="post-avatar"></div>
+<div class="avatar">R</div>
 
-<div>
-
-<div class="post-name">The XIMAYA Journal</div>
-
-<span class="post-meta">Culture · Discovery</span>
-
+<div class="post-author">
+<strong>Rohan</strong>
+<span>5 hours ago · Assam Circle</span>
 </div>
 
 </div>
 
-<p>
-What makes a great community? Not the number of people in it,
-but the quality of the connections between them.
-</p>
+<div class="post-text">
+Connecting with people who share the same curiosity makes
+every journey more interesting. Looking forward to meeting
+more people through XIMAYA.
+</div>
 
 <div class="post-actions">
 
-<span>♡ Like</span>
-<span>○ Comment</span>
-<span>↗ Share</span>
+<button onclick="likePost(this)">
+♡ Like <span class="like-count">18</span>
+</button>
+
+<button onclick="focusComment(this)">
+Comment
+</button>
+
+<button onclick="sharePost()">
+Share
+</button>
 
 </div>
 
@@ -744,93 +948,125 @@ but the quality of the connections between them.
 
 <div class="post-head">
 
-<div class="post-avatar"></div>
+<div class="avatar">M</div>
 
-<div>
-
-<div class="post-name">XIMAYA Experiences</div>
-
-<span class="post-meta">Experiences · Today</span>
-
+<div class="post-author">
+<strong>Maya</strong>
+<span>Yesterday · Food &amp; Culture</span>
 </div>
 
 </div>
 
-<p>
-Discover people who share your interests, ambitions and
-curiosity. Your next meaningful connection may already be
-inside the XIMAYA Network.
-</p>
+<div class="post-text">
+Food carries memories, culture and people with it.
+That is one of the reasons I love discovering local traditions.
+</div>
 
 <div class="post-actions">
 
-<span>♡ Like</span>
-<span>○ Comment</span>
-<span>↗ Share</span>
+<button onclick="likePost(this)">
+♡ Like <span class="like-count">31</span>
+</button>
+
+<button onclick="focusComment(this)">
+Comment
+</button>
+
+<button onclick="sharePost()">
+Share
+</button>
 
 </div>
 
 </article>
 
-</section>
+</div>
+
+</main>
 
 
-<!-- RIGHT SIDEBAR -->
+<!-- RIGHT -->
 
-<aside class="right">
+<aside class="rightbar" id="people">
 
-<div class="panel">
+<div class="right-title">
+People you may know
+</div>
 
-<h3>People to Discover</h3>
-
-<div class="people">
 
 <div class="person">
-<div class="person-avatar"></div>
+
+<div class="avatar">S</div>
+
 <div class="person-info">
-<span class="person-name">Aarav</span>
-<small>Entrepreneur</small>
+<strong>Sarah</strong>
+<span>Creative · 8 mutual</span>
 </div>
-<button class="connect">Connect</button>
+
+<button class="follow" onclick="toggleFollow(this)">
+Follow
+</button>
+
 </div>
+
 
 <div class="person">
-<div class="person-avatar"></div>
+
+<div class="avatar">D</div>
+
 <div class="person-info">
-<span class="person-name">Maya</span>
-<small>Creative</small>
+<strong>Dev</strong>
+<span>Entrepreneur · 5 mutual</span>
 </div>
-<button class="connect">Connect</button>
+
+<button class="follow" onclick="toggleFollow(this)">
+Follow
+</button>
+
 </div>
+
 
 <div class="person">
-<div class="person-avatar"></div>
+
+<div class="avatar">N</div>
+
 <div class="person-info">
-<span class="person-name">Arjun</span>
-<small>Explorer</small>
-</div>
-<button class="connect">Connect</button>
+<strong>Naina</strong>
+<span>Food &amp; Culture · 12 mutual</span>
 </div>
 
-</div>
+<button class="follow" onclick="toggleFollow(this)">
+Follow
+</button>
 
 </div>
 
 
-<div class="network-box">
+<div class="community">
 
-<div class="eyebrow">XIMAYA Network</div>
+<div class="right-title">
+Popular Communities
+</div>
 
-<h3>Go beyond the feed.</h3>
+<div class="community-card">
+<strong>Assam Circle</strong>
+<span>2.4K members</span>
+</div>
 
-<p>
-Discover communities, opportunities and extraordinary people
-through the wider XIMAYA Network.
-</p>
+<div class="community-card">
+<strong>Food &amp; Culture</strong>
+<span>1.8K members</span>
+</div>
 
-<a class="gold-btn" href="network.html">
-Explore Network
-</a>
+<div class="community-card">
+<strong>Creators</strong>
+<span>1.2K members</span>
+</div>
+
+<div class="community-card">
+<strong>Travel &amp; Discovery</strong>
+<span>3.1K members</span>
+</div>
 
 </div>
 
@@ -838,52 +1074,70 @@ Explore Network
 
 </div>
 
+</section>
+
 
 <!-- CHAT -->
 
-<section class="chat">
+<section class="chat-section" id="chat">
 
-<div class="chat-head">
+<div class="chat-heading">
 
-<div class="eyebrow">Private Connection</div>
+<div class="eyebrow">
+Private Conversations
+</div>
 
-<h2>Messages & Chat</h2>
+<h2>
+Talk to your people.
+</h2>
+
+<p>
+The XIMAYA Social experience is designed around people —
+not just pages. Discover conversations and connect directly.
+</p>
 
 </div>
 
-<div class="chat-body">
+
+<div class="chat-box">
 
 <div class="chat-list">
 
-<div class="chat-user">
+<div class="chat-list-title">
+Messages
+</div>
 
-<div class="chat-user-avatar"></div>
+<div class="chat-user" onclick="selectChat('Aarav')">
+
+<div class="avatar">A</div>
 
 <div>
-<strong>XIMAYA Team</strong>
-<small>Welcome to XIMAYA</small>
+<strong>Aarav</strong>
+<span>Let's connect soon.</span>
 </div>
 
 </div>
 
-<div class="chat-user">
 
-<div class="chat-user-avatar"></div>
+<div class="chat-user" onclick="selectChat('Maya')">
+
+<div class="avatar">M</div>
 
 <div>
-<strong>Community</strong>
-<small>3 new messages</small>
+<strong>Maya</strong>
+<span>That sounds wonderful.</span>
 </div>
 
 </div>
 
-<div class="chat-user">
 
-<div class="chat-user-avatar"></div>
+<div class="chat-user" onclick="selectChat('Rohan')">
+
+<div class="avatar">R</div>
 
 <div>
-<strong>Your Connections</strong>
-<small>Start a conversation</small>
+<strong>Rohan</strong>
+<span>See you there!</span>
 </div>
 
 </div>
@@ -891,29 +1145,50 @@ Explore Network
 </div>
 
 
-<div class="chat-area">
+<div class="chat-window">
 
-<div class="messages">
+<div class="chat-header">
+
+<strong id="chatName">
+Aarav
+</strong>
+
+<span>
+XIMAYA connection
+</span>
+
+</div>
+
+
+<div class="messages" id="messages">
 
 <div class="message">
-Welcome to XIMAYA Social.
-</div>
-
-<div class="message">
-This is where meaningful conversations begin.
+Hello! Welcome to XIMAYA Social.
 </div>
 
 <div class="message mine">
-I'd like to meet the community.
+Glad to be here. Let's connect.
+</div>
+
+<div class="message">
+Absolutely. There is a lot to discover.
 </div>
 
 </div>
+
 
 <div class="chat-input">
 
-<input type="text" placeholder="Write a message...">
+<input
+id="messageInput"
+type="text"
+placeholder="Write a message..."
+onkeydown="if(event.key==='Enter') sendMessage()"
+>
 
-<button>Send</button>
+<button class="chat-send" onclick="sendMessage()">
+Send
+</button>
 
 </div>
 
@@ -923,12 +1198,188 @@ I'd like to meet the community.
 
 </section>
 
-</main>
+
+<!-- COMMUNITIES -->
+
+<section class="communities" id="communities">
+
+<div class="section-heading">
+
+<div class="eyebrow">
+Find Your People
+</div>
+
+<h2>
+Communities.
+</h2>
+
+<p>
+Join conversations around the interests, places and ideas
+that matter to you.
+</p>
+
+</div>
 
 
-<footer class="footer">
+<div class="community-grid">
 
-<div class="footer-logo">XIMAYA</div>
+<div class="big-community">
+
+<span>01 · CULTURE</span>
+
+<h3>
+Food &amp; Culture
+</h3>
+
+<p>
+Discover traditions, recipes, stories and the people
+behind them.
+</p>
+
+<a href="food.html">
+Enter Community →
+</a>
+
+</div>
+
+
+<div class="big-community">
+
+<span>02 · DISCOVERY</span>
+
+<h3>
+Travel &amp; Discovery
+</h3>
+
+<p>
+Share destinations, experiences and discoveries
+with curious people.
+</p>
+
+<a href="network.html">
+Explore →
+</a>
+
+</div>
+
+
+<div class="big-community">
+
+<span>03 · CREATORS</span>
+
+<h3>
+Creators
+</h3>
+
+<p>
+A space for people building, designing, creating
+and sharing their work.
+</p>
+
+<a href="network.html">
+Meet Creators →
+</a>
+
+</div>
+
+
+<div class="big-community">
+
+<span>04 · BUSINESS</span>
+
+<h3>
+Entrepreneurs
+</h3>
+
+<p>
+Meet ambitious people, exchange ideas and discover
+new opportunities.
+</p>
+
+<a href="network.html">
+Explore Network →
+</a>
+
+</div>
+
+
+<div class="big-community">
+
+<span>05 · LOCAL</span>
+
+<h3>
+Assam Circle
+</h3>
+
+<p>
+A community for people connected to Assam,
+its culture, places and possibilities.
+</p>
+
+<a href="network.html">
+Enter Circle →
+</a>
+
+</div>
+
+
+<div class="big-community">
+
+<span>06 · OPEN</span>
+
+<h3>
+XIMAYA General
+</h3>
+
+<p>
+The open community for conversations of every kind.
+</p>
+
+<a href="#social-app">
+Join Discussion →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- JOIN -->
+
+<section class="join">
+
+<div class="eyebrow" style="color:var(--gold2)">
+XIMAYA Social
+</div>
+
+<h2>
+Your world becomes richer<br>
+when you connect.
+</h2>
+
+<p>
+Explore people. Start conversations. Join communities.
+Build something meaningful together.
+</p>
+
+<a class="button gold" href="#social-app">
+Enter Social
+</a>
+
+<a class="button" href="membership.html">
+Explore Membership
+</a>
+
+</section>
+
+
+<footer>
+
+<div class="footer-logo">
+XIMAYA
+</div>
 
 <div class="footer-links">
 
@@ -940,17 +1391,224 @@ I'd like to meet the community.
 <a href="care.html">Care</a>
 <a href="card.html">Card</a>
 <a href="membership.html">Membership</a>
+<a href="social.html">Social</a>
 <a href="network.html">Network</a>
 <a href="about.html">About</a>
 <a href="contact.html">Contact</a>
 
 </div>
 
-<div class="copyright">
-© 2026 XIMAYA · A WORLD BUILT WITH INTENTION
+<div class="copy">
+© 2026 XIMAYA · LIVE · EARN · CONNECT · GIVE
 </div>
 
 </footer>
+
+
+<script>
+
+/* CREATE LOCAL FEED POST */
+
+function createPost(){
+
+  const input=document.getElementById("postInput");
+  const text=input.value.trim();
+
+  if(!text){
+    input.focus();
+    return;
+  }
+
+  const post=document.createElement("article");
+
+  post.className="post";
+
+  post.innerHTML=`
+
+    <div class="post-head">
+
+      <div class="avatar">X</div>
+
+      <div class="post-author">
+
+        <strong>You</strong>
+
+        <span>Just now · XIMAYA Social</span>
+
+      </div>
+
+    </div>
+
+    <div class="post-text">
+      ${escapeHTML(text)}
+    </div>
+
+    <div class="post-actions">
+
+      <button onclick="likePost(this)">
+        ♡ Like <span class="like-count">0</span>
+      </button>
+
+      <button onclick="focusComment(this)">
+        Comment
+      </button>
+
+      <button onclick="sharePost()">
+        Share
+      </button>
+
+    </div>
+
+  `;
+
+  document.getElementById("posts").prepend(post);
+
+  input.value="";
+
+}
+
+
+/* LIKE */
+
+function likePost(button){
+
+  const count=button.querySelector(".like-count");
+
+  let number=parseInt(count.textContent,10) || 0;
+
+  if(button.dataset.liked==="true"){
+
+    number--;
+
+    button.dataset.liked="false";
+
+    button.innerHTML=
+      "♡ Like <span class='like-count'>"+number+"</span>";
+
+  }else{
+
+    number++;
+
+    button.dataset.liked="true";
+
+    button.innerHTML=
+      "♥ Liked <span class='like-count'>"+number+"</span>";
+
+  }
+
+}
+
+
+/* FOLLOW */
+
+function toggleFollow(button){
+
+  if(button.textContent.trim()==="Follow"){
+
+    button.textContent="Following";
+
+  }else{
+
+    button.textContent="Follow";
+
+  }
+
+}
+
+
+/* COMMENT */
+
+function focusComment(button){
+
+  alert("Comments will open here as the XIMAYA Social backend is connected.");
+
+}
+
+
+/* SHARE */
+
+function sharePost(){
+
+  if(navigator.share){
+
+    navigator.share({
+
+      title:"XIMAYA Social",
+
+      text:"Discover XIMAYA Social — meet, connect and share.",
+
+      url:window.location.href
+
+    });
+
+  }else{
+
+    alert("Share this XIMAYA Social page with your community.");
+
+  }
+
+}
+
+
+/* CHAT */
+
+function sendMessage(){
+
+  const input=document.getElementById("messageInput");
+
+  const text=input.value.trim();
+
+  if(!text) return;
+
+  const message=document.createElement("div");
+
+  message.className="message mine";
+
+  message.textContent=text;
+
+  document.getElementById("messages").appendChild(message);
+
+  input.value="";
+
+  const box=document.getElementById("messages");
+
+  box.scrollTop=box.scrollHeight;
+
+}
+
+
+function selectChat(name){
+
+  document.getElementById("chatName").textContent=name;
+
+  document.getElementById("messages").innerHTML=`
+
+    <div class="message">
+      You are now connected with ${escapeHTML(name)}.
+    </div>
+
+    <div class="message mine">
+      Hello ${escapeHTML(name)}!
+    </div>
+
+  `;
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(text){
+
+  const div=document.createElement("div");
+
+  div.textContent=text;
+
+  return div.innerHTML;
+
+}
+
+</script>
 
 </body>
 </html>
