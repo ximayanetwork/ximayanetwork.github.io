@@ -4,201 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>XIMAYA Card</title>
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="The XIMAYA Card — access, recognition and a world designed around you.">
+<style>
+:root{--ink:#17140f;--cream:#f5f0e7;--gold:#b9985a;--line:#d8c9aa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+a{color:inherit;text-decoration:none}
+.top{padding:13px 6%;border-bottom:1px solid var(--line);font:11px Arial;letter-spacing:3px;text-transform:uppercase;text-align:center}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 6%;position:sticky;top:0;background:#f5f0e7ee;backdrop-filter:blur(12px);z-index:5}
+.logo{font-size:28px;letter-spacing:7px}
+.links{display:flex;gap:26px;font:12px Arial;letter-spacing:1.8px;text-transform:uppercase}
+.hero{padding:100px 8% 85px;text-align:center;border-bottom:1px solid var(--line)}
+.eyebrow{font:11px Arial;letter-spacing:5px;text-transform:uppercase;color:#806c43}
+.hero h1{font-size:clamp(50px,8vw,105px);font-weight:400;line-height:.95;margin:22px 0}
+.hero p{max-width:650px;margin:auto;font-size:19px;line-height:1.8}
+.card-wrap{padding:75px 8%;display:flex;justify-content:center}
+.lux-card{width:min(650px,100%);aspect-ratio:1.58;background:linear-gradient(135deg,#252018,#5e4d2e 55%,#17140f);color:#f8f0dc;border-radius:18px;padding:42px;box-shadow:0 30px 70px #0002;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.lux-card:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #d8c58a55;border-radius:50%;right:-100px;bottom:-130px}
+.card-brand{font-size:25px;letter-spacing:7px}
+.chip{width:58px;height:43px;border:1px solid #d8c58a88;border-radius:8px;margin-top:35px}
+.card-number{font:18px Arial;letter-spacing:4px;margin-top:auto}
+.card-bottom{display:flex;justify-content:space-between;font:9px Arial;letter-spacing:2px;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:20px 6% 70px}
+.item{background:var(--cream);padding:42px;min-height:230px}
+.item span{font:10px Arial;letter-spacing:3px;color:#806c43}
+.item h2{font-size:27px;font-weight:400;margin:15px 0}
+.item p{line-height:1.7;color:#514b40}
+.btn{display:inline-block;border:1px solid #9c824b;padding:13px 20px;font:11px Arial;letter-spacing:2px;text-transform:uppercase;margin-top:10px}
+.footer{text-align:center;border-top:1px solid var(--line);padding:50px 6%;font:11px Arial;letter-spacing:2px;color:#6b6253}
+@media(max-width:800px){.links{display:none}.grid{grid-template-columns:1fr;margin:20px 5% 50px}.hero{padding:75px 7%}.lux-card{padding:28px}.card-number{font-size:13px}}
+</style>
 </head>
-
 <body>
 
-<header>
-<div class="container">
-<nav>
-<a class="logo" href="index.html">XIMAYA<span>.</span></a>
+<div class="top">XIMAYA Card · Recognition Beyond the Ordinary</div>
 
+<nav class="nav">
+<a class="logo" href="index.html">XIMAYA</a>
 <div class="links">
-<a href="index.html">Home</a>
 <a href="market.html">Market</a>
-<a href="food.html">Food</a>
-<a href="services.html">Services</a>
-<a href="gifts.html">Gifts</a>
-<a href="care.html">Care</a>
+<a href="card.html">Card</a>
 <a href="membership.html">Membership</a>
 <a href="network.html">Network</a>
 </div>
 </nav>
-</div>
-</header>
+
+<main>
 
 <section class="hero">
-<div class="container">
-
-<div class="eyebrow">XIMAYA Card</div>
-
-<h1>
-One identity.<br>
-<span>Many possibilities.</span>
-</h1>
-
-<p>
-The XIMAYA Card is envisioned as a premium connected identity
-designed to bring membership, benefits, experiences and the wider
-XIMAYA ecosystem closer together.
-</p>
-
-<a class="btn primary" href="membership.html">Explore Membership</a>
-
-</div>
+<div class="eyebrow">The XIMAYA Card</div>
+<h1>Carry the<br>world with you.</h1>
+<p>A distinctive identity within the XIMAYA world — created to connect access, recognition, privileges and extraordinary possibilities.</p>
 </section>
 
-<section class="light">
-<div class="container">
-
-<div class="heading">
-<div class="eyebrow">The Concept</div>
-<h2>A card that connects your XIMAYA world.</h2>
-<p>
-One future identity across the ecosystem, designed to make access,
-recognition and experiences feel seamless.
-</p>
-</div>
-
-<div class="grid">
-
-<div class="card">
-<small>01 · IDENTITY</small>
+<section class="card-wrap">
+<div class="lux-card">
 <div>
-<h3>One Card</h3>
-<p>A distinctive identity within the XIMAYA ecosystem.</p>
+<div class="card-brand">XIMAYA</div>
+<div class="chip"></div>
 </div>
-</div>
-
-<div class="card">
-<small>02 · BENEFITS</small>
-<div>
-<h3>More Value</h3>
-<p>Connect future benefits and member privileges.</p>
-</div>
-</div>
-
-<div class="card">
-<small>03 · EXPERIENCE</small>
-<div>
-<h3>Seamless</h3>
-<p>Move across XIMAYA experiences with one identity.</p>
-</div>
-</div>
-
+<div class="card-number">XIMAYA · PRIVILEGE · ACCESS</div>
+<div class="card-bottom">
+<span>Member</span>
+<span>Since 2026</span>
 </div>
 </div>
 </section>
 
-<section>
-<div class="container">
+<section class="grid">
 
-<div class="panel">
+<article class="item">
+<span>01 · ACCESS</span>
+<h2>Designed for Access</h2>
+<p>Move closer to the people, places and opportunities that make the XIMAYA world distinctive.</p>
+</article>
 
-<div class="eyebrow">Designed for the Future</div>
+<article class="item">
+<span>02 · PRIVILEGE</span>
+<h2>Meaningful Privileges</h2>
+<p>Enjoy carefully considered benefits created around quality rather than quantity.</p>
+</article>
 
-<h2>
-A premium identity for a connected life.
-</h2>
+<article class="item">
+<span>03 · IDENTITY</span>
+<h2>Your XIMAYA Identity</h2>
+<p>A refined expression of belonging within a global community built on standards and trust.</p>
+</article>
 
-<p>
-The XIMAYA Card can become a bridge between Membership, Market,
-Food, Services, Gifts, Care and the XIMAYA Network.
-</p>
-
-<div class="grid">
-
-<div class="card">
-<small>MEMBERSHIP</small>
-<div>
-<h3>Recognition</h3>
-<p>Your place in the XIMAYA community.</p>
-</div>
-</div>
-
-<div class="card">
-<small>ECOSYSTEM</small>
-<div>
-<h3>Connection</h3>
-<p>One identity across multiple experiences.</p>
-</div>
-</div>
-
-<div class="card">
-<small>FUTURE</small>
-<div>
-<h3>Possibility</h3>
-<p>Built to evolve with XIMAYA.</p>
-</div>
-</div>
-
-</div>
-
-<a class="btn primary" href="market.html">Visit XIMAYA Market</a>
-<a class="btn secondary" href="index.html">Back to XIMAYA</a>
-
-</div>
-</div>
 </section>
 
-<section class="light">
-<div class="container">
-
-<div class="heading">
-<div class="eyebrow">XIMAYA Standard</div>
-<h2>Simple. Elegant. Connected.</h2>
-<p>
-The XIMAYA Card represents the idea that premium experiences should
-feel effortless and meaningful.
-</p>
-</div>
-
-<a class="btn primary" href="network.html">Explore XIMAYA Network</a>
-
-</div>
+<section style="text-align:center;padding:20px 8% 90px">
+<div class="eyebrow">Become Part of XIMAYA</div>
+<h2 style="font-size:42px;font-weight:400">Membership begins with belonging.</h2>
+<a class="btn" href="membership.html">Explore Membership</a>
 </section>
 
-<footer>
-<div class="container">
+</main>
 
-<div class="footer">
-
-<div>
-<div class="logo">XIMAYA<span>.</span></div>
-<p>Live. Earn. Connect. Give.</p>
-</div>
-
-<div>
-<h4>EXPLORE</h4>
-<a href="index.html">Home</a>
-<a href="market.html">Market</a>
-<a href="food.html">Food</a>
-<a href="services.html">Services</a>
-</div>
-
-<div>
-<h4>COMMUNITY</h4>
-<a href="gifts.html">Gifts</a>
-<a href="care.html">Care</a>
-<a href="membership.html">Membership</a>
-<a href="network.html">Network</a>
-</div>
-
-<div>
-<h4>COMPANY</h4>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</div>
-
-</div>
-
-<div class="copy">
-<span>© 2026 XIMAYA. All rights reserved.</span>
-<span>Live. Earn. Connect. Give.</span>
-</div>
-
-</div>
+<footer class="footer">
+XIMAYA · A WORLD BUILT WITH INTENTION ·
+<a href="network.html">JOIN THE NETWORK</a>
 </footer>
 
 </body>
