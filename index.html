@@ -3,314 +3,644 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#f7f2e8">
-<title>XIMAYA — A World Worth Belonging To</title>
-<link rel="stylesheet" href="style.css">
+
+<title>XIMAYA — A World Beyond Ordinary</title>
+
+<meta name="description" content="XIMAYA — a timeless world of exceptional people, experiences, access and discovery.">
+
+<style>
+:root{
+  --ink:#15120d;
+  --cream:#f5f0e7;
+  --gold:#b9985a;
+  --soft:#e8deca;
+  --line:#d7c7a5;
+  --muted:#625b4f;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.topbar{
+  padding:13px 6%;
+  border-bottom:1px solid var(--line);
+  text-align:center;
+  font:10px Arial,sans-serif;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:24px 6%;
+  background:#f5f0e7ee;
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+}
+
+.logo{
+  font-size:29px;
+  letter-spacing:8px;
+}
+
+.links{
+  display:flex;
+  gap:27px;
+  font:11px Arial,sans-serif;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+}
+
+.links a{
+  transition:.25s;
+}
+
+.links a:hover{
+  color:#8d713d;
+}
+
+.hero{
+  min-height:calc(100vh - 90px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:90px 7%;
+  border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"X";
+  position:absolute;
+  font-size:45vw;
+  line-height:1;
+  color:#b9985a0a;
+  font-family:Georgia,serif;
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+  max-width:1000px;
+}
+
+.eyebrow{
+  font:10px Arial,sans-serif;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:#806c43;
+}
+
+.hero h1{
+  margin:25px 0;
+  font-size:clamp(58px,10vw,135px);
+  line-height:.88;
+  font-weight:400;
+  letter-spacing:-3px;
+}
+
+.hero h1 span{
+  font-style:italic;
+}
+
+.hero p{
+  max-width:700px;
+  margin:0 auto;
+  font-size:19px;
+  line-height:1.9;
+  color:#514b40;
+}
+
+.buttons{
+  margin-top:38px;
+}
+
+.btn{
+  display:inline-block;
+  padding:15px 25px;
+  margin:6px;
+  border:1px solid #9b7d45;
+  font:10px Arial,sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.3s;
+}
+
+.btn:hover{
+  background:#17140f;
+  color:#f5f0e7;
+  border-color:#17140f;
+}
+
+.btn.dark{
+  background:#17140f;
+  color:#f5f0e7;
+}
+
+.btn.dark:hover{
+  background:#806c43;
+  border-color:#806c43;
+}
+
+.section{
+  padding:110px 7%;
+  border-bottom:1px solid var(--line);
+}
+
+.section-head{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto 65px;
+}
+
+.section-head h2{
+  font-size:clamp(42px,6vw,72px);
+  font-weight:400;
+  line-height:1;
+  margin:18px 0;
+}
+
+.section-head p{
+  font-size:17px;
+  line-height:1.8;
+  color:var(--muted);
+}
+
+.world-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--line);
+}
+
+.world-card{
+  min-height:330px;
+  background:var(--cream);
+  padding:40px 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  transition:.35s;
+}
+
+.world-card:hover{
+  background:#eee5d4;
+  transform:translateY(-4px);
+}
+
+.world-number{
+  font:10px Arial,sans-serif;
+  letter-spacing:3px;
+  color:#806c43;
+}
+
+.world-card h3{
+  margin:15px 0 12px;
+  font-size:29px;
+  font-weight:400;
+}
+
+.world-card p{
+  margin:0;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+.world-link{
+  display:inline-block;
+  margin-top:25px;
+  font:10px Arial,sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--gold);
+  padding-bottom:6px;
+  width:max-content;
+}
+
+.manifesto{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:90px;
+  align-items:center;
+}
+
+.manifesto h2{
+  font-size:clamp(45px,6vw,75px);
+  line-height:1;
+  font-weight:400;
+  margin:15px 0;
+}
+
+.manifesto-copy{
+  border-left:1px solid var(--gold);
+  padding-left:35px;
+}
+
+.manifesto-copy p{
+  font-size:21px;
+  line-height:1.7;
+  margin:0 0 20px;
+}
+
+.manifesto-copy small{
+  font:10px Arial,sans-serif;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#806c43;
+}
+
+.final{
+  padding:125px 7%;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+
+.final h2{
+  font-size:clamp(48px,7vw,90px);
+  font-weight:400;
+  line-height:.95;
+  margin:20px auto 30px;
+  max-width:1000px;
+}
+
+.final p{
+  max-width:650px;
+  margin:auto;
+  font-size:18px;
+  line-height:1.8;
+  color:var(--muted);
+}
+
+.footer{
+  padding:55px 6%;
+  text-align:center;
+}
+
+.footer-logo{
+  font-size:24px;
+  letter-spacing:7px;
+  margin-bottom:18px;
+}
+
+.footer-nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:25px;
+  font:10px Arial,sans-serif;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+}
+
+.copyright{
+  margin-top:30px;
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
+  color:#776f61;
+}
+
+@media(max-width:900px){
+
+  .links{
+    display:none;
+  }
+
+  .world-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .manifesto{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+}
+
+@media(max-width:550px){
+
+  .hero{
+    min-height:80vh;
+  }
+
+  .hero h1{
+    font-size:58px;
+    letter-spacing:-2px;
+  }
+
+  .section{
+    padding:80px 6%;
+  }
+
+  .world-grid{
+    grid-template-columns:1fr;
+  }
+
+  .world-card{
+    min-height:270px;
+  }
+
+  .manifesto-copy{
+    padding-left:22px;
+  }
+
+  .final{
+    padding:90px 6%;
+  }
+
+}
+</style>
 </head>
 
 <body>
 
-<header>
-<div class="container">
-<nav>
+<div class="topbar">
+XIMAYA · A WORLD BEYOND ORDINARY
+</div>
 
-<a class="logo" href="index.html">XIMAYA<span>.</span></a>
+<nav class="nav">
+
+<a class="logo" href="index.html">XIMAYA</a>
 
 <div class="links">
-<a href="index.html">Home</a>
 <a href="market.html">Market</a>
-<a href="food.html">Food</a>
-<a href="services.html">Services</a>
-<a href="gifts.html">Gifts</a>
-<a href="care.html">Care</a>
-<a href="membership.html">Membership</a>
 <a href="card.html">Card</a>
+<a href="membership.html">Membership</a>
 <a href="network.html">Network</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
 </div>
 
 </nav>
-</div>
-</header>
 
+
+<!-- HERO -->
 
 <section class="hero">
-<div class="container">
 
-<div class="eyebrow">The World of XIMAYA</div>
+<div class="hero-content">
+
+<div class="eyebrow">
+Welcome to XIMAYA
+</div>
 
 <h1>
-A world worth<br>
-<span>belonging to.</span>
+A world<br>
+<span>beyond</span> ordinary.
 </h1>
 
 <p>
-XIMAYA brings people, businesses, creators and communities closer
-through one connected ecosystem designed around discovery,
-opportunity, connection and meaningful experiences.
+A timeless world of exceptional people, meaningful connections,
+remarkable experiences and carefully considered discovery.
 </p>
 
-<a class="btn primary" href="market.html">Explore Market</a>
-<a class="btn secondary" href="network.html">Discover Network</a>
+<div class="buttons">
+<a class="btn dark" href="membership.html">
+Enter XIMAYA
+</a>
+
+<a class="btn" href="network.html">
+Discover the Network
+</a>
+</div>
 
 </div>
+
 </section>
 
 
-<section class="light">
-<div class="container">
+<!-- THE WORLD -->
 
-<div class="heading">
+<section class="section">
 
-<div class="eyebrow">The XIMAYA Ecosystem</div>
+<div class="section-head">
+
+<div class="eyebrow">
+The XIMAYA World
+</div>
 
 <h2>
 One world.<br>
-Many experiences.
+Four doors.
 </h2>
 
 <p>
-Discover the worlds of XIMAYA — each designed to connect with the
-others and create something greater together.
+Explore the different expressions of XIMAYA — each designed
+to bring you closer to a world built with intention.
 </p>
 
 </div>
 
-<div class="grid">
 
-<a class="card" href="market.html">
-<small>01 · DISCOVER</small>
-<div>
-<h3>Market</h3>
-<p>Discover products, businesses and new possibilities.</p>
+<div class="world-grid">
+
+<article class="world-card">
+
+<div class="world-number">
+01 · MARKET
 </div>
+
+<h3>
+XIMAYA Market
+</h3>
+
+<p>
+A curated universe of exceptional objects,
+discoveries and experiences.
+</p>
+
+<a class="world-link" href="market.html">
+Explore Market →
 </a>
 
-<a class="card" href="food.html">
-<small>02 · EXPERIENCE</small>
-<div>
-<h3>Food</h3>
-<p>Explore flavours, culture and unforgettable experiences.</p>
+</article>
+
+
+<article class="world-card">
+
+<div class="world-number">
+02 · CARD
 </div>
+
+<h3>
+XIMAYA Card
+</h3>
+
+<p>
+A distinctive identity created around
+access, recognition and privilege.
+</p>
+
+<a class="world-link" href="card.html">
+Discover Card →
 </a>
 
-<a class="card" href="services.html">
-<small>03 · OPPORTUNITY</small>
-<div>
-<h3>Services</h3>
-<p>Connect people, professionals, skills and businesses.</p>
+</article>
+
+
+<article class="world-card">
+
+<div class="world-number">
+03 · MEMBERSHIP
 </div>
+
+<h3>
+Membership
+</h3>
+
+<p>
+A deeper relationship with the people,
+places and possibilities of XIMAYA.
+</p>
+
+<a class="world-link" href="membership.html">
+Explore Membership →
 </a>
 
-<a class="card" href="gifts.html">
-<small>04 · CELEBRATE</small>
-<div>
-<h3>Gifts</h3>
-<p>Discover meaningful gifts for meaningful moments.</p>
+</article>
+
+
+<article class="world-card">
+
+<div class="world-number">
+04 · NETWORK
 </div>
+
+<h3>
+XIMAYA Network
+</h3>
+
+<p>
+A distinguished community built around
+meaningful human connection.
+</p>
+
+<a class="world-link" href="network.html">
+Enter Network →
 </a>
 
-<a class="card" href="care.html">
-<small>05 · GIVE</small>
-<div>
-<h3>Care</h3>
-<p>Support people, communities and causes that matter.</p>
-</div>
-</a>
-
-<a class="card" href="membership.html">
-<small>06 · BELONG</small>
-<div>
-<h3>Membership</h3>
-<p>Become part of the deeper XIMAYA experience.</p>
-</div>
-</a>
-
-<a class="card" href="card.html">
-<small>07 · IDENTITY</small>
-<div>
-<h3>XIMAYA Card</h3>
-<p>One elegant identity across the XIMAYA ecosystem.</p>
-</div>
-</a>
-
-<a class="card" href="network.html">
-<small>08 · CONNECT</small>
-<div>
-<h3>Network</h3>
-<p>Bring people, businesses, creators and communities closer.</p>
-</div>
-</a>
-
-<a class="card" href="about.html">
-<small>09 · THE STORY</small>
-<div>
-<h3>About XIMAYA</h3>
-<p>Discover the philosophy and vision behind XIMAYA.</p>
-</div>
-</a>
+</article>
 
 </div>
-</div>
+
 </section>
 
 
-<section>
-<div class="container">
+<!-- MANIFESTO -->
 
-<div class="panel">
+<section class="section">
 
-<div class="eyebrow">The XIMAYA Philosophy</div>
+<div class="manifesto">
+
+<div>
+
+<div class="eyebrow">
+The XIMAYA Philosophy
+</div>
 
 <h2>
-Live beautifully.<br>
-Earn meaningfully.<br>
-Connect deeply.<br>
-Give generously.
+Luxury is not excess.<br>
+It is intention.
 </h2>
 
+</div>
+
+
+<div class="manifesto-copy">
+
 <p>
-Four simple ideas behind a much bigger vision — creating a world
-where people, businesses, creators and communities can belong,
-grow and connect.
+“True distinction is found in what lasts,
+what matters and what becomes possible.”
 </p>
 
-<a class="btn primary" href="about.html">Discover Our Story</a>
-<a class="btn secondary" href="contact.html">Connect With XIMAYA</a>
+<small>
+The XIMAYA Principle
+</small>
 
 </div>
 
 </div>
+
 </section>
 
 
-<section class="light">
-<div class="container">
+<!-- MEMBERSHIP CTA -->
 
-<div class="heading">
+<section class="final">
 
-<div class="eyebrow">Discover Your XIMAYA</div>
+<div class="eyebrow">
+Your Journey Begins Here
+</div>
 
 <h2>
-Something extraordinary
-is waiting.
+Step into a world<br>
+designed differently.
 </h2>
 
 <p>
-Explore where you belong and discover the experiences that make
-XIMAYA different.
+XIMAYA brings together access, discovery,
+community and experience in one evolving world.
 </p>
 
-</div>
+<div class="buttons">
 
-<div class="grid">
-
-<a class="card" href="market.html">
-<small>LIVE</small>
-<div>
-<h3>Discover</h3>
-<p>Products, food, services, gifts and experiences.</p>
-</div>
+<a class="btn dark" href="membership.html">
+Explore Membership
 </a>
 
-<a class="card" href="services.html">
-<small>EARN</small>
-<div>
-<h3>Opportunity</h3>
-<p>Connect skills, people and businesses.</p>
-</div>
-</a>
-
-<a class="card" href="network.html">
-<small>CONNECT</small>
-<div>
-<h3>Belong</h3>
-<p>Become part of the XIMAYA Network.</p>
-</div>
-</a>
-
-<a class="card" href="care.html">
-<small>GIVE</small>
-<div>
-<h3>Make an Impact</h3>
-<p>Turn connection into something meaningful.</p>
-</div>
+<a class="btn" href="card.html">
+Discover XIMAYA Card
 </a>
 
 </div>
-</div>
+
 </section>
 
 
-<section>
-<div class="container">
+<!-- FOOTER -->
 
-<div class="panel">
+<footer class="footer">
 
-<div class="eyebrow">XIMAYA Membership</div>
-
-<h2>
-Belong to<br>
-something bigger.
-</h2>
-
-<p>
-Discover a premium membership experience designed to bring you
-closer to the XIMAYA world.
-</p>
-
-<a class="btn primary" href="membership.html">Explore Membership</a>
-<a class="btn secondary" href="card.html">Discover XIMAYA Card</a>
-
+<div class="footer-logo">
+XIMAYA
 </div>
 
-</div>
-</section>
+<div class="footer-nav">
 
-
-<footer>
-<div class="container">
-
-<div class="footer">
-
-<div>
-<div class="logo">XIMAYA<span>.</span></div>
-<p>Live. Earn. Connect. Give.</p>
-<p>A world worth belonging to.</p>
-</div>
-
-<div>
-<h4>EXPLORE</h4>
 <a href="index.html">Home</a>
 <a href="market.html">Market</a>
-<a href="food.html">Food</a>
-<a href="services.html">Services</a>
-</div>
-
-<div>
-<h4>COMMUNITY</h4>
-<a href="gifts.html">Gifts</a>
-<a href="care.html">Care</a>
-<a href="membership.html">Membership</a>
 <a href="card.html">Card</a>
+<a href="membership.html">Membership</a>
 <a href="network.html">Network</a>
-</div>
-
-<div>
-<h4>COMPANY</h4>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</div>
 
 </div>
 
-<div class="copy">
-<span>© 2026 XIMAYA. All rights reserved.</span>
-<span>LIVE · EARN · CONNECT · GIVE</span>
+<div class="copyright">
+© 2026 XIMAYA · A WORLD BUILT WITH INTENTION
 </div>
 
-</div>
 </footer>
 
 </body>
