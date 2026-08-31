@@ -1,1591 +1,603 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>XIMAYA Social</title>
-<meta name="description" content="XIMAYA Social — connect, share and discover people.">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-:root{
-  --black:#090806;
-  --dark:#15120d;
-  --cream:#f4eee2;
-  --white:#fffdf8;
-  --gold:#b99a5e;
-  --gold-light:#dfca98;
-  --line:#d8c6a2;
-  --muted:#756d60;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-body{
-  margin:0;
-  background:var(--cream);
-  color:var(--black);
-  font-family:Georgia,"Times New Roman",serif;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,
-input,
-textarea{
-  font:inherit;
-}
-
-.topbar{
-  background:var(--black);
-  color:var(--gold-light);
-  text-align:center;
-  padding:9px;
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-}
-
-nav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 5%;
-  background:rgba(244,238,226,.95);
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(15px);
-}
-
-.logo{
-  font-size:26px;
-  letter-spacing:7px;
-}
-
-.navlinks{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.navlinks a{
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.navlinks a:hover{
-  color:#80683c;
-}
-
-.hero{
-  text-align:center;
-  padding:90px 6%;
-  border-bottom:1px solid var(--line);
-  background:
-    radial-gradient(circle at center,rgba(185,154,94,.20),transparent 45%),
-    var(--cream);
-}
-
-.eyebrow{
-  color:#80683c;
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:5px;
-  text-transform:uppercase;
-}
-
-.hero h1{
-  margin:22px 0;
-  font-size:clamp(58px,10vw,105px);
-  line-height:.85;
-  letter-spacing:-5px;
-  font-weight:400;
-}
-
-.hero h1 em{
-  font-style:italic;
-}
-
-.hero p{
-  max-width:680px;
-  margin:25px auto;
-  color:var(--muted);
-  line-height:1.9;
-}
-
-.btn{
-  display:inline-block;
-  padding:13px 21px;
-  margin:4px;
-  border:1px solid var(--black);
-  background:transparent;
-  cursor:pointer;
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.btn:hover{
-  background:var(--black);
-  color:var(--cream);
-}
-
-.btn.gold{
-  border-color:var(--gold);
-}
-
-.btn.gold:hover{
-  background:var(--gold);
-  color:var(--black);
-}
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:55px 5%;
-}
-
-.layout{
-  display:grid;
-  grid-template-columns:230px minmax(0,650px) 230px;
-  gap:22px;
-}
-
-.box{
-  background:var(--white);
-  border:1px solid var(--line);
-  padding:22px;
-  margin-bottom:18px;
-}
-
-.box h3{
-  margin:0 0 15px;
-  font-size:20px;
-  font-weight:400;
-}
-
-.box p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.7;
-}
-
-.avatar{
-  width:72px;
-  height:72px;
-  margin:0 auto 12px;
-  border:1px solid var(--gold);
-  border-radius:50%;
-  background:#efe3cf;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#80683c;
-  font-size:26px;
-}
-
-.profile{
-  text-align:center;
-}
-
-.profile-name{
-  font-size:18px;
-}
-
-.profile-status{
-  margin-top:5px;
-  color:var(--muted);
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  word-break:break-word;
-}
-
-.menu{
-  margin-top:20px;
-}
-
-.menu a,
-.menu button{
-  display:block;
-  width:100%;
-  padding:11px;
-  margin:3px 0;
-  border:0;
-  background:transparent;
-  text-align:left;
-  cursor:pointer;
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.menu a:hover,
-.menu button:hover{
-  background:#eee4d3;
-}
-
-.create{
-  background:var(--white);
-  border:1px solid var(--line);
-  padding:22px;
-  margin-bottom:18px;
-}
-
-textarea{
-  width:100%;
-  min-height:110px;
-  margin-top:15px;
-  padding:14px;
-  resize:vertical;
-  border:1px solid var(--line);
-  background:#faf6ed;
-  outline:none;
-}
-
-.create-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-top:12px;
-}
-
-.status-text{
-  color:var(--muted);
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:1px;
-}
-
-.post{
-  background:var(--white);
-  border:1px solid var(--line);
-  padding:22px;
-  margin-bottom:18px;
-}
-
-.post-header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.post-avatar{
-  width:44px;
-  height:44px;
-  border:1px solid var(--gold);
-  border-radius:50%;
-  background:#efe3cf;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#80683c;
-}
-
-.post-user{
-  font-size:16px;
-}
-
-.post-date{
-  display:block;
-  margin-top:3px;
-  color:var(--muted);
-  font-family:Arial,sans-serif;
-  font-size:8px;
-}
-
-.post-content{
-  margin:20px 0;
-  white-space:pre-wrap;
-  line-height:1.8;
-  font-size:14px;
-}
-
-.actions{
-  border-top:1px solid var(--line);
-  padding-top:12px;
-}
-
-.actions button{
-  border:0;
-  background:transparent;
-  color:#80683c;
-  cursor:pointer;
-  padding:8px;
-  margin-right:5px;
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.actions button:hover{
-  background:#eee4d3;
-}
-
-.comment-area{
-  display:none;
-  margin-top:12px;
-}
-
-.comment-area input{
-  width:100%;
-  padding:10px;
-  border:1px solid var(--line);
-  background:#faf6ed;
-  outline:none;
-}
-
-.comment-list{
-  margin-top:10px;
-}
-
-.comment{
-  padding:9px 0;
-  border-top:1px solid #e7dcc9;
-  font-size:11px;
-  line-height:1.6;
-}
-
-.community{
-  padding:11px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.community strong{
-  display:block;
-  font-size:13px;
-}
-
-.community small{
-  color:var(--muted);
-}
-
-.auth-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:200;
-  background:rgba(9,8,6,.85);
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.auth-box{
-  width:min(430px,100%);
-  padding:32px;
-  background:var(--white);
-  border:1px solid var(--gold);
-}
-
-.auth-box h2{
-  margin:15px 0 8px;
-  font-size:35px;
-  font-weight:400;
-}
-
-.auth-box input{
-  width:100%;
-  margin:6px 0;
-  padding:12px;
-  border:1px solid var(--line);
-  background:#faf6ed;
-  outline:none;
-}
-
-.close{
-  float:right;
-  border:0;
-  background:transparent;
-  cursor:pointer;
-  font-size:22px;
-}
-
-#authMessage{
-  color:#80683c;
-  line-height:1.5;
-}
-
-.toast{
-  display:none;
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:300;
-  padding:13px 18px;
-  background:var(--black);
-  color:var(--cream);
-  border:1px solid var(--gold);
-  font-family:Arial,sans-serif;
-  font-size:10px;
-}
-
-footer{
-  padding:55px 5%;
-  text-align:center;
-  border-top:1px solid var(--line);
-}
-
-.footer-logo{
-  font-size:25px;
-  letter-spacing:8px;
-}
-
-.footer-links{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:15px;
-  margin-top:20px;
-}
-
-.footer-links a{
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.copyright{
-  margin-top:20px;
-  color:var(--muted);
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  letter-spacing:1px;
-}
-
-@media(max-width:1000px){
-  .layout{
-    grid-template-columns:1fr;
-    max-width:700px;
-    margin:auto;
-  }
-
-  .left,
-  .right{
-    display:none;
-  }
-
-  .navlinks{
-    display:none;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XIMAYA Social</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f7;
+      color: #171717;
+    }
+
+    header {
+      background: #111;
+      color: #fff;
+      padding: 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .wrap {
+      max-width: 650px;
+      margin: auto;
+      padding: 20px 14px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    }
+
+    h2, h3 { margin-top: 0; }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin: 6px 0;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 13px;
+      margin-top: 7px;
+      background: #111;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .logout {
+      background: #777;
+    }
+
+    .post {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+
+    .member {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 7px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .actions button {
+      width: auto;
+      padding: 8px 14px;
+      background: #f0f0f0;
+      color: #111;
+    }
+
+    .comment {
+      background: #f3f3f3;
+      padding: 9px 11px;
+      border-radius: 9px;
+      margin-top: 7px;
+      font-size: 14px;
+    }
+
+    #socialApp {
+      display: none;
+    }
+
+    #status {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="topbar">
-XIMAYA · SOCIAL · CONNECT · SHARE · BELONG
-</div>
+<header>
+  <h1>🌍 XIMAYA Social</h1>
+</header>
 
-<nav>
+<div class="wrap">
 
-<a class="logo" href="index.html">XIMAYA</a>
+  <div id="status"></div>
 
-<div class="navlinks">
-<a href="index.html">Home</a>
-<a href="market.html">Market</a>
-<a href="food.html">Food</a>
-<a href="services.html">Services</a>
-<a href="gifts.html">Gifts</a>
-<a href="care.html">Care</a>
-<a href="card.html">Card</a>
-<a href="membership.html">Membership</a>
-<a href="social.html">Social</a>
-<a href="network.html">Network</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</div>
+  <!-- LOGIN / JOIN -->
+  <div id="authCard" class="card">
+    <h2>Join XIMAYA</h2>
 
-</nav>
+    <input
+      id="email"
+      type="email"
+      placeholder="Email address"
+      autocomplete="email"
+    >
 
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
 
-<section class="hero">
+    <button onclick="createAccount()">Create Account</button>
+    <button onclick="login()">Sign In</button>
+  </div>
 
-<div class="eyebrow">XIMAYA Social</div>
+  <!-- SOCIAL APP -->
+  <div id="socialApp">
 
-<h1>
-Meet.<br>
-<em>Connect.</em>
-</h1>
+    <div class="card">
+      <div id="currentUser"></div>
+      <button class="logout" onclick="logout()">Sign Out</button>
+    </div>
 
-<p>
-Meet people, share ideas, join communities and become part
-of the growing XIMAYA network.
-</p>
+    <div class="card">
+      <h3>Create a post</h3>
 
-<button class="btn gold" onclick="openAuth()">
-Join XIMAYA
-</button>
+      <textarea
+        id="postContent"
+        placeholder="What's happening on XIMAYA?"
+      ></textarea>
 
-<a class="btn" href="network.html">
-Explore Network
-</a>
+      <button onclick="publishPost()">Publish</button>
+    </div>
 
-</section>
+    <div class="card">
+      <h3>Social Feed</h3>
+      <div id="feed">Loading...</div>
+    </div>
 
-
-<div class="container">
-
-<div class="layout">
-
-
-<aside class="left">
-
-<div class="box profile">
-
-<div class="avatar" id="avatar">
-X
-</div>
-
-<div class="profile-name" id="profileName">
-Guest
-</div>
-
-<div class="profile-status" id="profileStatus">
-Not signed in
-</div>
-
-<div class="menu">
-
-<button onclick="openAuth()">
-Sign In / Register
-</button>
-
-<a href="network.html">
-Network
-</a>
-
-<a href="membership.html">
-Membership
-</a>
-
-<a href="card.html">
-XIMAYA Card
-</a>
-
-<a href="contact.html">
-Contact
-</a>
-
-<button
-id="logoutButton"
-onclick="logout()"
-style="display:none">
-Sign Out
-</button>
+  </div>
 
 </div>
-
-</div>
-
-</aside>
-
-
-<main>
-
-<div class="create">
-
-<div class="eyebrow">
-Share With XIMAYA
-</div>
-
-<textarea
-id="postText"
-placeholder="What would you like to share?"
-></textarea>
-
-<div class="create-row">
-
-<span
-class="status-text"
-id="postStatus">
-Sign in to publish
-</span>
-
-<button
-class="btn gold"
-onclick="createPost()">
-Publish
-</button>
-
-</div>
-
-</div>
-
-
-<div id="feed">
-
-<div class="box">
-<p>Loading XIMAYA Social...</p>
-</div>
-
-</div>
-
-</main>
-
-
-<aside class="right">
-
-<div class="box">
-
-<h3>Communities</h3>
-
-<div id="communities">
-<p>Loading communities...</p>
-</div>
-
-</div>
-
-
-<div class="box">
-
-<h3>Network</h3>
-
-<p>
-Discover creators, entrepreneurs, communities and
-new connections beyond the social feed.
-</p>
-
-<a class="btn gold" href="network.html">
-Open Network
-</a>
-
-</div>
-
-</aside>
-
-</div>
-
-</div>
-
-
-<footer>
-
-<div class="footer-logo">
-XIMAYA
-</div>
-
-<div class="footer-links">
-<a href="index.html">Home</a>
-<a href="market.html">Market</a>
-<a href="food.html">Food</a>
-<a href="services.html">Services</a>
-<a href="gifts.html">Gifts</a>
-<a href="care.html">Care</a>
-<a href="card.html">Card</a>
-<a href="membership.html">Membership</a>
-<a href="social.html">Social</a>
-<a href="network.html">Network</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</div>
-
-<div class="copyright">
-© 2026 XIMAYA · ALL RIGHTS RESERVED
-</div>
-
-</footer>
-
-
-<div class="auth-overlay" id="authOverlay">
-
-<div class="auth-box">
-
-<button class="close" onclick="closeAuth()">×</button>
-
-<div class="eyebrow">
-XIMAYA ACCOUNT
-</div>
-
-<h2>Join the network.</h2>
-
-<p>
-Create your XIMAYA account or sign in.
-</p>
-
-<input
-id="email"
-type="email"
-placeholder="Email address"
->
-
-<input
-id="password"
-type="password"
-placeholder="Password"
->
-
-<button
-class="btn gold"
-onclick="register()">
-Create Account
-</button>
-
-<button
-class="btn"
-onclick="login()">
-Sign In
-</button>
-
-<p id="authMessage"></p>
-
-</div>
-
-</div>
-
-
-<div class="toast" id="toast"></div>
-
 
 <script>
-
-/* =========================
-   XIMAYA SUPABASE CONNECTION
-   ========================= */
-
-const SUPABASE_URL =
-"https://bbzuzkgcyzslfyhpyczo.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_IpbVQhvINUjxHJcHySN7Lg_AOBoFurG";
-
-const db =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-let currentUser = null;
-
-
-/* =========================
-   HELPERS
-   ========================= */
-
-function showToast(text){
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent = text;
-  toast.style.display = "block";
-
-  setTimeout(function(){
-    toast.style.display = "none";
-  },3000);
-}
-
-
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* =========================
-   AUTH WINDOW
-   ========================= */
-
-function openAuth(){
-
-  document.getElementById("authOverlay")
-    .style.display = "flex";
-}
-
-
-function closeAuth(){
-
-  document.getElementById("authOverlay")
-    .style.display = "none";
-}
-
-
-/* =========================
-   REGISTER
-   ========================= */
-
-async function register(){
-
-  const email =
-    document.getElementById("email")
-      .value.trim();
-
-  const password =
-    document.getElementById("password")
-      .value;
-
-  const message =
-    document.getElementById("authMessage");
-
-  if(!email || !password){
-
-    message.textContent =
-      "Please enter your email and password.";
-
-    return;
-  }
-
-  if(password.length < 6){
-
-    message.textContent =
-      "Password must contain at least 6 characters.";
-
-    return;
-  }
-
-  message.textContent =
-    "Creating your account...";
-
-  const result =
-    await db.auth.signUp({
-      email:email,
-      password:password
-    });
-
-  if(result.error){
-
-    message.textContent =
-      result.error.message;
-
-    return;
-  }
-
-  if(result.data.user){
-
-    await createProfile(result.data.user);
-  }
-
-  message.textContent =
-    "Account created. Check your email if confirmation is enabled.";
-
-  showToast("Welcome to XIMAYA.");
-}
-
-
-/* =========================
-   LOGIN
-   ========================= */
-
-async function login(){
-
-  const email =
-    document.getElementById("email")
-      .value.trim();
-
-  const password =
-    document.getElementById("password")
-      .value;
-
-  const message =
-    document.getElementById("authMessage");
-
-  if(!email || !password){
-
-    message.textContent =
-      "Please enter your email and password.";
-
-    return;
-  }
-
-  message.textContent =
-    "Signing in...";
-
-  const result =
-    await db.auth.signInWithPassword({
-      email:email,
-      password:password
-    });
-
-  if(result.error){
-
-    message.textContent =
-      result.error.message;
-
-    return;
-  }
-
-  currentUser =
-    result.data.user;
-
-  await createProfile(currentUser);
-
-  closeAuth();
-
-  await refreshUser();
-
-  showToast("Welcome back to XIMAYA.");
-
-  await loadFeed();
-}
-
-
-/* =========================
-   LOGOUT
-   ========================= */
-
-async function logout(){
-
-  await db.auth.signOut();
-
-  currentUser = null;
-
-  document.getElementById("profileName")
-    .textContent = "Guest";
-
-  document.getElementById("profileStatus")
-    .textContent = "Not signed in";
-
-  document.getElementById("avatar")
-    .textContent = "X";
-
-  document.getElementById("logoutButton")
-    .style.display = "none";
-
-  document.getElementById("postStatus")
-    .textContent = "Sign in to publish";
-
-  showToast("Signed out.");
-}
-
-
-/* =========================
-   PROFILE
-   ========================= */
-
-async function createProfile(user){
-
-  if(!user){
-    return;
-  }
-
-  const username =
-    user.email
-      ? user.email.split("@")[0]
-      : "ximaya-member";
-
-  const result =
-    await db
-      .from("profiles")
-      .upsert({
-        id:user.id,
-        username:username,
-        full_name:username
-      });
-
-  if(result.error){
-    console.log(result.error);
-  }
-}
-
-
-async function refreshUser(){
-
-  const result =
-    await db.auth.getUser();
-
-  currentUser =
-    result.data.user || null;
-
-  if(!currentUser){
-
-    document.getElementById("profileName")
-      .textContent = "Guest";
-
-    document.getElementById("profileStatus")
-      .textContent = "Not signed in";
-
-    document.getElementById("avatar")
-      .textContent = "X";
-
-    document.getElementById("logoutButton")
-      .style.display = "none";
-
-    document.getElementById("postStatus")
-      .textContent = "Sign in to publish";
-
-    return;
-  }
-
-  await createProfile(currentUser);
-
-  const profileResult =
-    await db
-      .from("profiles")
-      .select("*")
-      .eq("id",currentUser.id)
-      .maybeSingle();
-
-  const profile =
-    profileResult.data;
-
-  const name =
-    profile?.full_name ||
-    profile?.username ||
-    currentUser.email.split("@")[0];
-
-  document.getElementById("profileName")
-    .textContent = name;
-
-  document.getElementById("profileStatus")
-    .textContent = currentUser.email;
-
-  document.getElementById("avatar")
-    .textContent =
-      name.charAt(0).toUpperCase();
-
-  document.getElementById("logoutButton")
-    .style.display = "block";
-
-  document.getElementById("postStatus")
-    .textContent =
-      "Signed in · Ready to publish";
-}
-
-
-/* =========================
-   CREATE POST
-   ========================= */
-
-async function createPost(){
-
-  if(!currentUser){
-
-    openAuth();
-
-    showToast(
-      "Please sign in before publishing."
+  /* =========================
+     XIMAYA SUPABASE
+     ========================= */
+
+  const SUPABASE_URL =
+    "https://bbzuzkgcyzslfyhpyczo.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_lpbVQhvINUjxHJcHySN7Lg_AOBoFurG";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
     );
 
-    return;
+
+  /* =========================
+     HELPERS
+     ========================= */
+
+  function status(text) {
+    document.getElementById("status").textContent = text;
   }
 
-  const textarea =
-    document.getElementById("postText");
-
-  const content =
-    textarea.value.trim();
-
-  if(!content){
-
-    showToast("Write something first.");
-
-    return;
+  function escapeHTML(value) {
+    const div = document.createElement("div");
+    div.textContent = value || "";
+    return div.innerHTML;
   }
 
-  const result =
-    await db
-      .from("posts")
-      .insert({
-        user_id:currentUser.id,
-        content:content
+
+  /* =========================
+     ACCOUNT
+     ========================= */
+
+  async function createAccount() {
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    const password =
+      document.getElementById("password").value;
+
+    if (!email || !password) {
+      status("Enter your email and password.");
+      return;
+    }
+
+    if (password.length < 6) {
+      status("Password must be at least 6 characters.");
+      return;
+    }
+
+    status("Creating your XIMAYA account...");
+
+    const { data, error } =
+      await supabaseClient.auth.signUp({
+        email: email,
+        password: password
       });
 
-  if(result.error){
+    if (error) {
+      status(error.message);
+      return;
+    }
 
-    showToast(result.error.message);
-
-    return;
+    if (data.session) {
+      status("Account created successfully.");
+      showApp(data.session.user);
+      loadFeed();
+    } else {
+      status(
+        "Account created. Check your email if confirmation is required."
+      );
+    }
   }
 
-  textarea.value = "";
 
-  showToast(
-    "Your post is now on XIMAYA."
-  );
+  async function login() {
 
-  await loadFeed();
-}
+    const email =
+      document.getElementById("email").value.trim();
 
+    const password =
+      document.getElementById("password").value;
 
-/* =========================
-   LOAD FEED
-   ========================= */
+    if (!email || !password) {
+      status("Enter your email and password.");
+      return;
+    }
 
-async function loadFeed(){
+    status("Signing in...");
 
-  const feed =
-    document.getElementById("feed");
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
 
-  feed.innerHTML =
-    '<div class="box"><p>Loading posts...</p></div>';
+    if (error) {
+      status(error.message);
+      return;
+    }
 
-  const result =
-    await db
-      .from("posts")
-      .select(`
-        id,
-        user_id,
-        content,
-        created_at,
-        profiles (
-          username,
-          full_name
-        )
-      `)
-      .order("created_at",{ascending:false})
-      .limit(50);
-
-  if(result.error){
-
-    feed.innerHTML =
-      '<div class="box"><p>Unable to load posts.</p></div>';
-
-    console.log(result.error);
-
-    return;
+    showApp(data.user);
+    status("Signed in successfully.");
+    loadFeed();
   }
 
-  const posts =
-    result.data || [];
 
-  if(posts.length === 0){
+  async function logout() {
 
-    feed.innerHTML =
-      '<div class="box"><p>No posts yet. Be the first XIMAYA member to share something.</p></div>';
+    await supabaseClient.auth.signOut();
 
-    return;
+    document.getElementById("authCard").style.display = "block";
+    document.getElementById("socialApp").style.display = "none";
+
+    status("Signed out.");
   }
 
-  feed.innerHTML = "";
 
-  posts.forEach(function(post){
+  function showApp(user) {
 
-    const profile =
-      post.profiles || {};
+    document.getElementById("authCard").style.display = "none";
+    document.getElementById("socialApp").style.display = "block";
 
-    const name =
-      profile.full_name ||
-      profile.username ||
-      "XIMAYA Member";
+    document.getElementById("currentUser").textContent =
+      "Signed in as " + user.email;
+  }
 
-    const initial =
-      name.charAt(0).toUpperCase();
 
-    const date =
-      new Date(post.created_at)
-        .toLocaleString();
+  /* =========================
+     POSTS
+     ========================= */
 
-    const article =
-      document.createElement("article");
+  async function publishPost() {
 
-    article.className = "post";
+    const content =
+      document.getElementById("postContent").value.trim();
 
-    article.innerHTML = `
+    if (!content) {
+      status("Write something before publishing.");
+      return;
+    }
 
-      <div class="post-header">
+    const {
+      data: { user }
+    } = await supabaseClient.auth.getUser();
 
-        <div class="post-avatar">
-          ${escapeHTML(initial)}
+    if (!user) {
+      status("Please sign in first.");
+      return;
+    }
+
+    status("Publishing...");
+
+    const { error } =
+      await supabaseClient
+        .from("posts")
+        .insert({
+          user_id: user.id,
+          content: content
+        });
+
+    if (error) {
+      console.error(error);
+      status("Post error: " + error.message);
+      return;
+    }
+
+    document.getElementById("postContent").value = "";
+
+    status("Post published successfully.");
+    loadFeed();
+  }
+
+
+  async function loadFeed() {
+
+    const feed =
+      document.getElementById("feed");
+
+    feed.innerHTML = "Loading...";
+
+    const { data, error } =
+      await supabaseClient
+        .from("posts")
+        .select("*")
+        .order("created_at", {
+          ascending: false
+        });
+
+    if (error) {
+      console.error(error);
+      feed.innerHTML =
+        "<p>Could not load posts.</p>";
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      feed.innerHTML =
+        "<p>No posts yet. Be the first to post.</p>";
+      return;
+    }
+
+    feed.innerHTML = "";
+
+    for (const post of data) {
+
+      const article =
+        document.createElement("div");
+
+      article.className = "post";
+
+      article.innerHTML = `
+        <div class="member">
+          XIMAYA Member
         </div>
 
         <div>
-
-          <div class="post-user">
-            ${escapeHTML(name)}
-          </div>
-
-          <span class="post-date">
-            ${escapeHTML(date)}
-          </span>
-
+          ${escapeHTML(post.content)}
         </div>
 
-      </div>
+        <div class="actions">
+          <button onclick="likePost('${post.id}')">
+            ❤️ Like
+          </button>
+        </div>
 
-      <div class="post-content">
-        ${escapeHTML(post.content)}
-      </div>
-
-      <div class="actions">
-
-        <button onclick="likePost('${post.id}')">
-          ♡ Like
-        </button>
-
-        <button onclick="toggleComments('${post.id}')">
-          Comment
-        </button>
-
-        ${
-          currentUser &&
-          currentUser.id === post.user_id
-          ?
-          `<button onclick="deletePost('${post.id}')">
-             Delete
-           </button>`
-          :
-          ""
-        }
-
-      </div>
-
-      <div
-        class="comment-area"
-        id="comments-${post.id}">
-
-        <div
-          class="comment-list"
-          id="comment-list-${post.id}">
+        <div id="comments-${post.id}">
+          Loading comments...
         </div>
 
         <input
-          id="comment-input-${post.id}"
+          id="commentInput-${post.id}"
           placeholder="Write a comment..."
         >
 
-        <button
-          class="btn gold"
-          onclick="addComment('${post.id}')">
-          Send Comment
+        <button onclick="addComment('${post.id}')">
+          Comment
         </button>
+      `;
 
-      </div>
+      feed.appendChild(article);
 
-    `;
-
-    feed.appendChild(article);
-
-  });
-
-}
-
-
-/* =========================
-   LIKE
-   ========================= */
-
-async function likePost(postId){
-
-  if(!currentUser){
-
-    openAuth();
-
-    showToast("Sign in to like posts.");
-
-    return;
+      loadComments(post.id);
+    }
   }
 
-  const existing =
-    await db
-      .from("post_likes")
-      .select("*")
-      .eq("post_id",postId)
-      .eq("user_id",currentUser.id)
-      .maybeSingle();
 
-  if(existing.data){
+  /* =========================
+     LIKES
+     ========================= */
 
-    await db
-      .from("post_likes")
-      .delete()
-      .eq("post_id",postId)
-      .eq("user_id",currentUser.id);
+  async function likePost(postId) {
 
-    showToast("Like removed.");
+    const {
+      data: { user }
+    } = await supabaseClient.auth.getUser();
 
-  }else{
+    if (!user) {
+      status("Please sign in first.");
+      return;
+    }
 
-    const result =
-      await db
-        .from("post_likes")
+    const { error } =
+      await supabaseClient
+        .from("likes")
         .insert({
-          post_id:postId,
-          user_id:currentUser.id
+          post_id: postId,
+          user_id: user.id
         });
 
-    if(result.error){
+    if (error) {
 
-      showToast(result.error.message);
+      if (error.code === "23505") {
+        status("You already liked this post.");
+      } else {
+        status("Like error: " + error.message);
+      }
 
       return;
     }
 
-    showToast("Liked.");
-  }
-}
-
-
-/* =========================
-   COMMENTS
-   ========================= */
-
-async function toggleComments(postId){
-
-  const area =
-    document.getElementById(
-      "comments-"+postId
-    );
-
-  if(area.style.display === "block"){
-
-    area.style.display = "none";
-
-    return;
+    status("Liked ❤️");
   }
 
-  area.style.display = "block";
 
-  await loadComments(postId);
-}
+  /* =========================
+     COMMENTS
+     ========================= */
 
+  async function addComment(postId) {
 
-async function loadComments(postId){
+    const input =
+      document.getElementById(
+        "commentInput-" + postId
+      );
 
-  const list =
-    document.getElementById(
-      "comment-list-"+postId
-    );
+    const content =
+      input.value.trim();
 
-  const result =
-    await db
-      .from("comments")
-      .select(`
-        content,
-        created_at,
-        profiles (
-          username,
-          full_name
-        )
-      `)
-      .eq("post_id",postId)
-      .order("created_at",{ascending:true});
+    if (!content) {
+      return;
+    }
 
-  if(result.error){
+    const {
+      data: { user }
+    } = await supabaseClient.auth.getUser();
 
-    list.innerHTML =
-      "<p>Unable to load comments.</p>";
+    if (!user) {
+      status("Please sign in first.");
+      return;
+    }
 
-    return;
+    const { error } =
+      await supabaseClient
+        .from("comments")
+        .insert({
+          post_id: postId,
+          user_id: user.id,
+          content: content
+        });
+
+    if (error) {
+      status("Comment error: " + error.message);
+      return;
+    }
+
+    input.value = "";
+
+    status("Comment added.");
+    loadComments(postId);
   }
 
-  const comments =
-    result.data || [];
 
-  if(comments.length === 0){
+  async function loadComments(postId) {
 
-    list.innerHTML =
-      "<p>No comments yet.</p>";
+    const box =
+      document.getElementById(
+        "comments-" + postId
+      );
 
-    return;
+    if (!box) return;
+
+    const { data, error } =
+      await supabaseClient
+        .from("comments")
+        .select("*")
+        .eq("post_id", postId)
+        .order("created_at", {
+          ascending: true
+        });
+
+    if (error) {
+      box.innerHTML = "";
+      return;
+    }
+
+    box.innerHTML = "";
+
+    if (!data || data.length === 0) {
+      return;
+    }
+
+    data.forEach(comment => {
+
+      const div =
+        document.createElement("div");
+
+      div.className = "comment";
+
+      div.textContent =
+        comment.content;
+
+      box.appendChild(div);
+    });
   }
 
-  list.innerHTML = "";
 
-  comments.forEach(function(comment){
+  /* =========================
+     SESSION
+     ========================= */
 
-    const name =
-      comment.profiles?.full_name ||
-      comment.profiles?.username ||
-      "Member";
+  async function checkSession() {
 
-    const div =
-      document.createElement("div");
+    const {
+      data: { session }
+    } = await supabaseClient.auth.getSession();
 
-    div.className = "comment";
-
-    div.innerHTML =
-      "<strong>"+
-      escapeHTML(name)+
-      "</strong> · "+
-      escapeHTML(comment.content);
-
-    list.appendChild(div);
-  });
-}
-
-
-async function addComment(postId){
-
-  if(!currentUser){
-
-    openAuth();
-
-    return;
+    if (session && session.user) {
+      showApp(session.user);
+      loadFeed();
+    }
   }
 
-  const input =
-    document.getElementById(
-      "comment-input-"+postId
-    );
 
-  const content =
-    input.value.trim();
+  supabaseClient.auth.onAuthStateChange(
+    (event, session) => {
 
-  if(!content){
-
-    showToast("Write a comment first.");
-
-    return;
-  }
-
-  const result =
-    await db
-      .from("comments")
-      .insert({
-        post_id:postId,
-        user_id:currentUser.id,
-        content:content
-      });
-
-  if(result.error){
-
-    showToast(result.error.message);
-
-    return;
-  }
-
-  input.value = "";
-
-  await loadComments(postId);
-
-  showToast("Comment added.");
-}
+      if (session && session.user) {
+        showApp(session.user);
+        loadFeed();
+      }
+    }
+  );
 
 
-/* =========================
-   DELETE POST
-   ========================= */
-
-async function deletePost(postId){
-
-  if(!currentUser){
-    return;
-  }
-
-  const confirmed =
-    confirm("Delete this post?");
-
-  if(!confirmed){
-    return;
-  }
-
-  const result =
-    await db
-      .from("posts")
-      .delete()
-      .eq("id",postId)
-      .eq("user_id",currentUser.id);
-
-  if(result.error){
-
-    showToast(result.error.message);
-
-    return;
-  }
-
-  showToast("Post deleted.");
-
-  await loadFeed();
-}
-
-
-/* =========================
-   COMMUNITIES
-   ========================= */
-
-async function loadCommunities(){
-
-  const box =
-    document.getElementById("communities");
-
-  const result =
-    await db
-      .from("communities")
-      .select("*")
-      .order("name");
-
-  if(result.error){
-
-    box.innerHTML =
-      "<p>Communities unavailable.</p>";
-
-    return;
-  }
-
-  const communities =
-    result.data || [];
-
-  if(communities.length === 0){
-
-    box.innerHTML =
-      "<p>No communities yet.</p>";
-
-    return;
-  }
-
-  box.innerHTML = "";
-
-  communities.forEach(function(item){
-
-    const div =
-      document.createElement("div");
-
-    div.className = "community";
-
-    div.innerHTML =
-      "<strong>"+
-      escapeHTML(item.name)+
-      "</strong>"+
-      "<small>"+
-      escapeHTML(item.description || "")+
-      "</small>";
-
-    box.appendChild(div);
-  });
-}
-
-
-/* =========================
-   AUTH STATE
-   ========================= */
-
-db.auth.onAuthStateChange(
-  async function(){
-
-    await refreshUser();
-
-    await loadFeed();
-  }
-);
-
-
-/* =========================
-   START XIMAYA SOCIAL
-   ========================= */
-
-(async function(){
-
-  await refreshUser();
-
-  await loadFeed();
-
-  await loadCommunities();
-
-})();
-
+  checkSession();
 </script>
 
 </body>
 </html>
+```
