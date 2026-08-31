@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>XIMAYA — A World Beyond Ordinary</title>
+<title>XIMAYA — Live. Earn. Connect. Give.</title>
 
-<meta name="description" content="XIMAYA — a timeless world of exceptional people, experiences, access and discovery.">
+<meta name="description" content="XIMAYA — a world of discovery, connection, commerce, community, membership and care.">
 
 <style>
 :root{
-  --ink:#15120d;
-  --cream:#f5f0e7;
-  --gold:#b9985a;
-  --soft:#e8deca;
-  --line:#d7c7a5;
-  --muted:#625b4f;
+  --black:#0b0a08;
+  --deep:#15110c;
+  --cream:#f4eee2;
+  --ivory:#fcfaf5;
+  --gold:#b99a5e;
+  --gold2:#dcc38d;
+  --line:#d8c7a5;
+  --muted:#71695b;
 }
 
 *{
@@ -29,8 +31,9 @@ html{
 body{
   margin:0;
   background:var(--cream);
-  color:var(--ink);
+  color:var(--black);
   font-family:Georgia,"Times New Roman",serif;
+  line-height:1.6;
 }
 
 a{
@@ -39,337 +42,652 @@ a{
 }
 
 .topbar{
-  padding:13px 6%;
-  border-bottom:1px solid var(--line);
+  background:var(--black);
+  color:var(--gold2);
   text-align:center;
-  font:10px Arial,sans-serif;
-  letter-spacing:3px;
+  padding:11px;
+  font:9px Arial,sans-serif;
+  letter-spacing:4px;
   text-transform:uppercase;
 }
 
 .nav{
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:100;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:24px 6%;
-  background:#f5f0e7ee;
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid transparent;
+  padding:20px 5%;
+  background:#f4eee2ee;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
 }
 
 .logo{
-  font-size:29px;
+  font-size:28px;
   letter-spacing:8px;
 }
 
-.links{
+.navlinks{
   display:flex;
-  gap:27px;
-  font:11px Arial,sans-serif;
-  letter-spacing:1.8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:17px;
+  font:9px Arial,sans-serif;
+  letter-spacing:1.2px;
   text-transform:uppercase;
 }
 
-.links a{
-  transition:.25s;
+.navlinks a:hover{
+  color:#80683c;
 }
 
-.links a:hover{
-  color:#8d713d;
-}
+
+/* HERO */
 
 .hero{
-  min-height:calc(100vh - 90px);
+  min-height:88vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:90px 7%;
+  padding:100px 6%;
+
+  background:
+    radial-gradient(circle at 50% 45%,rgba(185,154,94,.18),transparent 30%),
+    radial-gradient(circle at 20% 80%,rgba(185,154,94,.08),transparent 25%),
+    var(--cream);
+
   border-bottom:1px solid var(--line);
-  position:relative;
-  overflow:hidden;
 }
 
-.hero:before{
-  content:"X";
-  position:absolute;
-  font-size:45vw;
-  line-height:1;
-  color:#b9985a0a;
-  font-family:Georgia,serif;
-  pointer-events:none;
-}
-
-.hero-content{
-  position:relative;
-  z-index:1;
-  max-width:1000px;
+.hero-inner{
+  max-width:1100px;
 }
 
 .eyebrow{
+  color:#80683c;
   font:10px Arial,sans-serif;
-  letter-spacing:5px;
+  letter-spacing:6px;
   text-transform:uppercase;
-  color:#806c43;
 }
 
 .hero h1{
   margin:25px 0;
-  font-size:clamp(58px,10vw,135px);
-  line-height:.88;
+  font-size:clamp(65px,11vw,145px);
+  line-height:.82;
   font-weight:400;
-  letter-spacing:-3px;
+  letter-spacing:-6px;
 }
 
-.hero h1 span{
+.hero h1 em{
   font-style:italic;
 }
 
 .hero p{
-  max-width:700px;
-  margin:0 auto;
-  font-size:19px;
+  max-width:720px;
+  margin:30px auto;
+  color:var(--muted);
+  font-size:18px;
   line-height:1.9;
-  color:#514b40;
 }
 
-.buttons{
-  margin-top:38px;
+.hero-buttons{
+  margin-top:35px;
 }
 
-.btn{
+.button{
   display:inline-block;
+  margin:5px;
   padding:15px 25px;
-  margin:6px;
-  border:1px solid #9b7d45;
-  font:10px Arial,sans-serif;
+  border:1px solid var(--black);
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.3s ease;
+}
+
+.button:hover{
+  background:var(--black);
+  color:var(--cream);
+}
+
+.button.gold{
+  border-color:var(--gold);
+}
+
+.button.gold:hover{
+  background:var(--gold);
+  color:var(--black);
+}
+
+
+/* INTRO */
+
+.intro{
+  padding:110px 7%;
+  border-bottom:1px solid var(--line);
+}
+
+.intro-inner{
+  max-width:1000px;
+  margin:auto;
+  text-align:center;
+}
+
+.intro h2{
+  margin:18px 0;
+  font-size:clamp(45px,6vw,75px);
+  line-height:1;
+  font-weight:400;
+}
+
+.intro p{
+  max-width:760px;
+  margin:auto;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.9;
+}
+
+
+/* WORLD */
+
+.world{
+  padding:105px 6%;
+  border-bottom:1px solid var(--line);
+}
+
+.heading{
+  max-width:800px;
+  margin:0 auto 65px;
+  text-align:center;
+}
+
+.heading h2{
+  margin:15px 0;
+  font-size:clamp(44px,6vw,72px);
+  line-height:1;
+  font-weight:400;
+}
+
+.heading p{
+  color:var(--muted);
+  font-size:16px;
+}
+
+.grid{
+  max-width:1200px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  gap:1px;
+
+  background:var(--line);
+}
+
+.tile{
+  min-height:300px;
+  padding:30px;
+  background:var(--ivory);
+  transition:.35s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.tile:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  right:-70px;
+  bottom:-70px;
+  border:1px solid rgba(185,154,94,.22);
+  border-radius:50%;
+}
+
+.tile:hover{
+  transform:translateY(-5px);
+  background:#f8f0df;
+}
+
+.tile-number{
+  color:#80683c;
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+}
+
+.tile h3{
+  margin:17px 0 10px;
+  font-size:29px;
+  font-weight:400;
+}
+
+.tile p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.tile a{
+  display:inline-block;
+  margin-top:12px;
+  padding-bottom:4px;
+  border-bottom:1px solid var(--gold);
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+
+/* SOCIAL FEATURE */
+
+.social-feature{
+  padding:110px 7%;
+  background:var(--black);
+  color:var(--cream);
+  border-bottom:1px solid #30271b;
+}
+
+.social-inner{
+  max-width:1150px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:80px;
+
+  align-items:center;
+}
+
+.social-copy .eyebrow{
+  color:var(--gold2);
+}
+
+.social-copy h2{
+  margin:18px 0;
+  font-size:clamp(45px,6vw,76px);
+  line-height:.95;
+  font-weight:400;
+}
+
+.social-copy p{
+  max-width:600px;
+  color:#c8bdab;
+  font-size:16px;
+  line-height:1.9;
+}
+
+.dark-button{
+  display:inline-block;
+  margin-top:20px;
+  padding:15px 25px;
+  border:1px solid var(--gold);
+  color:var(--cream);
+  font:9px Arial,sans-serif;
   letter-spacing:2px;
   text-transform:uppercase;
   transition:.3s;
 }
 
-.btn:hover{
-  background:#17140f;
-  color:#f5f0e7;
-  border-color:#17140f;
+.dark-button:hover{
+  background:var(--gold);
+  color:var(--black);
 }
 
-.btn.dark{
-  background:#17140f;
-  color:#f5f0e7;
+.social-panel{
+  min-height:390px;
+  padding:35px;
+
+  border:1px solid rgba(220,195,141,.5);
+
+  background:
+    radial-gradient(circle at 70% 20%,rgba(220,195,141,.12),transparent 30%),
+    #17130e;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
-.btn.dark:hover{
-  background:#806c43;
-  border-color:#806c43;
+.social-top{
+  display:flex;
+  justify-content:space-between;
+  color:var(--gold2);
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
 }
 
-.section{
+.social-symbol{
+  font-size:120px;
+  line-height:1;
+  color:rgba(220,195,141,.2);
+  text-align:center;
+}
+
+.social-panel h3{
+  margin:0;
+  font-size:31px;
+  font-weight:400;
+}
+
+.social-panel p{
+  margin:5px 0 0;
+  color:#bfb3a0;
+  font-size:13px;
+}
+
+
+/* MEMBERSHIP */
+
+.membership{
+  padding:110px 6%;
+  border-bottom:1px solid var(--line);
+}
+
+.membership-cards{
+  max-width:1100px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+
+  gap:1px;
+
+  background:var(--line);
+}
+
+.member{
+  min-height:235px;
+  padding:28px 20px;
+  background:var(--ivory);
+  text-align:center;
+}
+
+.member span{
+  color:#80683c;
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+}
+
+.member h3{
+  margin:15px 0 8px;
+  font-size:24px;
+  font-weight:400;
+}
+
+.member p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* CARD */
+
+.card-section{
+  padding:110px 7%;
+  border-bottom:1px solid var(--line);
+  background:#eee5d5;
+}
+
+.card-inner{
+  max-width:1100px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:80px;
+
+  align-items:center;
+}
+
+.card-copy h2{
+  margin:18px 0;
+  font-size:clamp(45px,6vw,72px);
+  line-height:.95;
+  font-weight:400;
+}
+
+.card-copy p{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.9;
+}
+
+.xcard{
+  min-height:340px;
+  padding:35px;
+
+  border-radius:22px;
+
+  color:var(--cream);
+
+  background:
+    radial-gradient(circle at 75% 20%,rgba(220,195,141,.25),transparent 25%),
+    linear-gradient(135deg,#0e0d0b,#2b2115,#15110c);
+
+  border:1px solid rgba(220,195,141,.65);
+
+  box-shadow:0 30px 70px rgba(0,0,0,.22);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.xcard-top,
+.xcard-bottom{
+  display:flex;
+  justify-content:space-between;
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+}
+
+.chip{
+  width:53px;
+  height:39px;
+  margin-bottom:25px;
+  border:1px solid var(--gold2);
+  border-radius:8px;
+
+  background:
+    linear-gradient(90deg,transparent 46%,rgba(220,195,141,.7) 47% 52%,transparent 53%),
+    linear-gradient(0deg,transparent 46%,rgba(220,195,141,.7) 47% 52%,transparent 53%);
+}
+
+.xcard-name{
+  font-size:37px;
+  letter-spacing:8px;
+}
+
+.xcard-sub{
+  color:var(--gold2);
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
+}
+
+
+/* NETWORK */
+
+.network{
   padding:110px 7%;
   border-bottom:1px solid var(--line);
 }
 
-.section-head{
-  text-align:center;
-  max-width:850px;
-  margin:0 auto 65px;
-}
+.network-grid{
+  max-width:1100px;
+  margin:auto;
 
-.section-head h2{
-  font-size:clamp(42px,6vw,72px);
-  font-weight:400;
-  line-height:1;
-  margin:18px 0;
-}
-
-.section-head p{
-  font-size:17px;
-  line-height:1.8;
-  color:var(--muted);
-}
-
-.world-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
+
   gap:1px;
+
   background:var(--line);
 }
 
-.world-card{
-  min-height:330px;
-  background:var(--cream);
-  padding:40px 30px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  transition:.35s;
+.network-box{
+  min-height:270px;
+  padding:35px;
+  background:var(--ivory);
 }
 
-.world-card:hover{
-  background:#eee5d4;
-  transform:translateY(-4px);
-}
-
-.world-number{
-  font:10px Arial,sans-serif;
+.network-box span{
+  color:#80683c;
+  font:9px Arial,sans-serif;
   letter-spacing:3px;
-  color:#806c43;
 }
 
-.world-card h3{
-  margin:15px 0 12px;
-  font-size:29px;
+.network-box h3{
+  margin:15px 0 10px;
+  font-size:28px;
   font-weight:400;
 }
 
-.world-card p{
-  margin:0;
-  line-height:1.7;
+.network-box p{
   color:var(--muted);
+  font-size:14px;
+  line-height:1.8;
 }
 
-.world-link{
-  display:inline-block;
-  margin-top:25px;
-  font:10px Arial,sans-serif;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  border-bottom:1px solid var(--gold);
-  padding-bottom:6px;
-  width:max-content;
-}
 
-.manifesto{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:90px;
-  align-items:center;
-}
-
-.manifesto h2{
-  font-size:clamp(45px,6vw,75px);
-  line-height:1;
-  font-weight:400;
-  margin:15px 0;
-}
-
-.manifesto-copy{
-  border-left:1px solid var(--gold);
-  padding-left:35px;
-}
-
-.manifesto-copy p{
-  font-size:21px;
-  line-height:1.7;
-  margin:0 0 20px;
-}
-
-.manifesto-copy small{
-  font:10px Arial,sans-serif;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:#806c43;
-}
+/* FINAL */
 
 .final{
-  padding:125px 7%;
+  padding:125px 6%;
   text-align:center;
-  border-bottom:1px solid var(--line);
+  color:var(--cream);
+
+  background:
+    radial-gradient(circle at center,rgba(185,154,94,.17),transparent 45%),
+    var(--deep);
 }
 
 .final h2{
-  font-size:clamp(48px,7vw,90px);
-  font-weight:400;
+  max-width:900px;
+  margin:20px auto;
+  font-size:clamp(48px,7vw,85px);
   line-height:.95;
-  margin:20px auto 30px;
-  max-width:1000px;
+  font-weight:400;
 }
 
 .final p{
   max-width:650px;
-  margin:auto;
-  font-size:18px;
-  line-height:1.8;
-  color:var(--muted);
+  margin:25px auto 35px;
+  color:#c8bdab;
+  font-size:16px;
 }
 
-.footer{
+
+/* FOOTER */
+
+footer{
   padding:55px 6%;
   text-align:center;
+  border-top:1px solid var(--line);
 }
 
 .footer-logo{
-  font-size:24px;
-  letter-spacing:7px;
-  margin-bottom:18px;
+  font-size:25px;
+  letter-spacing:8px;
 }
 
-.footer-nav{
+.footer-links{
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
-  gap:25px;
-  font:10px Arial,sans-serif;
-  letter-spacing:1.7px;
+  justify-content:center;
+  gap:19px;
+  margin-top:22px;
+  font:9px Arial,sans-serif;
+  letter-spacing:1.3px;
   text-transform:uppercase;
 }
 
-.copyright{
-  margin-top:30px;
-  font:9px Arial,sans-serif;
-  letter-spacing:2px;
-  color:#776f61;
+.footer-links a:hover{
+  color:#80683c;
 }
 
-@media(max-width:900px){
+.copyright{
+  margin-top:25px;
+  color:var(--muted);
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+}
 
-  .links{
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+
+  .navlinks{
     display:none;
   }
 
-  .world-grid{
-    grid-template-columns:1fr 1fr;
+  .grid{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .manifesto{
-    grid-template-columns:1fr;
-    gap:40px;
+  .membership-cards{
+    grid-template-columns:repeat(3,1fr);
   }
 
 }
 
-@media(max-width:550px){
+@media(max-width:800px){
 
   .hero{
-    min-height:80vh;
+    min-height:75vh;
   }
 
   .hero h1{
-    font-size:58px;
-    letter-spacing:-2px;
+    font-size:65px;
+    letter-spacing:-3px;
   }
 
-  .section{
-    padding:80px 6%;
+  .social-inner,
+  .card-inner{
+    grid-template-columns:1fr;
+    gap:50px;
   }
 
-  .world-grid{
+  .network-grid{
     grid-template-columns:1fr;
   }
 
-  .world-card{
-    min-height:270px;
+}
+
+@media(max-width:600px){
+
+  .grid,
+  .membership-cards{
+    grid-template-columns:1fr;
   }
 
-  .manifesto-copy{
-    padding-left:22px;
+  .hero h1{
+    font-size:54px;
   }
 
-  .final{
-    padding:90px 6%;
+  .section,
+  .world,
+  .social-feature,
+  .membership,
+  .card-section,
+  .network{
+    padding:75px 6%;
+  }
+
+  .xcard{
+    min-height:290px;
+  }
+
+  .xcard-name{
+    font-size:28px;
+    letter-spacing:5px;
   }
 
 }
@@ -378,19 +696,33 @@ a{
 
 <body>
 
+
 <div class="topbar">
-XIMAYA · A WORLD BEYOND ORDINARY
+XIMAYA · LIVE · EARN · CONNECT · GIVE
 </div>
+
 
 <nav class="nav">
 
-<a class="logo" href="index.html">XIMAYA</a>
+<a class="logo" href="index.html">
+XIMAYA
+</a>
 
-<div class="links">
+<div class="navlinks">
+
+<a href="index.html">Home</a>
 <a href="market.html">Market</a>
+<a href="food.html">Food</a>
+<a href="services.html">Services</a>
+<a href="gifts.html">Gifts</a>
+<a href="care.html">Care</a>
 <a href="card.html">Card</a>
 <a href="membership.html">Membership</a>
+<a href="social.html">Social</a>
 <a href="network.html">Network</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+
 </div>
 
 </nav>
@@ -400,7 +732,7 @@ XIMAYA · A WORLD BEYOND ORDINARY
 
 <section class="hero">
 
-<div class="hero-content">
+<div class="hero-inner">
 
 <div class="eyebrow">
 Welcome to XIMAYA
@@ -408,22 +740,25 @@ Welcome to XIMAYA
 
 <h1>
 A world<br>
-<span>beyond</span> ordinary.
+<em>within reach.</em>
 </h1>
 
 <p>
-A timeless world of exceptional people, meaningful connections,
-remarkable experiences and carefully considered discovery.
+Discover a new kind of ecosystem — where people,
+commerce, experiences, community and care come
+together in one world.
 </p>
 
-<div class="buttons">
-<a class="btn dark" href="membership.html">
-Enter XIMAYA
+<div class="hero-buttons">
+
+<a class="button gold" href="social.html">
+Enter XIMAYA Social
 </a>
 
-<a class="btn" href="network.html">
-Discover the Network
+<a class="button" href="#world">
+Explore XIMAYA
 </a>
+
 </div>
 
 </div>
@@ -431,153 +766,276 @@ Discover the Network
 </section>
 
 
-<!-- THE WORLD -->
+<!-- INTRO -->
 
-<section class="section">
+<section class="intro">
 
-<div class="section-head">
+<div class="intro-inner">
+
+<div class="eyebrow">
+The XIMAYA Vision
+</div>
+
+<h2>
+Not just a destination.<br>
+A world to belong to.
+</h2>
+
+<p>
+XIMAYA is an evolving ecosystem built around discovery,
+connection and meaningful experiences. Explore what you
+love, meet people, discover opportunities, give back and
+build your own place within the XIMAYA world.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- WORLD -->
+
+<section class="world" id="world">
+
+<div class="heading">
 
 <div class="eyebrow">
 The XIMAYA World
 </div>
 
 <h2>
-One world.<br>
-Four doors.
+Everything connected.
 </h2>
 
 <p>
-Explore the different expressions of XIMAYA — each designed
-to bring you closer to a world built with intention.
+Different experiences. One identity. One ecosystem.
 </p>
 
 </div>
 
 
-<div class="world-grid">
+<div class="grid">
 
-<article class="world-card">
 
-<div class="world-number">
-01 · MARKET
-</div>
+<div class="tile">
+
+<div class="tile-number">01 · MARKET</div>
 
 <h3>
-XIMAYA Market
+Market
 </h3>
 
 <p>
-A curated universe of exceptional objects,
-discoveries and experiences.
+Discover products, ideas and opportunities
+within the XIMAYA marketplace.
 </p>
 
-<a class="world-link" href="market.html">
+<a href="market.html">
 Explore Market →
 </a>
 
-</article>
-
-
-<article class="world-card">
-
-<div class="world-number">
-02 · CARD
 </div>
+
+
+<div class="tile">
+
+<div class="tile-number">02 · FOOD</div>
+
+<h3>
+Food
+</h3>
+
+<p>
+Explore tastes, traditions, experiences and
+discoveries from the world of food.
+</p>
+
+<a href="food.html">
+Explore Food →
+</a>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-number">03 · SERVICES</div>
+
+<h3>
+Services
+</h3>
+
+<p>
+Find useful services and possibilities designed
+to make everyday life better.
+</p>
+
+<a href="services.html">
+Explore Services →
+</a>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-number">04 · GIFTS</div>
+
+<h3>
+Gifts
+</h3>
+
+<p>
+Celebrate people and moments with thoughtful
+discoveries from XIMAYA.
+</p>
+
+<a href="gifts.html">
+Explore Gifts →
+</a>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-number">05 · CARE</div>
+
+<h3>
+Care
+</h3>
+
+<p>
+A part of XIMAYA dedicated to meaningful
+contribution, kindness and impact.
+</p>
+
+<a href="care.html">
+Explore Care →
+</a>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-number">06 · CARD</div>
 
 <h3>
 XIMAYA Card
 </h3>
 
 <p>
-A distinctive identity created around
-access, recognition and privilege.
+Your identity within the wider XIMAYA
+membership and experience.
 </p>
 
-<a class="world-link" href="card.html">
+<a href="card.html">
 Discover Card →
 </a>
 
-</article>
-
-
-<article class="world-card">
-
-<div class="world-number">
-03 · MEMBERSHIP
 </div>
+
+
+<div class="tile">
+
+<div class="tile-number">07 · MEMBERSHIP</div>
 
 <h3>
 Membership
 </h3>
 
 <p>
-A deeper relationship with the people,
-places and possibilities of XIMAYA.
+Choose your level and deepen your relationship
+with the XIMAYA world.
 </p>
 
-<a class="world-link" href="membership.html">
-Explore Membership →
+<a href="membership.html">
+View Membership →
 </a>
 
-</article>
-
-
-<article class="world-card">
-
-<div class="world-number">
-04 · NETWORK
 </div>
 
+
+<div class="tile">
+
+<div class="tile-number">08 · NETWORK</div>
+
 <h3>
-XIMAYA Network
+Network
 </h3>
 
 <p>
-A distinguished community built around
-meaningful human connection.
+Connect people, ideas, communities and
+opportunities across XIMAYA.
 </p>
 
-<a class="world-link" href="network.html">
-Enter Network →
+<a href="network.html">
+Explore Network →
 </a>
 
-</article>
+</div>
+
 
 </div>
 
 </section>
 
 
-<!-- MANIFESTO -->
+<!-- SOCIAL -->
 
-<section class="section">
+<section class="social-feature">
 
-<div class="manifesto">
+<div class="social-inner">
+
+<div class="social-copy">
+
+<div class="eyebrow">
+XIMAYA Social
+</div>
+
+<h2>
+Meet people.<br>
+Share life.<br>
+Build connections.
+</h2>
+
+<p>
+XIMAYA Social is the community side of the ecosystem —
+a place where people can discover one another, share
+ideas, join conversations and build meaningful connections.
+</p>
+
+<a class="dark-button" href="social.html">
+Enter XIMAYA Social
+</a>
+
+</div>
+
+
+<div class="social-panel">
+
+<div class="social-top">
+<span>XIMAYA SOCIAL</span>
+<span>CONNECT</span>
+</div>
+
+<div class="social-symbol">
+X
+</div>
 
 <div>
 
-<div class="eyebrow">
-The XIMAYA Philosophy
-</div>
-
-<h2>
-Luxury is not excess.<br>
-It is intention.
-</h2>
-
-</div>
-
-
-<div class="manifesto-copy">
+<h3>
+Your people are here.
+</h3>
 
 <p>
-“True distinction is found in what lasts,
-what matters and what becomes possible.”
+Discover the community.
+Start the conversation.
 </p>
 
-<small>
-The XIMAYA Principle
-</small>
+</div>
 
 </div>
 
@@ -586,62 +1044,310 @@ The XIMAYA Principle
 </section>
 
 
-<!-- MEMBERSHIP CTA -->
+<!-- MEMBERSHIP -->
 
-<section class="final">
+<section class="membership">
+
+<div class="heading">
 
 <div class="eyebrow">
-Your Journey Begins Here
+XIMAYA Membership
 </div>
 
 <h2>
-Step into a world<br>
-designed differently.
+Find your level.
 </h2>
 
 <p>
-XIMAYA brings together access, discovery,
-community and experience in one evolving world.
+A membership journey designed to grow with you.
 </p>
 
-<div class="buttons">
+</div>
 
-<a class="btn dark" href="membership.html">
+
+<div class="membership-cards">
+
+<div class="member">
+<span>01</span>
+<h3>Family</h3>
+<p>Welcome to XIMAYA.</p>
+</div>
+
+<div class="member">
+<span>02</span>
+<h3>Black</h3>
+<p>For the connected.</p>
+</div>
+
+<div class="member">
+<span>03</span>
+<h3>Gold</h3>
+<p>A richer experience.</p>
+</div>
+
+<div class="member">
+<span>04</span>
+<h3>Signature</h3>
+<p>Distinctly XIMAYA.</p>
+</div>
+
+<div class="member">
+<span>05</span>
+<h3>Legacy</h3>
+<p>Beyond membership.</p>
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:35px;">
+
+<a class="button gold" href="membership.html">
 Explore Membership
 </a>
 
-<a class="btn" href="card.html">
-Discover XIMAYA Card
+</div>
+
+</section>
+
+
+<!-- CARD -->
+
+<section class="card-section">
+
+<div class="card-inner">
+
+<div class="card-copy">
+
+<div class="eyebrow">
+Your XIMAYA Identity
+</div>
+
+<h2>
+One card.<br>
+One world.
+</h2>
+
+<p>
+The XIMAYA Card is designed as a unified identity
+connecting your membership, recognition, access and
+relationship with the wider ecosystem.
+</p>
+
+<a class="button gold" href="card.html">
+Explore XIMAYA Card
 </a>
 
 </div>
+
+
+<div class="xcard">
+
+<div class="xcard-top">
+<span>XIMAYA</span>
+<span>MEMBER</span>
+</div>
+
+<div>
+
+<div class="chip"></div>
+
+<div class="xcard-name">
+XIMAYA
+</div>
+
+<div class="xcard-sub">
+THE WORLD WITHIN REACH
+</div>
+
+</div>
+
+<div class="xcard-bottom">
+<span>MEMBERSHIP CARD</span>
+<span>∞</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NETWORK -->
+
+<section class="network">
+
+<div class="heading">
+
+<div class="eyebrow">
+XIMAYA Network
+</div>
+
+<h2>
+Where possibilities connect.
+</h2>
+
+<p>
+The Network brings people, communities, ideas and
+opportunities into the wider XIMAYA ecosystem.
+</p>
+
+</div>
+
+
+<div class="network-grid">
+
+<div class="network-box">
+
+<span>01 · PEOPLE</span>
+
+<h3>
+Meet
+</h3>
+
+<p>
+Discover people and communities with shared
+interests, ambitions and values.
+</p>
+
+</div>
+
+
+<div class="network-box">
+
+<span>02 · IDEAS</span>
+
+<h3>
+Discover
+</h3>
+
+<p>
+Find ideas, projects, experiences and perspectives
+that open new possibilities.
+</p>
+
+</div>
+
+
+<div class="network-box">
+
+<span>03 · OPPORTUNITIES</span>
+
+<h3>
+Connect
+</h3>
+
+<p>
+Create meaningful connections between people,
+communities and opportunities.
+</p>
+
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:35px;">
+
+<a class="button gold" href="network.html">
+Enter XIMAYA Network
+</a>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="intro">
+
+<div class="intro-inner">
+
+<div class="eyebrow">
+About XIMAYA
+</div>
+
+<h2>
+Classic in spirit.<br>
+Modern in possibility.
+</h2>
+
+<p>
+XIMAYA is being built with a timeless visual language
+and an ambitious idea: create a connected world where
+discovery, commerce, community, experiences and care
+can exist together.
+</p>
+
+<a class="button gold" href="about.html">
+Discover Our Story
+</a>
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="final">
+
+<div class="eyebrow" style="color:var(--gold2);">
+Your XIMAYA Journey
+</div>
+
+<h2>
+There is a place<br>
+for you here.
+</h2>
+
+<p>
+Enter the community, explore the ecosystem and
+discover what your XIMAYA world can become.
+</p>
+
+<a class="button gold" href="social.html">
+Join the Conversation
+</a>
+
+<a class="button" href="contact.html">
+Contact XIMAYA
+</a>
 
 </section>
 
 
 <!-- FOOTER -->
 
-<footer class="footer">
+<footer>
 
 <div class="footer-logo">
 XIMAYA
 </div>
 
-<div class="footer-nav">
+<div class="footer-links">
 
 <a href="index.html">Home</a>
 <a href="market.html">Market</a>
+<a href="food.html">Food</a>
+<a href="services.html">Services</a>
+<a href="gifts.html">Gifts</a>
+<a href="care.html">Care</a>
 <a href="card.html">Card</a>
 <a href="membership.html">Membership</a>
+<a href="social.html">Social</a>
 <a href="network.html">Network</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
 
 </div>
 
 <div class="copyright">
-© 2026 XIMAYA · A WORLD BUILT WITH INTENTION
+© 2026 XIMAYA · LIVE · EARN · CONNECT · GIVE
 </div>
 
 </footer>
+
 
 </body>
 </html>
