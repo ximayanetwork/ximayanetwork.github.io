@@ -1,456 +1,1003 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XIMAYA Social</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b0d">
+<title>XIMAYA Social</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+*{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f7;
-      color: #171717;
-    }
+:root{
+  --bg:#f6f6f4;
+  --card:#ffffff;
+  --text:#151515;
+  --muted:#777;
+  --line:#e8e8e8;
+  --dark:#0b0b0d;
+  --soft:#f0f0ee;
+}
 
-    header {
-      background: #111;
-      color: #fff;
-      padding: 18px;
-      text-align: center;
-    }
+html{scroll-behavior:smooth}
 
-    header h1 {
-      margin: 0;
-      font-size: 25px;
-    }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
 
-    .wrap {
-      max-width: 650px;
-      margin: auto;
-      padding: 20px 14px;
-    }
+button,input,textarea{font:inherit}
 
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
-    }
+button{cursor:pointer}
 
-    h2, h3 { margin-top: 0; }
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:64px;
+  background:rgba(11,11,13,.96);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid #252525;
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      margin: 6px 0;
-      font-size: 15px;
-    }
+.brand{
+  text-align:center;
+  letter-spacing:4px;
+  font-weight:700;
+  font-size:20px;
+}
 
-    textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
+.brand small{
+  display:block;
+  font-size:8px;
+  letter-spacing:3px;
+  opacity:.55;
+  margin-top:2px;
+}
 
-    button {
-      width: 100%;
-      border: 0;
-      border-radius: 10px;
-      padding: 13px;
-      margin-top: 7px;
-      background: #111;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-    }
+.page{
+  width:100%;
+  max-width:720px;
+  margin:auto;
+  padding:18px 14px 90px;
+}
 
-    .logout {
-      background: #777;
-    }
+.auth{
+  min-height:calc(100vh - 64px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .post {
-      border-top: 1px solid #eee;
-      padding-top: 15px;
-      margin-top: 15px;
-    }
+.auth-card{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:30px 24px;
+  box-shadow:0 18px 50px rgba(0,0,0,.08);
+}
 
-    .member {
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 7px;
-    }
+.logo-mark{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  background:#111;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:23px;
+  margin-bottom:20px;
+}
 
-    .actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
+.auth-card h1{
+  margin:0 0 8px;
+  font-size:30px;
+  letter-spacing:-1px;
+}
 
-    .actions button {
-      width: auto;
-      padding: 8px 14px;
-      background: #f0f0f0;
-      color: #111;
-    }
+.auth-card .subtitle{
+  color:var(--muted);
+  margin:0 0 25px;
+  line-height:1.5;
+}
 
-    .comment {
-      background: #f3f3f3;
-      padding: 9px 11px;
-      border-radius: 9px;
-      margin-top: 7px;
-      font-size: 14px;
-    }
+.field{
+  margin-bottom:12px;
+}
 
-    #socialApp {
-      display: none;
-    }
+.field input{
+  width:100%;
+  border:1px solid #ddd;
+  background:#fafafa;
+  border-radius:13px;
+  padding:14px;
+  outline:none;
+}
 
-    #status {
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
+.field input:focus,
+.composer textarea:focus,
+.comment-input:focus{
+  border-color:#999;
+  background:#fff;
+}
 
-    .hidden {
-      display: none !important;
-    }
-  </style>
+.primary{
+  width:100%;
+  border:0;
+  background:var(--dark);
+  color:#fff;
+  border-radius:13px;
+  padding:14px;
+  font-weight:650;
+  margin-top:4px;
+}
+
+.secondary{
+  width:100%;
+  border:1px solid #ddd;
+  background:#fff;
+  color:#111;
+  border-radius:13px;
+  padding:13px;
+  margin-top:9px;
+  font-weight:600;
+}
+
+.status{
+  min-height:22px;
+  text-align:center;
+  font-size:13px;
+  color:#777;
+  margin-bottom:8px;
+}
+
+.app{display:none}
+
+.welcome{
+  padding:8px 3px 18px;
+}
+
+.welcome h2{
+  margin:0;
+  font-size:27px;
+  letter-spacing:-.7px;
+}
+
+.welcome p{
+  color:var(--muted);
+  margin:5px 0 0;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  margin-bottom:15px;
+  overflow:hidden;
+}
+
+.composer{
+  padding:17px;
+}
+
+.composer-head{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:13px;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border-radius:50%;
+  background:#111;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+
+.composer-head strong{
+  display:block;
+  font-size:14px;
+}
+
+.composer-head span{
+  color:#888;
+  font-size:12px;
+}
+
+.composer textarea{
+  width:100%;
+  border:1px solid #e1e1e1;
+  background:#fafafa;
+  border-radius:14px;
+  padding:14px;
+  min-height:95px;
+  resize:none;
+  outline:none;
+}
+
+.composer-bottom{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:10px;
+}
+
+.publish{
+  border:0;
+  background:#111;
+  color:#fff;
+  padding:10px 19px;
+  border-radius:11px;
+  font-weight:650;
+}
+
+.feed-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:5px 3px 12px;
+}
+
+.feed-title h3{
+  margin:0;
+  font-size:16px;
+}
+
+.refresh{
+  border:0;
+  background:transparent;
+  color:#777;
+  font-size:13px;
+  padding:5px;
+}
+
+.post{
+  padding:17px;
+}
+
+.post-top{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.post-meta{
+  flex:1;
+}
+
+.post-meta strong{
+  display:block;
+  font-size:14px;
+}
+
+.post-meta span{
+  color:#8a8a8a;
+  font-size:12px;
+}
+
+.post-text{
+  white-space:pre-wrap;
+  word-break:break-word;
+  line-height:1.55;
+  font-size:15px;
+  margin:16px 0;
+}
+
+.post-actions{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  border-top:1px solid #eee;
+  padding-top:10px;
+}
+
+.action{
+  border:0;
+  background:transparent;
+  color:#666;
+  padding:8px 10px;
+  border-radius:9px;
+  font-size:13px;
+}
+
+.action:hover{background:#f5f5f5}
+
+.action.liked{
+  color:#111;
+  font-weight:700;
+}
+
+.comments{
+  margin-top:5px;
+}
+
+.comment{
+  background:#f5f5f4;
+  border-radius:11px;
+  padding:9px 11px;
+  margin-top:7px;
+  font-size:13px;
+  line-height:1.4;
+}
+
+.comment-input-row{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.comment-input{
+  min-width:0;
+  flex:1;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:10px;
+  outline:none;
+  background:#fafafa;
+  font-size:13px;
+}
+
+.comment-send{
+  border:0;
+  background:#111;
+  color:#fff;
+  border-radius:10px;
+  padding:0 13px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:#888;
+  font-size:14px;
+}
+
+.loading{
+  text-align:center;
+  padding:25px;
+  color:#888;
+  font-size:14px;
+}
+
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:12px;
+  width:min(92%,650px);
+  height:58px;
+  background:rgba(18,18,19,.97);
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  box-shadow:0 12px 35px rgba(0,0,0,.2);
+  z-index:40;
+}
+
+.nav-item{
+  border:0;
+  background:transparent;
+  color:#aaa;
+  font-size:11px;
+  text-align:center;
+  padding:7px 14px;
+}
+
+.nav-item.active{
+  color:#fff;
+}
+
+.nav-icon{
+  display:block;
+  font-size:19px;
+  margin-bottom:2px;
+}
+
+.logout{
+  border:0;
+  background:transparent;
+  color:#999;
+  font-size:12px;
+}
+
+@media(max-width:480px){
+  .page{padding-top:13px}
+  .welcome h2{font-size:24px}
+  .auth-card{padding:26px 20px}
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>🌍 XIMAYA Social</h1>
+<header class="topbar">
+  <div class="brand">
+    XIMAYA
+    <small>SOCIAL</small>
+  </div>
 </header>
 
-<div class="wrap">
+<!-- AUTH -->
+<section id="authScreen" class="auth">
+  <div class="auth-card">
 
-  <div id="status"></div>
+    <div class="logo-mark">X</div>
 
-  <!-- LOGIN / JOIN -->
-  <div id="authCard" class="card">
-    <h2>Join XIMAYA</h2>
+    <h1>Welcome to XIMAYA</h1>
 
-    <input
-      id="email"
-      type="email"
-      placeholder="Email address"
-      autocomplete="email"
-    >
+    <p class="subtitle">
+      Connect. Share. Discover.<br>
+      Your social space inside XIMAYA.
+    </p>
 
-    <input
-      id="password"
-      type="password"
-      placeholder="Password"
-      autocomplete="current-password"
-    >
+    <div id="authStatus" class="status"></div>
 
-    <button onclick="createAccount()">Create Account</button>
-    <button onclick="login()">Sign In</button>
-  </div>
-
-  <!-- SOCIAL APP -->
-  <div id="socialApp">
-
-    <div class="card">
-      <div id="currentUser"></div>
-      <button class="logout" onclick="logout()">Sign Out</button>
+    <div class="field">
+      <input
+        id="email"
+        type="email"
+        placeholder="Email address"
+        autocomplete="email">
     </div>
 
-    <div class="card">
-      <h3>Create a post</h3>
+    <div class="field">
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        autocomplete="current-password">
+    </div>
+
+    <button class="primary" onclick="createAccount()">
+      Join XIMAYA
+    </button>
+
+    <button class="secondary" onclick="signIn()">
+      Sign In
+    </button>
+
+  </div>
+</section>
+
+<!-- SOCIAL APP -->
+<main id="socialApp" class="app">
+
+  <div class="page">
+
+    <div class="welcome">
+      <h2>Social</h2>
+      <p>Welcome to the XIMAYA community.</p>
+    </div>
+
+    <div class="card composer">
+
+      <div class="composer-head">
+        <div id="myAvatar" class="avatar">X</div>
+
+        <div>
+          <strong id="myName">XIMAYA Member</strong>
+          <span>Share something with the community</span>
+        </div>
+      </div>
 
       <textarea
         id="postContent"
-        placeholder="What's happening on XIMAYA?"
-      ></textarea>
+        maxlength="1000"
+        placeholder="What's on your mind?"></textarea>
 
-      <button onclick="publishPost()">Publish</button>
+      <div class="composer-bottom">
+        <button class="publish" onclick="publishPost()">
+          Publish
+        </button>
+      </div>
+
     </div>
 
-    <div class="card">
-      <h3>Social Feed</h3>
-      <div id="feed">Loading...</div>
+    <div class="feed-title">
+      <h3>Latest posts</h3>
+
+      <button class="refresh" onclick="loadFeed()">
+        ↻ Refresh
+      </button>
     </div>
+
+    <div id="feed"></div>
 
   </div>
 
-</div>
+  <nav class="bottom-nav">
+
+    <button class="nav-item active" onclick="scrollToTop()">
+      <span class="nav-icon">⌂</span>
+      Home
+    </button>
+
+    <button class="nav-item" onclick="focusComposer()">
+      <span class="nav-icon">＋</span>
+      Post
+    </button>
+
+    <button class="nav-item" onclick="loadFeed()">
+      <span class="nav-icon">◌</span>
+      Refresh
+    </button>
+
+    <button class="nav-item" onclick="signOut()">
+      <span class="nav-icon">○</span>
+      Account
+    </button>
+
+  </nav>
+
+</main>
 
 <script>
-  /* =========================
-     XIMAYA SUPABASE
-     ========================= */
 
-  const SUPABASE_URL =
-    "https://bbzuzkgcyzslfyhpyczo.supabase.co";
+/* =========================================
+   XIMAYA SUPABASE CONNECTION
+   ========================================= */
 
-  const SUPABASE_KEY =
-    "sb_publishable_lpbVQhvINUjxHJcHySN7Lg_AOBoFurG";
+const SUPABASE_URL =
+  "https://bbzuzkgcyzslfyhpyczo.supabase.co";
 
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
+const SUPABASE_KEY =
+  "sb_publishable_lpbVQhvINUjxHJcHySN7Lg_AOBoFurG";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================
+   HELPERS
+   ========================================= */
+
+function setStatus(text){
+  document.getElementById("authStatus").textContent = text;
+}
+
+function initials(email){
+  if(!email) return "X";
+  return email.trim().charAt(0).toUpperCase();
+}
+
+function escapeHTML(value){
+  const div = document.createElement("div");
+  div.textContent = value || "";
+  return div.innerHTML;
+}
+
+function formatTime(date){
+  if(!date) return "";
+
+  const d = new Date(date);
+  const now = new Date();
+  const diff = Math.floor((now - d) / 1000);
+
+  if(diff < 60) return "Just now";
+  if(diff < 3600) return Math.floor(diff/60) + "m ago";
+  if(diff < 86400) return Math.floor(diff/3600) + "h ago";
+  if(diff < 604800) return Math.floor(diff/86400) + "d ago";
+
+  return d.toLocaleDateString();
+}
+
+
+/* =========================================
+   AUTH
+   ========================================= */
+
+async function createAccount(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  if(!email || !password){
+    setStatus("Enter your email and password.");
+    return;
+  }
+
+  if(password.length < 6){
+    setStatus("Password must be at least 6 characters.");
+    return;
+  }
+
+  setStatus("Creating your account...");
+
+  const { data, error } =
+    await supabaseClient.auth.signUp({
+      email,
+      password
+    });
+
+  if(error){
+    setStatus(error.message);
+    return;
+  }
+
+  if(data.session){
+
+    setStatus("Welcome to XIMAYA.");
+
+    showSocialApp(data.session.user);
+
+    loadFeed();
+
+  }else{
+
+    setStatus(
+      "Account created. Check your email to confirm your account, then sign in."
+    );
+  }
+}
+
+
+async function signIn(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  if(!email || !password){
+    setStatus("Enter your email and password.");
+    return;
+  }
+
+  setStatus("Signing in...");
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+  if(error){
+    setStatus(error.message);
+    return;
+  }
+
+  showSocialApp(data.user);
+
+  loadFeed();
+}
+
+
+async function signOut(){
+
+  await supabaseClient.auth.signOut();
+
+  document.getElementById("socialApp").style.display = "none";
+  document.getElementById("authScreen").style.display = "flex";
+
+  document.getElementById("password").value = "";
+
+  setStatus("Signed out.");
+}
+
+
+function showSocialApp(user){
+
+  document.getElementById("authScreen").style.display = "none";
+  document.getElementById("socialApp").style.display = "block";
+
+  const email = user.email || "XIMAYA Member";
+
+  document.getElementById("myName").textContent =
+    email;
+
+  document.getElementById("myAvatar").textContent =
+    initials(email);
+}
+
+
+/* =========================================
+   POSTS
+   ========================================= */
+
+async function publishPost(){
+
+  const box =
+    document.getElementById("postContent");
+
+  const content =
+    box.value.trim();
+
+  if(!content){
+    box.focus();
+    return;
+  }
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if(!user){
+    alert("Please sign in first.");
+    return;
+  }
+
+  const button =
+    document.querySelector(".publish");
+
+  button.disabled = true;
+  button.textContent = "Publishing...";
+
+  const { error } =
+    await supabaseClient
+      .from("posts")
+      .insert({
+        user_id: user.id,
+        content: content
+      });
+
+  button.disabled = false;
+  button.textContent = "Publish";
+
+  if(error){
+
+    console.error(error);
+
+    alert(
+      "Could not publish the post: " +
+      error.message
     );
 
-
-  /* =========================
-     HELPERS
-     ========================= */
-
-  function status(text) {
-    document.getElementById("status").textContent = text;
+    return;
   }
 
-  function escapeHTML(value) {
-    const div = document.createElement("div");
-    div.textContent = value || "";
-    return div.innerHTML;
-  }
+  box.value = "";
+
+  loadFeed();
+}
 
 
-  /* =========================
-     ACCOUNT
-     ========================= */
+async function loadFeed(){
 
-  async function createAccount() {
+  const feed =
+    document.getElementById("feed");
 
-    const email =
-      document.getElementById("email").value.trim();
+  feed.innerHTML =
+    '<div class="card loading">Loading XIMAYA Social...</div>';
 
-    const password =
-      document.getElementById("password").value;
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
 
-    if (!email || !password) {
-      status("Enter your email and password.");
-      return;
-    }
-
-    if (password.length < 6) {
-      status("Password must be at least 6 characters.");
-      return;
-    }
-
-    status("Creating your XIMAYA account...");
-
-    const { data, error } =
-      await supabaseClient.auth.signUp({
-        email: email,
-        password: password
+  const { data: posts, error } =
+    await supabaseClient
+      .from("posts")
+      .select("*")
+      .order("created_at", {
+        ascending:false
       });
 
-    if (error) {
-      status(error.message);
-      return;
-    }
+  if(error){
 
-    if (data.session) {
-      status("Account created successfully.");
-      showApp(data.session.user);
-      loadFeed();
-    } else {
-      status(
-        "Account created. Check your email if confirmation is required."
-      );
-    }
+    console.error(error);
+
+    feed.innerHTML = `
+      <div class="card empty">
+        Unable to load the Social feed.
+      </div>
+    `;
+
+    return;
   }
 
+  if(!posts || posts.length === 0){
 
-  async function login() {
+    feed.innerHTML = `
+      <div class="card empty">
+        <strong>No posts yet.</strong><br>
+        Be the first person to share something.
+      </div>
+    `;
 
-    const email =
-      document.getElementById("email").value.trim();
-
-    const password =
-      document.getElementById("password").value;
-
-    if (!email || !password) {
-      status("Enter your email and password.");
-      return;
-    }
-
-    status("Signing in...");
-
-    const { data, error } =
-      await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
-    if (error) {
-      status(error.message);
-      return;
-    }
-
-    showApp(data.user);
-    status("Signed in successfully.");
-    loadFeed();
+    return;
   }
 
+  feed.innerHTML = "";
 
-  async function logout() {
+  for(const post of posts){
 
-    await supabaseClient.auth.signOut();
+    await renderPost(post, user);
 
-    document.getElementById("authCard").style.display = "block";
-    document.getElementById("socialApp").style.display = "none";
+  }
+}
 
-    status("Signed out.");
+
+/* =========================================
+   RENDER POST
+   ========================================= */
+
+async function renderPost(post, currentUser){
+
+  const feed =
+    document.getElementById("feed");
+
+  const article =
+    document.createElement("article");
+
+  article.className = "card post";
+
+  const userInitial =
+    post.user_id === currentUser?.id
+      ? initials(currentUser.email)
+      : "X";
+
+  article.innerHTML = `
+
+    <div class="post-top">
+
+      <div class="avatar">
+        ${escapeHTML(userInitial)}
+      </div>
+
+      <div class="post-meta">
+
+        <strong>
+          ${
+            post.user_id === currentUser?.id
+              ? "You"
+              : "XIMAYA Member"
+          }
+        </strong>
+
+        <span>
+          ${formatTime(post.created_at)}
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="post-text">
+      ${escapeHTML(post.content)}
+    </div>
+
+    <div class="post-actions">
+
+      <button
+        class="action"
+        id="like-${post.id}"
+        onclick="toggleLike('${post.id}')">
+        ♡ Like
+      </button>
+
+      <button
+        class="action"
+        onclick="focusComment('${post.id}')">
+        ◯ Comment
+      </button>
+
+    </div>
+
+    <div
+      class="comments"
+      id="comments-${post.id}">
+    </div>
+
+    <div class="comment-input-row">
+
+      <input
+        id="comment-input-${post.id}"
+        class="comment-input"
+        maxlength="500"
+        placeholder="Write a comment...">
+
+      <button
+        class="comment-send"
+        onclick="addComment('${post.id}')">
+        Send
+      </button>
+
+    </div>
+  `;
+
+  feed.appendChild(article);
+
+  await updateLikeState(post.id, currentUser);
+
+  await loadComments(post.id);
+}
+
+
+/* =========================================
+   LIKES
+   ========================================= */
+
+async function updateLikeState(postId, user){
+
+  if(!user) return;
+
+  const { data, error } =
+    await supabaseClient
+      .from("likes")
+      .select("id")
+      .eq("post_id", postId)
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+  if(error) return;
+
+  const button =
+    document.getElementById(
+      "like-" + postId
+    );
+
+  if(!button) return;
+
+  if(data){
+
+    button.classList.add("liked");
+    button.textContent = "♥ Liked";
+
+  }else{
+
+    button.classList.remove("liked");
+    button.textContent = "♡ Like";
+  }
+}
+
+
+async function toggleLike(postId){
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if(!user){
+    return;
   }
 
+  const { data: existing } =
+    await supabaseClient
+      .from("likes")
+      .select("id")
+      .eq("post_id", postId)
+      .eq("user_id", user.id)
+      .maybeSingle();
 
-  function showApp(user) {
-
-    document.getElementById("authCard").style.display = "none";
-    document.getElementById("socialApp").style.display = "block";
-
-    document.getElementById("currentUser").textContent =
-      "Signed in as " + user.email;
-  }
-
-
-  /* =========================
-     POSTS
-     ========================= */
-
-  async function publishPost() {
-
-    const content =
-      document.getElementById("postContent").value.trim();
-
-    if (!content) {
-      status("Write something before publishing.");
-      return;
-    }
-
-    const {
-      data: { user }
-    } = await supabaseClient.auth.getUser();
-
-    if (!user) {
-      status("Please sign in first.");
-      return;
-    }
-
-    status("Publishing...");
+  if(existing){
 
     const { error } =
       await supabaseClient
-        .from("posts")
-        .insert({
-          user_id: user.id,
-          content: content
-        });
+        .from("likes")
+        .delete()
+        .eq("id", existing.id);
 
-    if (error) {
+    if(error){
       console.error(error);
-      status("Post error: " + error.message);
       return;
     }
 
-    document.getElementById("postContent").value = "";
-
-    status("Post published successfully.");
-    loadFeed();
-  }
-
-
-  async function loadFeed() {
-
-    const feed =
-      document.getElementById("feed");
-
-    feed.innerHTML = "Loading...";
-
-    const { data, error } =
-      await supabaseClient
-        .from("posts")
-        .select("*")
-        .order("created_at", {
-          ascending: false
-        });
-
-    if (error) {
-      console.error(error);
-      feed.innerHTML =
-        "<p>Could not load posts.</p>";
-      return;
-    }
-
-    if (!data || data.length === 0) {
-      feed.innerHTML =
-        "<p>No posts yet. Be the first to post.</p>";
-      return;
-    }
-
-    feed.innerHTML = "";
-
-    for (const post of data) {
-
-      const article =
-        document.createElement("div");
-
-      article.className = "post";
-
-      article.innerHTML = `
-        <div class="member">
-          XIMAYA Member
-        </div>
-
-        <div>
-          ${escapeHTML(post.content)}
-        </div>
-
-        <div class="actions">
-          <button onclick="likePost('${post.id}')">
-            ❤️ Like
-          </button>
-        </div>
-
-        <div id="comments-${post.id}">
-          Loading comments...
-        </div>
-
-        <input
-          id="commentInput-${post.id}"
-          placeholder="Write a comment..."
-        >
-
-        <button onclick="addComment('${post.id}')">
-          Comment
-        </button>
-      `;
-
-      feed.appendChild(article);
-
-      loadComments(post.id);
-    }
-  }
-
-
-  /* =========================
-     LIKES
-     ========================= */
-
-  async function likePost(postId) {
-
-    const {
-      data: { user }
-    } = await supabaseClient.auth.getUser();
-
-    if (!user) {
-      status("Please sign in first.");
-      return;
-    }
+  }else{
 
     const { error } =
       await supabaseClient
@@ -460,144 +1007,204 @@
           user_id: user.id
         });
 
-    if (error) {
+    if(error){
 
-      if (error.code === "23505") {
-        status("You already liked this post.");
-      } else {
-        status("Like error: " + error.message);
+      if(error.code !== "23505"){
+        console.error(error);
       }
 
       return;
     }
-
-    status("Liked ❤️");
   }
 
+  await updateLikeState(postId, user);
+}
 
-  /* =========================
-     COMMENTS
-     ========================= */
 
-  async function addComment(postId) {
+/* =========================================
+   COMMENTS
+   ========================================= */
 
-    const input =
-      document.getElementById(
-        "commentInput-" + postId
-      );
+async function loadComments(postId){
 
-    const content =
-      input.value.trim();
+  const box =
+    document.getElementById(
+      "comments-" + postId
+    );
 
-    if (!content) {
-      return;
-    }
+  if(!box) return;
 
-    const {
-      data: { user }
-    } = await supabaseClient.auth.getUser();
+  const { data, error } =
+    await supabaseClient
+      .from("comments")
+      .select("*")
+      .eq("post_id", postId)
+      .order("created_at", {
+        ascending:true
+      });
 
-    if (!user) {
-      status("Please sign in first.");
-      return;
-    }
-
-    const { error } =
-      await supabaseClient
-        .from("comments")
-        .insert({
-          post_id: postId,
-          user_id: user.id,
-          content: content
-        });
-
-    if (error) {
-      status("Comment error: " + error.message);
-      return;
-    }
-
-    input.value = "";
-
-    status("Comment added.");
-    loadComments(postId);
+  if(error){
+    console.error(error);
+    return;
   }
 
+  box.innerHTML = "";
 
-  async function loadComments(postId) {
+  if(!data || data.length === 0){
+    return;
+  }
+
+  data.forEach(comment => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "comment";
+
+    div.textContent =
+      comment.content;
+
+    box.appendChild(div);
+
+  });
+}
+
+
+async function addComment(postId){
+
+  const input =
+    document.getElementById(
+      "comment-input-" + postId
+    );
+
+  const content =
+    input.value.trim();
+
+  if(!content) return;
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if(!user) return;
+
+  const button =
+    input.parentElement.querySelector(
+      ".comment-send"
+    );
+
+  button.disabled = true;
+
+  const { error } =
+    await supabaseClient
+      .from("comments")
+      .insert({
+        post_id: postId,
+        user_id: user.id,
+        content: content
+      });
+
+  button.disabled = false;
+
+  if(error){
+
+    console.error(error);
+
+    alert(
+      "Could not add comment: " +
+      error.message
+    );
+
+    return;
+  }
+
+  input.value = "";
+
+  await loadComments(postId);
+}
+
+
+function focusComment(postId){
+
+  const input =
+    document.getElementById(
+      "comment-input-" + postId
+    );
+
+  if(input){
+    input.focus();
+  }
+}
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+function focusComposer(){
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  setTimeout(() => {
 
     const box =
-      document.getElementById(
-        "comments-" + postId
-      );
+      document.getElementById("postContent");
 
-    if (!box) return;
+    if(box) box.focus();
 
-    const { data, error } =
-      await supabaseClient
-        .from("comments")
-        .select("*")
-        .eq("post_id", postId)
-        .order("created_at", {
-          ascending: true
-        });
+  },400);
+}
 
-    if (error) {
-      box.innerHTML = "";
-      return;
-    }
 
-    box.innerHTML = "";
+function scrollToTop(){
 
-    if (!data || data.length === 0) {
-      return;
-    }
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
 
-    data.forEach(comment => {
 
-      const div =
-        document.createElement("div");
+/* =========================================
+   SESSION CHECK
+   ========================================= */
 
-      div.className = "comment";
+async function checkSession(){
 
-      div.textContent =
-        comment.content;
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
 
-      box.appendChild(div);
-    });
+  if(session && session.user){
+
+    showSocialApp(session.user);
+
+    loadFeed();
+
   }
+}
 
 
-  /* =========================
-     SESSION
-     ========================= */
+supabaseClient.auth.onAuthStateChange(
+  (event, session) => {
 
-  async function checkSession() {
+    if(session && session.user){
 
-    const {
-      data: { session }
-    } = await supabaseClient.auth.getSession();
+      showSocialApp(session.user);
 
-    if (session && session.user) {
-      showApp(session.user);
-      loadFeed();
     }
+
   }
+);
 
 
-  supabaseClient.auth.onAuthStateChange(
-    (event, session) => {
+checkSession();
 
-      if (session && session.user) {
-        showApp(session.user);
-        loadFeed();
-      }
-    }
-  );
-
-
-  checkSession();
 </script>
 
 </body>
 </html>
-```
+
