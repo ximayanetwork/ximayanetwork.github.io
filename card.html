@@ -2,108 +2,826 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>XIMAYA Card</title>
-<meta name="description" content="The XIMAYA Card — access, recognition and a world designed around you.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XIMAYA Card — Your Place in the World</title>
+<meta name="description" content="The XIMAYA Card — your identity, membership and connection to the XIMAYA world.">
+
 <style>
-:root{--ink:#17140f;--cream:#f5f0e7;--gold:#b9985a;--line:#d8c9aa}
+:root{
+  --black:#0d0c0a;
+  --deep:#17130e;
+  --cream:#f4eee2;
+  --ivory:#fcfaf5;
+  --gold:#b99a5e;
+  --gold-light:#ddc58f;
+  --line:#d7c6a3;
+  --muted:#71695b;
+  --soft:#e9dfcd;
+}
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
-a{color:inherit;text-decoration:none}
-.top{padding:13px 6%;border-bottom:1px solid var(--line);font:11px Arial;letter-spacing:3px;text-transform:uppercase;text-align:center}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 6%;position:sticky;top:0;background:#f5f0e7ee;backdrop-filter:blur(12px);z-index:5}
-.logo{font-size:28px;letter-spacing:7px}
-.links{display:flex;gap:26px;font:12px Arial;letter-spacing:1.8px;text-transform:uppercase}
-.hero{padding:100px 8% 85px;text-align:center;border-bottom:1px solid var(--line)}
-.eyebrow{font:11px Arial;letter-spacing:5px;text-transform:uppercase;color:#806c43}
-.hero h1{font-size:clamp(50px,8vw,105px);font-weight:400;line-height:.95;margin:22px 0}
-.hero p{max-width:650px;margin:auto;font-size:19px;line-height:1.8}
-.card-wrap{padding:75px 8%;display:flex;justify-content:center}
-.lux-card{width:min(650px,100%);aspect-ratio:1.58;background:linear-gradient(135deg,#252018,#5e4d2e 55%,#17140f);color:#f8f0dc;border-radius:18px;padding:42px;box-shadow:0 30px 70px #0002;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.lux-card:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #d8c58a55;border-radius:50%;right:-100px;bottom:-130px}
-.card-brand{font-size:25px;letter-spacing:7px}
-.chip{width:58px;height:43px;border:1px solid #d8c58a88;border-radius:8px;margin-top:35px}
-.card-number{font:18px Arial;letter-spacing:4px;margin-top:auto}
-.card-bottom{display:flex;justify-content:space-between;font:9px Arial;letter-spacing:2px;text-transform:uppercase}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:20px 6% 70px}
-.item{background:var(--cream);padding:42px;min-height:230px}
-.item span{font:10px Arial;letter-spacing:3px;color:#806c43}
-.item h2{font-size:27px;font-weight:400;margin:15px 0}
-.item p{line-height:1.7;color:#514b40}
-.btn{display:inline-block;border:1px solid #9c824b;padding:13px 20px;font:11px Arial;letter-spacing:2px;text-transform:uppercase;margin-top:10px}
-.footer{text-align:center;border-top:1px solid var(--line);padding:50px 6%;font:11px Arial;letter-spacing:2px;color:#6b6253}
-@media(max-width:800px){.links{display:none}.grid{grid-template-columns:1fr;margin:20px 5% 50px}.hero{padding:75px 7%}.lux-card{padding:28px}.card-number{font-size:13px}}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--black);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.6;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.topbar{
+  background:var(--black);
+  color:var(--gold-light);
+  text-align:center;
+  padding:11px;
+  font:10px Arial,sans-serif;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 5%;
+  background:#f4eee2ed;
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+
+.logo{
+  font-size:27px;
+  letter-spacing:7px;
+}
+
+.links{
+  display:flex;
+  gap:21px;
+  font:10px Arial,sans-serif;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.links a:hover{
+  color:#80683c;
+}
+
+.hero{
+  min-height:65vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:90px 6%;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at center,rgba(185,154,94,.14),transparent 45%),
+    var(--cream);
+}
+
+.eyebrow{
+  color:#80683c;
+  font:10px Arial,sans-serif;
+  letter-spacing:5px;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  margin:20px 0;
+  font-size:clamp(52px,8vw,100px);
+  line-height:.9;
+  font-weight:400;
+  letter-spacing:-3px;
+}
+
+.hero h1 em{
+  font-style:italic;
+}
+
+.hero p{
+  max-width:720px;
+  margin:auto;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.85;
+}
+
+.section{
+  padding:105px 6%;
+  border-bottom:1px solid var(--line);
+}
+
+.card-showcase{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+
+.card-copy h2{
+  margin:15px 0;
+  font-size:clamp(42px,6vw,70px);
+  line-height:1;
+  font-weight:400;
+}
+
+.card-copy p{
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.85;
+}
+
+.xcard{
+  position:relative;
+  min-height:360px;
+  padding:38px;
+  border-radius:22px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 75% 20%,rgba(221,197,143,.25),transparent 25%),
+    linear-gradient(135deg,#11100d,#292116 55%,#17130e);
+  color:var(--cream);
+  border:1px solid rgba(221,197,143,.6);
+  box-shadow:0 30px 80px rgba(0,0,0,.23);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.xcard:before{
+  content:"X";
+  position:absolute;
+  right:-20px;
+  bottom:-100px;
+  font-size:350px;
+  line-height:1;
+  color:rgba(221,197,143,.045);
+}
+
+.xcard-top,
+.xcard-bottom{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:space-between;
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+}
+
+.xcard-middle{
+  position:relative;
+  z-index:1;
+}
+
+.chip{
+  width:52px;
+  height:39px;
+  border:1px solid var(--gold-light);
+  border-radius:8px;
+  margin-bottom:30px;
+  background:
+    linear-gradient(90deg,transparent 46%,rgba(221,197,143,.7) 47% 52%,transparent 53%),
+    linear-gradient(0deg,transparent 46%,rgba(221,197,143,.7) 47% 52%,transparent 53%);
+}
+
+.xcard-name{
+  font-size:38px;
+  letter-spacing:9px;
+}
+
+.xcard-sub{
+  margin-top:5px;
+  color:var(--gold-light);
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
+}
+
+.heading{
+  max-width:800px;
+  margin:0 auto 60px;
+  text-align:center;
+}
+
+.heading h2{
+  margin:15px 0;
+  font-size:clamp(42px,6vw,72px);
+  line-height:1;
+  font-weight:400;
+}
+
+.heading p{
+  color:var(--muted);
+  font-size:17px;
+}
+
+.benefits{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+}
+
+.benefit{
+  min-height:240px;
+  padding:32px;
+  background:var(--ivory);
+}
+
+.benefit-number{
+  color:#80683c;
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+}
+
+.benefit h3{
+  margin:15px 0 9px;
+  font-size:27px;
+  font-weight:400;
+}
+
+.benefit p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.75;
+}
+
+.dark{
+  background:var(--black);
+  color:var(--cream);
+}
+
+.dark .eyebrow{
+  color:var(--gold-light);
+}
+
+.dark .heading p{
+  color:#c8bdab;
+}
+
+.levels{
+  max-width:1050px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1px;
+  background:rgba(185,154,94,.3);
+}
+
+.level{
+  padding:30px 20px;
+  min-height:230px;
+  background:#191511;
+  text-align:center;
+}
+
+.level span{
+  color:var(--gold-light);
+  font:9px Arial,sans-serif;
+  letter-spacing:3px;
+}
+
+.level h3{
+  margin:14px 0;
+  font-size:24px;
+  font-weight:400;
+}
+
+.level p{
+  color:#c8bdab;
+  font-size:13px;
+}
+
+.steps{
+  max-width:1050px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.step{
+  border:1px solid var(--line);
+  padding:35px;
+  background:var(--ivory);
+}
+
+.step-number{
+  font:10px Arial,sans-serif;
+  letter-spacing:3px;
+  color:#80683c;
+}
+
+.step h3{
+  font-size:27px;
+  font-weight:400;
+}
+
+.step p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.cta{
+  padding:105px 6%;
+  text-align:center;
+  color:var(--cream);
+  background:
+    radial-gradient(circle at center,rgba(185,154,94,.16),transparent 50%),
+    var(--deep);
+}
+
+.cta h2{
+  max-width:800px;
+  margin:15px auto;
+  font-size:clamp(42px,6vw,70px);
+  line-height:1;
+  font-weight:400;
+}
+
+.cta p{
+  max-width:650px;
+  margin:20px auto 30px;
+  color:#c8bdab;
+}
+
+.button{
+  display:inline-block;
+  padding:14px 23px;
+  border:1px solid var(--gold);
+  color:var(--cream);
+  font:9px Arial,sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.3s;
+}
+
+.button:hover{
+  background:var(--gold);
+  color:var(--black);
+}
+
+.footer{
+  padding:55px 6%;
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+
+.footer-logo{
+  font-size:24px;
+  letter-spacing:7px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:20px;
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.footer-links a:hover{
+  color:#80683c;
+}
+
+.copy{
+  margin-top:25px;
+  color:var(--muted);
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+}
+
+@media(max-width:1000px){
+  .links{display:none}
+
+  .card-showcase{
+    grid-template-columns:1fr;
+    gap:55px;
+  }
+
+  .benefits{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .levels{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+}
+
+@media(max-width:650px){
+  .hero h1{font-size:53px}
+
+  .section{
+    padding:75px 6%;
+  }
+
+  .benefits,
+  .levels,
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .xcard{
+    min-height:290px;
+  }
+
+  .xcard-name{
+    font-size:29px;
+    letter-spacing:6px;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<div class="top">XIMAYA Card · Recognition Beyond the Ordinary</div>
+<div class="topbar">
+XIMAYA CARD · YOUR PLACE IN THE WORLD
+</div>
 
 <nav class="nav">
+
 <a class="logo" href="index.html">XIMAYA</a>
+
 <div class="links">
+<a href="index.html">Home</a>
 <a href="market.html">Market</a>
+<a href="food.html">Food</a>
+<a href="services.html">Services</a>
+<a href="gifts.html">Gifts</a>
+<a href="care.html">Care</a>
 <a href="card.html">Card</a>
 <a href="membership.html">Membership</a>
+<a href="social.html">Social</a>
 <a href="network.html">Network</a>
 </div>
+
 </nav>
 
-<main>
 
 <section class="hero">
-<div class="eyebrow">The XIMAYA Card</div>
-<h1>Carry the<br>world with you.</h1>
-<p>A distinctive identity within the XIMAYA world — created to connect access, recognition, privileges and extraordinary possibilities.</p>
-</section>
 
-<section class="card-wrap">
-<div class="lux-card">
 <div>
-<div class="card-brand">XIMAYA</div>
+
+<div class="eyebrow">The XIMAYA Card</div>
+
+<h1>Carry your<br><em>XIMAYA world.</em></h1>
+
+<p>
+A refined expression of your relationship with XIMAYA —
+connecting your identity, membership, recognition and
+access across the ecosystem.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="card-showcase">
+
+<div class="card-copy">
+
+<div class="eyebrow">Your XIMAYA Identity</div>
+
+<h2>One card.<br>One world.</h2>
+
+<p>
+The XIMAYA Card is designed to become a single point of
+connection between you and the wider XIMAYA ecosystem.
+</p>
+
+<p>
+As the platform grows, your card can become the bridge
+between membership, experiences, privileges, community
+and discovery.
+</p>
+
+<a class="button" href="membership.html" style="color:#11100d;border-color:#b99a5e;">
+Explore Membership
+</a>
+
+</div>
+
+
+<div class="xcard">
+
+<div class="xcard-top">
+<span>XIMAYA</span>
+<span>MEMBER</span>
+</div>
+
+<div class="xcard-middle">
+
 <div class="chip"></div>
+
+<div class="xcard-name">XIMAYA</div>
+
+<div class="xcard-sub">
+THE WORLD WITHIN REACH
 </div>
-<div class="card-number">XIMAYA · PRIVILEGE · ACCESS</div>
-<div class="card-bottom">
-<span>Member</span>
-<span>Since 2026</span>
+
 </div>
+
+<div class="xcard-bottom">
+<span>MEMBERSHIP CARD</span>
+<span>∞</span>
 </div>
-</section>
 
-<section class="grid">
+</div>
 
-<article class="item">
-<span>01 · ACCESS</span>
-<h2>Designed for Access</h2>
-<p>Move closer to the people, places and opportunities that make the XIMAYA world distinctive.</p>
-</article>
-
-<article class="item">
-<span>02 · PRIVILEGE</span>
-<h2>Meaningful Privileges</h2>
-<p>Enjoy carefully considered benefits created around quality rather than quantity.</p>
-</article>
-
-<article class="item">
-<span>03 · IDENTITY</span>
-<h2>Your XIMAYA Identity</h2>
-<p>A refined expression of belonging within a global community built on standards and trust.</p>
-</article>
+</div>
 
 </section>
 
-<section style="text-align:center;padding:20px 8% 90px">
-<div class="eyebrow">Become Part of XIMAYA</div>
-<h2 style="font-size:42px;font-weight:400">Membership begins with belonging.</h2>
-<a class="btn" href="membership.html">Explore Membership</a>
+
+<section class="section">
+
+<div class="heading">
+
+<div class="eyebrow">Designed Around You</div>
+
+<h2>More than a membership card.</h2>
+
+<p>
+Your XIMAYA Card is envisioned as a unified identity
+across the different experiences that make up XIMAYA.
+</p>
+
+</div>
+
+
+<div class="benefits">
+
+<div class="benefit">
+
+<div class="benefit-number">01 · IDENTITY</div>
+
+<h3>Your Profile</h3>
+
+<p>
+A recognisable identity within the XIMAYA Social and
+Network experience.
+</p>
+
+</div>
+
+
+<div class="benefit">
+
+<div class="benefit-number">02 · MEMBERSHIP</div>
+
+<h3>Your Level</h3>
+
+<p>
+Connect your card with your chosen XIMAYA membership level.
+</p>
+
+</div>
+
+
+<div class="benefit">
+
+<div class="benefit-number">03 · ACCESS</div>
+
+<h3>Your Privileges</h3>
+
+<p>
+A future-ready foundation for experiences, invitations
+and member benefits.
+</p>
+
+</div>
+
+
+<div class="benefit">
+
+<div class="benefit-number">04 · DISCOVERY</div>
+
+<h3>Your World</h3>
+
+<p>
+Move between Market, Food, Services, Gifts, Care and
+the wider XIMAYA ecosystem.
+</p>
+
+</div>
+
+
+<div class="benefit">
+
+<div class="benefit-number">05 · COMMUNITY</div>
+
+<h3>Your Connections</h3>
+
+<p>
+Connect your identity with people, communities and
+conversations through XIMAYA Social.
+</p>
+
+</div>
+
+
+<div class="benefit">
+
+<div class="benefit-number">06 · RECOGNITION</div>
+
+<h3>Your Journey</h3>
+
+<p>
+Let your relationship with XIMAYA evolve as your
+membership journey develops.
+</p>
+
+</div>
+
+</div>
+
 </section>
 
-</main>
+
+<section class="section dark">
+
+<div class="heading">
+
+<div class="eyebrow">Five Levels</div>
+
+<h2>Your card grows with you.</h2>
+
+<p>
+Different membership levels can represent different
+depths of access and belonging.
+</p>
+
+</div>
+
+
+<div class="levels">
+
+<div class="level">
+<span>01</span>
+<h3>Family</h3>
+<p>Welcome to XIMAYA.</p>
+</div>
+
+<div class="level">
+<span>02</span>
+<h3>Black</h3>
+<p>For the connected.</p>
+</div>
+
+<div class="level">
+<span>03</span>
+<h3>Gold</h3>
+<p>A richer experience.</p>
+</div>
+
+<div class="level">
+<span>04</span>
+<h3>Signature</h3>
+<p>Distinctly XIMAYA.</p>
+</div>
+
+<div class="level">
+<span>05</span>
+<h3>Legacy</h3>
+<p>Beyond membership.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="heading">
+
+<div class="eyebrow">The Journey</div>
+
+<h2>Simple by design.</h2>
+
+<p>
+Your relationship with XIMAYA begins simply and can
+develop naturally over time.
+</p>
+
+</div>
+
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">STEP 01</div>
+
+<h3>Join</h3>
+
+<p>
+Create your place within XIMAYA and discover the world
+around you.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">STEP 02</div>
+
+<h3>Connect</h3>
+
+<p>
+Meet people, join communities and explore the XIMAYA
+Network.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">STEP 03</div>
+
+<h3>Belong</h3>
+
+<p>
+Choose the membership experience that matches your
+relationship with XIMAYA.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="cta">
+
+<div class="eyebrow">XIMAYA Membership</div>
+
+<h2>Your place in the XIMAYA world.</h2>
+
+<p>
+Discover membership and begin building your own
+XIMAYA journey.
+</p>
+
+<a class="button" href="membership.html">
+View Membership
+</a>
+
+<a class="button" href="social.html">
+Enter Social
+</a>
+
+</section>
+
 
 <footer class="footer">
-XIMAYA · A WORLD BUILT WITH INTENTION ·
-<a href="network.html">JOIN THE NETWORK</a>
+
+<div class="footer-logo">XIMAYA</div>
+
+<div class="footer-links">
+<a href="index.html">Home</a>
+<a href="market.html">Market</a>
+<a href="food.html">Food</a>
+<a href="services.html">Services</a>
+<a href="gifts.html">Gifts</a>
+<a href="care.html">Care</a>
+<a href="card.html">Card</a>
+<a href="membership.html">Membership</a>
+<a href="social.html">Social</a>
+<a href="network.html">Network</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+
+<div class="copy">
+© 2026 XIMAYA · LIVE · EARN · CONNECT · GIVE
+</div>
+
 </footer>
 
 </body>
