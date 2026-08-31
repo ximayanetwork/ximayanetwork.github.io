@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>XIMAYA Social — Connect, Meet & Belong</title>
+<meta name="description" content="XIMAYA Social — meet people, share ideas, join communities and connect through the XIMAYA world.">
+
+<style>
+:root{
+  --black:#11100d;
+  --deep:#191611;
+  --cream:#f4efe5;
+  --ivory:#fcf9f2;
+  --gold:#b89a61;
+  --gold-light:#d6bd88;
+  --line:#d8c8a6;
+  --muted:#706858;
+  --soft:#ebe2d1;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--black);
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,input,textarea{
+  font:inherit;
+}
+
+.topbar{
+  background:var(--black);
+  color:var(--gold-light);
+  text-align:center;
+  padding:11px 20px;
+  font:10px Arial,sans-serif;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 5%;
+  background:#f4efe5ed;
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+
+.logo{
+  font-size:27px;
+  letter-spacing:7px;
+}
+
+.navlinks{
+  display:flex;
+  gap:23px;
+  font:10px Arial,sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.navlinks a:hover{
+  color:#80683c;
+}
+
+.hero{
+  padding:75px 6% 65px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 30%,rgba(184,154,97,.13),transparent 45%),
+    var(--cream);
+}
+
+.eyebrow{
+  font:10px Arial,sans-serif;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:#80683c;
+}
+
+.hero h1{
+  margin:18px 0;
+  font-size:clamp(48px,7vw,88px);
+  line-height:.95;
+  font-weight:400;
+}
+
+.hero p{
+  max-width:680px;
+  margin:auto;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.8;
+}
+
+.social{
+  max-width:1250px;
+  margin:45px auto;
+  padding:0 20px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:230px minmax(0,650px) 260px;
+  gap:22px;
+  align-items:start;
+}
+
+.panel{
+  background:var(--ivory);
+  border:1px solid var(--line);
+  padding:22px;
+}
+
+.panel h3{
+  margin:0 0 18px;
+  font-size:20px;
+  font-weight:400;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.menu a{
+  padding:11px 9px;
+  font:10px Arial,sans-serif;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.menu a:hover{
+  background:var(--soft);
+}
+
+.profile{
+  text-align:center;
+  border-bottom:1px solid var(--line);
+  padding-bottom:20px;
+  margin-bottom:15px;
+}
+
+.avatar{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  margin:0 auto 12px;
+  background:
+    radial-gradient(circle at 50% 35%,#ead7ae 0 22%,#94794b 23% 52%,#30281b 53%);
+  border:2px solid var(--gold);
+}
+
+.profile strong{
+  display:block;
+  font-size:18px;
+  font-weight:400;
+}
+
+.profile small{
+  color:var(--muted);
+  font:10px Arial,sans-serif;
+}
+
+.composer{
+  background:var(--ivory);
+  border:1px solid var(--line);
+  padding:22px;
+  margin-bottom:18px;
+}
+
+.composer-top{
+  display:flex;
+  gap:13px;
+  align-items:center;
+}
+
+.mini-avatar{
+  width:45px;
+  height:45px;
+  flex:none;
+  border-radius:50%;
+  background:var(--soft);
+  border:1px solid var(--gold);
+}
+
+.composer textarea{
+  width:100%;
+  min-height:70px;
+  resize:none;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--black);
+}
+
+.composer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:12px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+
+.composer-tools{
+  display:flex;
+  gap:14px;
+  font:9px Arial,sans-serif;
+  letter-spacing:1px;
+  color:var(--muted);
+}
+
+.post-btn{
+  border:1px solid var(--gold);
+  background:var(--black);
+  color:var(--cream);
+  padding:10px 17px;
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+.post{
+  background:var(--ivory);
+  border:1px solid var(--line);
+  padding:24px;
+  margin-bottom:18px;
+}
+
+.post-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.post-avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:var(--soft);
+  border:1px solid var(--gold);
+}
+
+.post-name{
+  font-size:17px;
+}
+
+.post-meta{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font:9px Arial,sans-serif;
+  letter-spacing:1px;
+}
+
+.post p{
+  font-size:15px;
+  line-height:1.8;
+  color:#403a31;
+}
+
+.post-actions{
+  display:flex;
+  gap:24px;
+  padding-top:15px;
+  border-top:1px solid var(--line);
+  font:9px Arial,sans-serif;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.post-actions span{
+  cursor:pointer;
+}
+
+.post-actions span:hover{
+  color:#80683c;
+}
+
+.people{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+}
+
+.person{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.person-avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--soft);
+  border:1px solid var(--line);
+}
+
+.person-info{
+  flex:1;
+}
+
+.person-name{
+  display:block;
+  font-size:13px;
+}
+
+.person-info small{
+  color:var(--muted);
+  font:9px Arial,sans-serif;
+}
+
+.connect{
+  border:1px solid var(--gold);
+  background:transparent;
+  padding:6px 9px;
+  font:8px Arial,sans-serif;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+.connect:hover{
+  background:var(--black);
+  color:var(--cream);
+}
+
+.network-box{
+  margin-top:18px;
+  padding:22px;
+  background:var(--black);
+  color:var(--cream);
+}
+
+.network-box .eyebrow{
+  color:var(--gold-light);
+}
+
+.network-box h3{
+  margin:12px 0;
+  font-size:24px;
+  font-weight:400;
+}
+
+.network-box p{
+  color:#c8bdab;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.gold-btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:11px 15px;
+  border:1px solid var(--gold);
+  color:var(--cream);
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.chat{
+  margin-top:45px;
+  background:var(--ivory);
+  border:1px solid var(--line);
+}
+
+.chat-head{
+  padding:22px;
+  border-bottom:1px solid var(--line);
+}
+
+.chat-head h2{
+  margin:5px 0 0;
+  font-weight:400;
+  font-size:29px;
+}
+
+.chat-body{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  min-height:390px;
+}
+
+.chat-list{
+  border-right:1px solid var(--line);
+}
+
+.chat-user{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:15px;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+}
+
+.chat-user:hover{
+  background:var(--soft);
+}
+
+.chat-user-avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--soft);
+}
+
+.chat-user strong{
+  display:block;
+  font-size:13px;
+  font-weight:400;
+}
+
+.chat-user small{
+  color:var(--muted);
+  font:9px Arial,sans-serif;
+}
+
+.chat-area{
+  display:flex;
+  flex-direction:column;
+}
+
+.messages{
+  flex:1;
+  padding:25px;
+}
+
+.message{
+  max-width:72%;
+  width:max-content;
+  padding:11px 14px;
+  margin:8px 0;
+  background:var(--soft);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.message.mine{
+  margin-left:auto;
+  background:var(--black);
+  color:var(--cream);
+}
+
+.chat-input{
+  display:flex;
+  border-top:1px solid var(--line);
+}
+
+.chat-input input{
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  padding:16px;
+}
+
+.chat-input button{
+  border:0;
+  background:var(--black);
+  color:var(--cream);
+  padding:0 22px;
+  cursor:pointer;
+  font:9px Arial,sans-serif;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.footer{
+  margin-top:80px;
+  padding:55px 6%;
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+
+.footer-logo{
+  font-size:24px;
+  letter-spacing:7px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:20px;
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.footer-links a:hover{
+  color:#80683c;
+}
+
+.copyright{
+  margin-top:25px;
+  color:var(--muted);
+  font:9px Arial,sans-serif;
+  letter-spacing:1.5px;
+}
+
+@media(max-width:1050px){
+  .layout{
+    grid-template-columns:210px 1fr;
+  }
+
+  .right{
+    display:none;
+  }
+}
+
+@media(max-width:750px){
+  .navlinks{
+    display:none;
+  }
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .left{
+    display:none;
+  }
+
+  .hero{
+    padding:65px 6%;
+  }
+
+  .chat-body{
+    grid-template-columns:1fr;
+  }
+
+  .chat-list{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+XIMAYA SOCIAL · CONNECT · MEET · BELONG
+</div>
+
+<nav class="nav">
+
+<a class="logo" href="index.html">XIMAYA</a>
+
+<div class="navlinks">
+<a href="index.html">Home</a>
+<a href="market.html">Market</a>
+<a href="food.html">Food</a>
+<a href="services.html">Services</a>
+<a href="gifts.html">Gifts</a>
+<a href="care.html">Care</a>
+<a href="card.html">Card</a>
+<a href="membership.html">Membership</a>
+<a href="social.html">Social</a>
+<a href="network.html">Network</a>
+</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div>
+
+<div class="eyebrow">XIMAYA Social</div>
+
+<h1>Meet the people<br>behind the world.</h1>
+
+<p>
+A place to discover people, share ideas, build communities,
+create meaningful connections and become part of the XIMAYA world.
+</p>
+
+</div>
+
+</section>
+
+
+<main class="social">
+
+<div class="layout">
+
+
+<!-- LEFT SIDEBAR -->
+
+<aside class="left">
+
+<div class="panel">
+
+<div class="profile">
+
+<div class="avatar"></div>
+
+<strong>Your XIMAYA Profile</strong>
+
+<small>Member · Connected</small>
+
+</div>
+
+<div class="menu">
+
+<a href="#">⌂ Home Feed</a>
+<a href="#">♙ My Profile</a>
+<a href="#">♧ People</a>
+<a href="#">◇ Groups</a>
+<a href="#">✉ Messages</a>
+<a href="#">♡ Notifications</a>
+<a href="network.html">◎ Network</a>
+<a href="membership.html">♢ Membership</a>
+
+</div>
+
+</div>
+
+</aside>
+
+
+<!-- MAIN FEED -->
+
+<section>
+
+<div class="composer">
+
+<div class="composer-top">
+
+<div class="mini-avatar"></div>
+
+<textarea placeholder="Share something with the XIMAYA community..."></textarea>
+
+</div>
+
+<div class="composer-bottom">
+
+<div class="composer-tools">
+
+<span>PHOTO</span>
+<span>IDEA</span>
+<span>EXPERIENCE</span>
+
+</div>
+
+<button class="post-btn">Publish</button>
+
+</div>
+
+</div>
+
+
+<article class="post">
+
+<div class="post-head">
+
+<div class="post-avatar"></div>
+
+<div>
+
+<div class="post-name">XIMAYA Community</div>
+
+<span class="post-meta">XIMAYA Network · Recently</span>
+
+</div>
+
+</div>
+
+<p>
+Welcome to XIMAYA Social — a place where exceptional people
+can meet, exchange ideas, discover communities and create
+connections that matter.
+</p>
+
+<div class="post-actions">
+
+<span>♡ Like</span>
+<span>○ Comment</span>
+<span>↗ Share</span>
+
+</div>
+
+</article>
+
+
+<article class="post">
+
+<div class="post-head">
+
+<div class="post-avatar"></div>
+
+<div>
+
+<div class="post-name">The XIMAYA Journal</div>
+
+<span class="post-meta">Culture · Discovery</span>
+
+</div>
+
+</div>
+
+<p>
+What makes a great community? Not the number of people in it,
+but the quality of the connections between them.
+</p>
+
+<div class="post-actions">
+
+<span>♡ Like</span>
+<span>○ Comment</span>
+<span>↗ Share</span>
+
+</div>
+
+</article>
+
+
+<article class="post">
+
+<div class="post-head">
+
+<div class="post-avatar"></div>
+
+<div>
+
+<div class="post-name">XIMAYA Experiences</div>
+
+<span class="post-meta">Experiences · Today</span>
+
+</div>
+
+</div>
+
+<p>
+Discover people who share your interests, ambitions and
+curiosity. Your next meaningful connection may already be
+inside the XIMAYA Network.
+</p>
+
+<div class="post-actions">
+
+<span>♡ Like</span>
+<span>○ Comment</span>
+<span>↗ Share</span>
+
+</div>
+
+</article>
+
+</section>
+
+
+<!-- RIGHT SIDEBAR -->
+
+<aside class="right">
+
+<div class="panel">
+
+<h3>People to Discover</h3>
+
+<div class="people">
+
+<div class="person">
+<div class="person-avatar"></div>
+<div class="person-info">
+<span class="person-name">Aarav</span>
+<small>Entrepreneur</small>
+</div>
+<button class="connect">Connect</button>
+</div>
+
+<div class="person">
+<div class="person-avatar"></div>
+<div class="person-info">
+<span class="person-name">Maya</span>
+<small>Creative</small>
+</div>
+<button class="connect">Connect</button>
+</div>
+
+<div class="person">
+<div class="person-avatar"></div>
+<div class="person-info">
+<span class="person-name">Arjun</span>
+<small>Explorer</small>
+</div>
+<button class="connect">Connect</button>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="network-box">
+
+<div class="eyebrow">XIMAYA Network</div>
+
+<h3>Go beyond the feed.</h3>
+
+<p>
+Discover communities, opportunities and extraordinary people
+through the wider XIMAYA Network.
+</p>
+
+<a class="gold-btn" href="network.html">
+Explore Network
+</a>
+
+</div>
+
+</aside>
+
+</div>
+
+
+<!-- CHAT -->
+
+<section class="chat">
+
+<div class="chat-head">
+
+<div class="eyebrow">Private Connection</div>
+
+<h2>Messages & Chat</h2>
+
+</div>
+
+<div class="chat-body">
+
+<div class="chat-list">
+
+<div class="chat-user">
+
+<div class="chat-user-avatar"></div>
+
+<div>
+<strong>XIMAYA Team</strong>
+<small>Welcome to XIMAYA</small>
+</div>
+
+</div>
+
+<div class="chat-user">
+
+<div class="chat-user-avatar"></div>
+
+<div>
+<strong>Community</strong>
+<small>3 new messages</small>
+</div>
+
+</div>
+
+<div class="chat-user">
+
+<div class="chat-user-avatar"></div>
+
+<div>
+<strong>Your Connections</strong>
+<small>Start a conversation</small>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="chat-area">
+
+<div class="messages">
+
+<div class="message">
+Welcome to XIMAYA Social.
+</div>
+
+<div class="message">
+This is where meaningful conversations begin.
+</div>
+
+<div class="message mine">
+I'd like to meet the community.
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input type="text" placeholder="Write a message...">
+
+<button>Send</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+<div class="footer-logo">XIMAYA</div>
+
+<div class="footer-links">
+
+<a href="index.html">Home</a>
+<a href="market.html">Market</a>
+<a href="food.html">Food</a>
+<a href="services.html">Services</a>
+<a href="gifts.html">Gifts</a>
+<a href="care.html">Care</a>
+<a href="card.html">Card</a>
+<a href="membership.html">Membership</a>
+<a href="network.html">Network</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+<div class="copyright">
+© 2026 XIMAYA · A WORLD BUILT WITH INTENTION
+</div>
+
+</footer>
+
+</body>
+</html>
